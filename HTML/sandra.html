@@ -33,90 +33,42 @@
     }
 
     body{
-        background: linear-gradient(#2E4059,#E0E1DD);
+        background: linear-gradient(#415A77,#E0E1DD);
     }
     #registrocliente{
         display: flex;
         flex-direction: column;
         justify-content: center;
-    }
 
-    #botonlogin{
-      background-color: #1B263B;
-      margin-right: 10px;
-    }
-    #botonregister{
-      background-color: #1B263B;
-      margin-right: 10px;
-    }
-    #botoncliente{
-      background-color: #1B263B;
-      color: white;
-      
-    }
-    #botonempresa{
-      background-color: #1B263B;
-      color: white;
-    }
-    #clienteempresa{
-      background-color: #1B263B;
-    }
-    #botonidioma{
-      color: #ffffff ;
 
     }
-    #botonayuda{
-      color: #ffffff;
-    }
-    footer{
-      background-color: #E3E4E0;
-    }
-    #reservaservicios{
-      background-color: #1B263B;
-      border: #1B263B;
-    }
-    #fotoytexto{
-      background-attachment: fixed;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
        
     </style>
 
 
 </head>
-<body id="contenedor" class="container-fluid d-flex flex-column ">
+<body id="contenedor" class="container-fluid d-flex flex-column">
 
            <!--Cabecera con la imagen de Citate -->
         <header class="d-flex flex-wrap justify-content-center align-items-center">
           <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
               <div class="col-sm-12 col-md-4 text-center" >
-                  <img src="/img/Logo1.jpeg" alt="citatelogo" id="logocitate" class="invisible" >
+                  <img src="/img/Logo1.jpeg" alt="citatelogo" id="logocitate" >
               </div>
           </a>
       
           <!-- Menu Con "Login", "Registrate", "Idioma" y "Ayuda" -->
           <ul class="nav nav-pills text-center" >
-              <li class="nav-item"><a href="#" class="nav-link active" aria-current="page" class="btn" data-bs-toggle="modal" data-bs-target="#loginModal" id="botonlogin">Login</a></li>
+              <li class="nav-item"><a href="#" class="nav-link active" aria-current="page" class="btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
               <li class="nav-item dropdown">
-                  <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="botonregister">Registrate</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="clienteempresa">
-                      <li><a class="dropdown-item" href="#" class="btn" data-bs-toggle="modal" data-bs-target="#clienteModal" id="botoncliente">Cliente</a></li>
-                      <li><a class="dropdown-item" href="#" class="btn" data-bs-toggle="modal" data-bs-target="#empresaModal" id="botonempresa">Empresa</a></li>
+                  <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrate</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#" class="btn" data-bs-toggle="modal" data-bs-target="#clienteModal">Cliente</a></li>
+                      <li><a class="dropdown-item" href="#" class="btn" data-bs-toggle="modal" data-bs-target="#empresaModal">Empresa</a></li>
                   </ul>
               </li>
-              <li class="nav-item"><a href="#" class="nav-link" class="btn" id="botonidioma">Idioma</a></li>
-              <li class="nav-item"><a href="#" class="nav-link" class="btn" id="botonayuda">Ayuda</a></li>
+              <li class="nav-item"><a href="#" class="nav-link" class="btn">Idioma</a></li>
+              <li class="nav-item"><a href="#" class="nav-link" class="btn">Ayuda</a></li>
           </ul>
       </header>
 
@@ -179,8 +131,8 @@
       
           <!--Eslogannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn-->
           <main>
-            <div class="row py-lg-5 border-bottom justify-content-center align-items-center " style="background-image: url('/img/tijeras.jpg');" id="fotoytextop">
-              <div class="col-lg-6 col-md-8 mx-auto" id="debajodelheader" >
+            <div class="row py-lg-5 border-bottom justify-content-center align-items-center " style="background-image: url('/img/banner-plana-puesta-desde-arriba-de-corte-pelo-plateado-profesional-tijeras-establecidas-sobre-fondo-púrpura-peluquería-equipo-219125735.jpg');" >
+              <div class="col-lg-6 col-md-8 mx-auto" >
                 <h1 class="text-center">CitaTe</h1>
                 <p class="lead text-body-secondary text-center">Citate es una aplicación de gestión de citas de peluquería</p>
               </div>
@@ -189,16 +141,17 @@
 
                         <!--Botooonnnnnnnnnnnnn Reserva servicioooooooooooooooooooosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
             <div class="d-flex gap-2 justify-content-center py-5">
-                <button class="btn btn-primary d-inline-flex align-items-center text" type="button"  id="reservaservicios">
-                  <b>Reserva servicios cerca de ti</b>
+                <button class="btn btn-primary d-inline-flex align-items-center text" type="button">
+                  Reserva servicios cerca de ti
                   <svg class="bi ms-1" width="0" height="20"><use xlink:href="#arrow-right-short"></use></svg>
                 </button>
     
             </div>
 
                             <!--Caroooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooousel-->
-          
-          <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="row">
+
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                 <!--Indicadores de la parte inferior del carrusel y cada no de los sliders del carrousel-->
             <div class="carousel-indicators">
 

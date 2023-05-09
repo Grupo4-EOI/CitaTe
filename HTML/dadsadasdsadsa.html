@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="carousel.css">
     <style>
 
-
     /*Desplegable en Registrate para poder elegir Cliente o empresa*/
     .dropdown:hover .dropdown-menu {
          display: block;
@@ -80,125 +79,116 @@
     }
 
 
-
-
-
-
-
-
-
-
-
-
        
     </style>
 
 
 </head>
-<body id="contenedor" class="container-fluid d-flex flex-column ">
+<body id="contenedor" class="container-fluid d-flex flex-column">
+
+    <div class="container">
+
+    
 
            <!--Cabecera con la imagen de Citate -->
         <header class="d-flex flex-wrap justify-content-center align-items-center">
           <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
               <div class="col-sm-12 col-md-4 text-center" >
-                  <img src="/img/Logo1.jpeg" alt="citatelogo" id="logocitate" class="invisible" >
+                  <img src="/img/Logo1.jpeg" alt="citatelogo" id="logocitate" >
               </div>
           </a>
       
           <!-- Menu Con "Login", "Registrate", "Idioma" y "Ayuda" -->
           <ul class="nav nav-pills text-center" >
-              <li class="nav-item"><a href="#" class="nav-link active" aria-current="page" class="btn" data-bs-toggle="modal" data-bs-target="#loginModal" id="botonlogin">Login</a></li>
+              <li class="nav-item"><a href="#" class="nav-link active" aria-current="page" class="btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
               <li class="nav-item dropdown">
-                  <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="botonregister">Registrate</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="clienteempresa">
-                      <li><a class="dropdown-item" href="#" class="btn" data-bs-toggle="modal" data-bs-target="#clienteModal" id="botoncliente">Cliente</a></li>
-                      <li><a class="dropdown-item" href="#" class="btn" data-bs-toggle="modal" data-bs-target="#empresaModal" id="botonempresa">Empresa</a></li>
+                  <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrate</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#" class="btn" data-bs-toggle="modal" data-bs-target="#clienteModal">Cliente</a></li>
+                      <li><a class="dropdown-item" href="#" class="btn" data-bs-toggle="modal" data-bs-target="#empresaModal">Empresa</a></li>
                   </ul>
               </li>
-              <li class="nav-item"><a href="#" class="nav-link" class="btn" id="botonidioma">Idioma</a></li>
-              <li class="nav-item"><a href="#" class="nav-link" class="btn" id="botonayuda">Ayuda</a></li>
+              <li class="nav-item"><a href="#" class="nav-link" class="btn">Idioma</a></li>
+              <li class="nav-item"><a href="#" class="nav-link" class="btn">Ayuda</a></li>
           </ul>
       </header>
 
-      <!--Desplegablessssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
+      <main style="position: relative; margin-top: 20px;">
 
-        <!--Desplegable modal login-->
-            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body"> <!-- LOGIN -->
-                                            
-                        </div>
-                    </div>
+        
+      <!--Desplegable modal login-->
+      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"> <!-- LOGIN -->
+                                    
                 </div>
             </div>
+        </div>
+    </div>
 
-        <!--Desplegable modal Cliente-->
-            <div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="clienteModalLabel"></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" id="registrocliente" ><!-- Registro cliente -->
-                            <h1>Register</h1>
-                            <input type="text" name="Nombre" id="nombre" placeholder="Nombre" size="20" required/> <br><br>
-                            <input type="text" name="email" id="email" placeholder="Correo electrónico" required><br><br>
-                            <input type="password" name="password" id="password" placeholder="Contraseña" required/> <br><br>
-                            <input type="password" name="repetirpassword" id="repetirpassword" placeholder="Repita la contraseña" required/><br><br>
-                            <div style="display: inline-flex;">
-                                <input type="checkbox" name="Terminosdeuso" id ="terminosdeuso" value="terminosdeuso"required style="margin-top: -20px;"  />
-                                <label for="terminosdeuso"> &nbspHe leído y estoy de acuerdo con los <b>Terminos de uso</b></label><br/><br>
-                            </div>
-                            <input type="submit" name="registrarse" value="Registrarse"/> <br><br>
-                            <button onclick="startSignIn()">Registrarse con Google</button>
-                        
-                        </div>
+    <!--Desplegable modal Cliente-->
+    <div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="clienteModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="registrocliente" ><!-- Registro cliente -->
+                    <h1>Register</h1>
+                    <input type="text" name="Nombre" id="nombre" placeholder="Nombre" size="20" required/> <br><br>
+                    <input type="text" name="email" id="email" placeholder="Correo electrónico" required><br><br>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" required/> <br><br>
+                    <input type="password" name="repetirpassword" id="repetirpassword" placeholder="Repita la contraseña" required/><br><br>
+                    <div style="display: inline-flex;">
+                        <input type="checkbox" name="Terminosdeuso" id ="terminosdeuso" value="terminosdeuso"required style="margin-top: -20px;"  />
+                        <label for="terminosdeuso"> &nbspHe leído y estoy de acuerdo con los <b>Terminos de uso</b></label><br/><br>
                     </div>
+                    <input type="submit" name="registrarse" value="Registrarse"/> <br><br>
+                    <button onclick="startSignIn()">Registrarse con Google</button>
+                
                 </div>
             </div>
-          <!--Desplegable modal Empresa-->
-            <div class="modal fade" id="empresaModal" tabindex="-1" aria-labelledby="empresaModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="empresaModalLabel">Empresa</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">  <!-- Registro Empresa -->
-                       
-                        </div>
-                    </div>
+        </div>
+    </div>
+
+    <!--Desplegable modal Empresa-->
+    <div class="modal fade" id="empresaModal" tabindex="-1" aria-labelledby="empresaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="empresaModalLabel">Empresa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">  <!-- Registro Empresa -->
+               
                 </div>
             </div>
-      
-          <!--Eslogannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn-->
-          <main>
-            <div class="row py-lg-5 border-bottom justify-content-center align-items-center " style="background-image: url('/img/tijeras.jpg');" id="fotoytextop">
-              <div class="col-lg-6 col-md-8 mx-auto" id="debajodelheader" >
-                <h1 class="text-center">CitaTe</h1>
-                <p class="lead text-body-secondary text-center">Citate es una aplicación de gestión de citas de peluquería</p>
-              </div>
-            </div>
-            
+        </div>
+    </div>
 
-                        <!--Botooonnnnnnnnnnnnn Reserva servicioooooooooooooooooooosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
-            <div class="d-flex gap-2 justify-content-center py-5">
-                <button class="btn btn-primary d-inline-flex align-items-center text" type="button"  id="reservaservicios">
-                  <b>Reserva servicios cerca de ti</b>
-                  <svg class="bi ms-1" width="0" height="20"><use xlink:href="#arrow-right-short"></use></svg>
-                </button>
-    
-            </div>
+        <div class="row py-lg-5 border-bottom justify-content-center align-items-center " style="background-image: url('/img/banner-plana-puesta-desde-arriba-de-corte-pelo-plateado-profesional-tijeras-establecidas-sobre-fondo-púrpura-peluquería-equipo-219125735.jpg');" >
+          <div class="col-lg-6 col-md-8 mx-auto" >
+            <h1 class="text-center">CitaTe</h1>
+            <p class="lead text-body-secondary text-center">Citate es una aplicación de gestión de citas de peluquería</p>
+          </div>
+        </div>
 
-                            <!--Caroooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooousel-->
-          
-          <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="d-flex gap-2 justify-content-center py-5">
+            <button class="btn btn-primary d-inline-flex align-items-center text" type="button">
+              Reserva servicios cerca de ti
+              <svg class="bi ms-1" width="0" height="20"><use xlink:href="#arrow-right-short"></use></svg>
+            </button>
+
+        </div>
+
+
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                 <!--Indicadores de la parte inferior del carrusel y cada no de los sliders del carrousel-->
             <div class="carousel-indicators">
 
@@ -252,14 +242,14 @@
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
-          </div>
 
-    
-        </main>
+
+   </main> 
+
 
                     <!--Foooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooterrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr-->
         
-        <footer class="fixed-bottom d-flex flex-wrap justify-content-between align-items-center  border-top">
+        <footer class="fixed-bottom d-flex flex-wrap justify-content-between align-items-center  border-top style=" style="position: relative; margin-top: 20px;">
             <p class="col-12 col-md-4 mb-0 text-body-secondary text-center text-md-start">© 2023 Company, Inc</p>
     
             <a href="/" class="col-12 col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 link-body-emphasis text-decoration-none" >
@@ -274,5 +264,7 @@
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Ayuda</a></li>
             </ul>
         </footer>
+
+    </div>
 </body>
 </html>
