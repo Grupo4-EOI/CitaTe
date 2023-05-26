@@ -89,5 +89,11 @@ public class MainController {
         return "HomePostRegistro.html";
     }
 
+    @GetMapping("/login")
+    public String login(Model model)
+    {
+        return "login";
+    }
+
 
 }

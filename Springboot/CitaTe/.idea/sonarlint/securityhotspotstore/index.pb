@@ -9,8 +9,6 @@ p
 @src/main/java/com/eoi/CitaTe/security/details/MiUserDetails.java,a\9\a9fb37562668f6226b2edb066d3bc16636619f31
 v
 Fsrc/main/java/com/eoi/CitaTe/security/service/MiUserDetailService.java,e\9\e9f485d21a8f00d8cb166f62184ba5c744cf08b1
-p
-@src/main/java/com/eoi/CitaTe/repositories/UsuarioRepository.java,9\a\9aaceb51f32d7bac3cafab592fe1321a9b9e87bc
 K
 src/main/resources/data.sql,7\3\73d31a43eeb5160da7670a8c11a94a16128cf92d
 V

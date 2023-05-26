@@ -6,8 +6,6 @@ S
 i
 9src/main/java/com/eoi/CitaTe/entities/Disponibilidad.java,5\d\5de4671b7a296f1dff99c1c1d3038f761c9097ad
 p
-@src/main/java/com/eoi/CitaTe/repositories/UsuarioRepository.java,9\a\9aaceb51f32d7bac3cafab592fe1321a9b9e87bc
-p
 @src/main/java/com/eoi/CitaTe/security/details/MiUserDetails.java,a\9\a9fb37562668f6226b2edb066d3bc16636619f31
 v
 Fsrc/main/java/com/eoi/CitaTe/security/service/MiUserDetailService.java,e\9\e9f485d21a8f00d8cb166f62184ba5c744cf08b1
