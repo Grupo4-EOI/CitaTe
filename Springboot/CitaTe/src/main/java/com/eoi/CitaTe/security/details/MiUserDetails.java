@@ -31,6 +31,10 @@ public class MiUserDetails implements UserDetails {
 
     private String nombreCliente;
 
+    // meter url de la imagen del usuario.
+    // id
+
+
 
     // en lugar de usar isAccountNonLocked usariamos nuestro activo de la entidad
     private boolean activo;

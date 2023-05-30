@@ -1,13 +1,20 @@
 <!DOCTYPE html>
+<html xmlns:th="thymeleaf.org"
+
+      xmlns:layout="ultraq.net.nz/thymeleaf/layout"
+
+      xmlns:sd="w3.org/1999/xhtml"
+
+      layout:decorate="~{/layout/layoutlogin}">
+
+<head>
 
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <link href="/webjars/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="CitaTe.css">
 
-
-
-
-  <link rel="stylesheet" href="CitaTe.css">
-
+</head>
+<body>
 <div th:fragment="modal">
   <div  class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="alert alert-danger"  th:if="${param.error}">
@@ -51,3 +58,5 @@
     </div>
   </div>
 </div>
+</body>
+</html>

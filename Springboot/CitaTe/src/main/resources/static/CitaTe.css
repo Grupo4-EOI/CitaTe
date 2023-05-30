@@ -180,6 +180,21 @@ Alex
    padding: 20px;
    color: white;
 }
+.calendario{
+border: solid;
+border-width: 1px;
+text-align: center;
+
+}
+.calendario2{
+border: solid;
+border-width: 1px;
+text-align: center;
+
+background-color: grey;
+padding: 15px
+
+}
 
 /************************************
 Sandra
