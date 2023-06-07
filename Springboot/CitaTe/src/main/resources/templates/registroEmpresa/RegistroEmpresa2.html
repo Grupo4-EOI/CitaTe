@@ -31,7 +31,7 @@
         <main class="d-flex flex-wrap justify-content-center " id="main">
             <div class="row">
 
-                <form th:object="${empresaDTO}" th:action="@{/empresas/createEmpresa2}" th:method="GET">
+                <form th:object="${empresaDTO}" th:action="@{/empresas/createEmpresa2}" th:method="POST">
                     <div class="modal-body text-center" id="registroempresas" >
                         <label for="nombreEmpresa">Nombre de Empresa:</label><br>
                         <input type="text" name="Nombre de Empresa" id="nombreEmpresa" th:field="${empresaDTO.nombreEmpresa}" required/> <br><br>

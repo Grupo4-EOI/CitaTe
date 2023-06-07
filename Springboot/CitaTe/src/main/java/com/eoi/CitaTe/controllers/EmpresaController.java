@@ -58,7 +58,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     }
 
 
-    @GetMapping("/createEmpresa2")
+    @PostMapping("/createEmpresa2")
     public String create1(Model model,
                           @ModelAttribute EmpresaDTO empresaDTO,
                           @ModelAttribute UsuarioDTO usuarioDTO,
