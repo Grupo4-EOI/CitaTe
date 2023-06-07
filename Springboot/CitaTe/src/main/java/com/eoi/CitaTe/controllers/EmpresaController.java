@@ -18,10 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("${url.empresa}")
@@ -44,7 +41,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
 
     //Enviar los datos al registro de empresa
-    @Override
+
     @GetMapping("/createEmpresa")
     public String create(Model model) {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -60,8 +57,22 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         return "registroEmpresa/registroEmpresa2"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
-    private final UsuarioService usuarioService;
 
+    @GetMapping("/createEmpresa2")
+    public String create1(Model model,
+                          @ModelAttribute EmpresaDTO empresaDTO,
+                          @ModelAttribute UsuarioDTO usuarioDTO,
+                          @ModelAttribute EmpleadoDTO empleadoDTO){
+
+        model.addAttribute("empresaDTO", empresaDTO);
+//        model.addAttribute("url", url);
+        model.addAttribute("entityName", entityName);
+
+        return "registroEmpresa/registroEmpresa2pepe"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+    private final UsuarioService usuarioService;
+    private final EmpresaService empresaService;
 
     @PostMapping(value = {"/altaEmpresa"})
     public String update(@ModelAttribute UsuarioDTO usuarioDTO,
@@ -70,6 +81,27 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO);
 
 
-        return "registroEmpresa/registroEmpresa12";
+        return "/registroEmpresa/registroEmpresa3";
     }
+
+
+//    @GetMapping("/joseantonio")
+//    public String getById(@PathVariable Object id, Model model){
+//        Empresa entity = service.getById(id);
+//        model.addAttribute("entity", entity);
+//
+//        return "registroEmpresa/registroEmpresa4";
+//
+//
+//    }
+
+
+    @PostMapping(value = {"/descripcionEmpresa"})
+    public String update(@ModelAttribute EmpresaDTO empresaDTO) {
+        empresaService.añadirDescripcion(empresaDTO);
+
+
+        return "registroEmpresa/registroEmpresa5";
+    }
+
 }

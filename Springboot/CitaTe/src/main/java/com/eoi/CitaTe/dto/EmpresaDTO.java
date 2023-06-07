@@ -22,7 +22,7 @@ public class EmpresaDTO {
     private Long id;
     private String nombreEmpresa;
     private String cif;
-   // private Direccion direccion;
+    private Direccion direccion;
     private String descripcionEmpresa;
     //private Contacto contacto;
     private byte[] logoEmpresa;
