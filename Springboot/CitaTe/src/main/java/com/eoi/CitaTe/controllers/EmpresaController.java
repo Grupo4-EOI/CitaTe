@@ -58,7 +58,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     }
 
 
-    @PostMapping("/createEmpresa2")
+    @PostMapping("/createEmpresa3")
     public String create1(Model model,
                           @ModelAttribute EmpresaDTO empresaDTO,
                           @ModelAttribute UsuarioDTO usuarioDTO,
@@ -68,8 +68,43 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
 
-        return "registroEmpresa/registroEmpresa2pepe"; // Nombre de la plantilla para mostrar todas las entidades
+        return "registroEmpresa/registroEmpresa3"; // Nombre de la plantilla para mostrar todas las entidades
     }
+
+    @PostMapping("/createEmpresa4")
+    public String create2(Model model,
+                          @ModelAttribute EmpresaDTO empresaDTO,
+                          @ModelAttribute UsuarioDTO usuarioDTO,
+                          @ModelAttribute EmpleadoDTO empleadoDTO){
+
+        model.addAttribute("empresaDTO", empresaDTO);
+//        model.addAttribute("url", url);
+        model.addAttribute("entityName", entityName);
+
+        return "registroEmpresa/registroEmpresa4"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+
+    @PostMapping("/createEmpresa5")
+    public String create3(Model model,
+                          @ModelAttribute EmpresaDTO empresaDTO,
+                          @ModelAttribute UsuarioDTO usuarioDTO,
+                          @ModelAttribute EmpleadoDTO empleadoDTO){
+
+        model.addAttribute("empresaDTO", empresaDTO);
+//        model.addAttribute("url", url);
+        model.addAttribute("entityName", entityName);
+
+        return "registroEmpresa/registroEmpresa5"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+
+
+
+
+
+
+    //// alta//////////////////////////////////////
 
     private final UsuarioService usuarioService;
     private final EmpresaService empresaService;
@@ -83,27 +118,11 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
 
 
-        return "/registroEmpresa/registroEmpresa3";
+        return "/registroEmpresa/registroEmpresa5";
     }
 
 
-//    @GetMapping("/joseantonio")
-//    public String getById(@PathVariable Object id, Model model){
-//        Empresa entity = service.getById(id);
-//        model.addAttribute("entity", entity);
-//
-//        return "registroEmpresa/registroEmpresa4";
-//
-//
-//    }
 
 
-    @PostMapping(value = {"/descripcionEmpresa"})
-    public String update(@ModelAttribute EmpresaDTO empresaDTO) {
-        empresaService.añadirDescripcion(empresaDTO);
-
-
-        return "registroEmpresa/registroEmpresa5";
-    }
 
 }

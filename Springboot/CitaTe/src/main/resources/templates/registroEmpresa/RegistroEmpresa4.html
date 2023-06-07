@@ -33,10 +33,10 @@
             </div>
             <h2 >QUE TIPO DE NEGOCIO LLEVAS</h2><br>
 
-            <form th:object="${empresaDTO}" th:action="@{/empresas/descripcionEmpresa}" th:method="POST">
+            <form th:object="${empresaDTO}" th:action="@{/empresas/createEmpresa5}" th:method="POST">
                 <div class="modal-body text-center" id="registroempresas" >
                     <label for="descripcion">Descripcion Empresa:</label><br>
-                    <input type="hidden" name="Nombre de Empresa" id="idempresa" th:field="${empresaDTO.id}" />
+
                     <input type="text" name="Nombre de Empresa" id="descripcion" th:field="${empresaDTO.descripcionEmpresa}" required/> <br><br>
                 </div>
 
