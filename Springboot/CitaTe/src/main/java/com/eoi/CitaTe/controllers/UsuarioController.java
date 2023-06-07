@@ -89,6 +89,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
                          @ModelAttribute ClienteDTO clienteDTO) {
         usuarioService.CrearCliente(usuarioDTO, clienteDTO);
 
+
         return "registroEmpresa/registroEmpresa12";
 
     }
