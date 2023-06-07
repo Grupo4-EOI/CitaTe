@@ -40,7 +40,7 @@ public class MiSecurityConfig {
                 .requestMatchers("/CitaTe.css").permitAll()
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/usuarios/**").permitAll()
-                .requestMatchers("/empresas/createEmpresa").permitAll()
+                .requestMatchers("/empresas/**").permitAll()
 
 
 
