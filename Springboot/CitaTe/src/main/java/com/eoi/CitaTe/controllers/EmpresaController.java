@@ -1,10 +1,8 @@
 package com.eoi.CitaTe.controllers;
 
 import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
-import com.eoi.CitaTe.dto.ClienteDTO;
-import com.eoi.CitaTe.dto.EmpleadoDTO;
-import com.eoi.CitaTe.dto.EmpresaDTO;
-import com.eoi.CitaTe.dto.UsuarioDTO;
+import com.eoi.CitaTe.dto.*;
+import com.eoi.CitaTe.entities.Direccion;
 import com.eoi.CitaTe.entities.Empresa;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
@@ -94,11 +92,13 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     public String create3(Model model,
                           @ModelAttribute EmpresaDTO empresaDTO,
                           @ModelAttribute UsuarioDTO usuarioDTO,
-                          @ModelAttribute EmpleadoDTO empleadoDTO){
+                          @ModelAttribute EmpleadoDTO empleadoDTO,
+                          @ModelAttribute DireccionDTO direccionDTO){
 
         model.addAttribute("usuarioDTO", usuarioDTO);
         model.addAttribute("empresaDTO", empresaDTO);
         model.addAttribute("empleadoDTO", empleadoDTO);
+        model.addAttribute("direccionDTO", direccionDTO);
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
 
@@ -134,9 +134,10 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     @PostMapping(value = {"/altaEmpresa"})
     public String update(@ModelAttribute UsuarioDTO usuarioDTO,
                          @ModelAttribute EmpresaDTO empresaDTO,
-                         @ModelAttribute EmpleadoDTO empleadoDTO) {
+                         @ModelAttribute EmpleadoDTO empleadoDTO,
+                         @ModelAttribute DireccionDTO direccionDTO) {
 
-        usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO);
+        usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO, direccionDTO);
 
         return "/registroEmpresa/registroEmpresa6";
     }

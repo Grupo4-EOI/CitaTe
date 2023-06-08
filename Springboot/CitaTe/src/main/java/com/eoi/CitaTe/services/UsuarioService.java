@@ -1,10 +1,7 @@
 package com.eoi.CitaTe.services;
 
 import com.eoi.CitaTe.abstraccomponents.GenericServiceConJPA;
-import com.eoi.CitaTe.dto.ClienteDTO;
-import com.eoi.CitaTe.dto.EmpleadoDTO;
-import com.eoi.CitaTe.dto.EmpresaDTO;
-import com.eoi.CitaTe.dto.UsuarioDTO;
+import com.eoi.CitaTe.dto.*;
 import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.repositories.EmpleadoRepository;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
@@ -53,13 +50,19 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
 
 
-    public void CrearEmpresa(UsuarioDTO usuarioDTO, EmpresaDTO empresaDTO, EmpleadoDTO empleadoDTO){
+    public void CrearEmpresa(UsuarioDTO usuarioDTO, EmpresaDTO empresaDTO, EmpleadoDTO empleadoDTO, DireccionDTO direccionDTO){
 
         Cliente cliente = new Cliente();
         Empresa empresa = new Empresa();
         Empleado empleado = new Empleado();
         Usuario usuario = new Usuario();
         Direccion direccion = new Direccion();
+
+        direccion.setCalle(direccionDTO.getCalle());
+        direccion.setNumero(direccionDTO.getNumero());
+        direccion.setProvincia(direccionDTO.getProvincia());
+        direccion.setCiudad(direccionDTO.getCiudad());
+        direccion.setCodigoPostal(direccionDTO.getCodigoPostal());
 
 
 
@@ -69,7 +72,7 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         empresa.setLogoEmpresa(empresaDTO.getLogoEmpresa());
         empresa.setTipoNegocio(empresaDTO.getTipoNegocio());
 
-        empresa.setDireccion(empresaDTO.getDireccion());
+        empresa.setDireccion(direccion);
 
 
 
