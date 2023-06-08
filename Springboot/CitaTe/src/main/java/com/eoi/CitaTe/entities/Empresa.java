@@ -3,6 +3,7 @@ package com.eoi.CitaTe.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,6 +39,7 @@ public class Empresa {
     @JoinColumn(name = "catalogoDeServicio_id", referencedColumnName = "id_catalogoDeServicio")
     private CatalogoDeServicio catalogoDeServicio;
 
+    private ArrayList<String> tipoNegocio = new ArrayList<>();
 
 
 //    private Set<String> tipoEmpresa = new HashSet; ---> DUDA.

@@ -35,6 +35,10 @@
             <div class="col-lg-6 col-md-8 mx-auto" id="debajodelheader">
                 <h1 class="text-center">CitaTe</h1>
                 <p class="lead text-body-secondary text-center">Bienvenido/a a CitaTe</p>
+                <p th:text="${empresaDTO.nombreEmpresa}"></p>
+
+
+
             </div>
         </div><br><br>
 
@@ -59,7 +63,7 @@
                             </div>
                             <div class="modal-body"><!-- Contenido de la ventana emergente -->
                                 <h1>Protección de datos</h1>
-                                <form   th:action="@{/empresas/createEmpresa4}" th:method="POST">
+                                <form th:action="@{/empresas/createEmpresa4}" th:method="POST">
                                     <div style="display: inline-flex;">
                                         <input type="checkbox" name="Terminosdeuso1" id="terminosdeuso1" value="terminosdeuso1" required
                                                style="margin-top: -20px;" />
@@ -71,6 +75,29 @@
                                         <label for="terminosdeuso2"> &nbspConsentimiento para recibir nuevas ofertas
                                             <b>(Opcional)</b></label><br /><br>
                                     </div>
+
+                                    <h1>CAMPOS A MOSTRAR</h1>
+
+
+                                    <p th:text="${empresaDTO.nombreEmpresa}"></p>
+                                    <p th:text="${empleadoDTO.nombreEmpleado}"></p>
+                                    <p th:text="${usuarioDTO.email}"></p>
+
+                                    <h1>FIN DE CAMPOS A MOSTRAR</h1>
+
+
+                                    <input type="hidden" name="cif" th:value="${empresaDTO.cif}" />
+
+                                    <input type="hidden" name="Nombre de Empresa" id="nombreEmpresa" th:field="${empresaDTO.nombreEmpresa}" >
+                                    <input type="hidden" name="cif" id="cif" th:field="${empresaDTO.cif}" />
+                                    <input type="hidden" name="email" id="email" th:field="${usuarioDTO.email}" >
+                                    <input type="hidden" name="password" id="password"  />
+                                    <input type="hidden" name="repetirpassword" id="repetirpassword" th:field="${usuarioDTO.pass}" />
+                                    <input type="hidden" name="nombreJefe" id="NombreJefe" th:field="${empleadoDTO.NombreEmpleado}" />
+                                    <input type="hidden" name="apellido1" id="apellido1" th:field="${empleadoDTO.Apellido1Empleado}" />
+                                    <input type="hidden" name="apellido2" id="apellido2" th:field="${empleadoDTO.Apellido2Empleado}" />
+
+
                                     <input  class="btn btn-dark" type="submit" name="continuar" value="Continuar" />
 
                                 </form>

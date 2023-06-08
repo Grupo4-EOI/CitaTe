@@ -66,6 +66,7 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         empresa.setNombreEmpresa(empresaDTO.getNombreEmpresa());
         empresa.setCif(empresaDTO.getCif());
         empresa.setLogoEmpresa(empresaDTO.getLogoEmpresa());
+        empresa.setTipoNegocio(empresaDTO.getTipoNegocio());
 
 //      empresa.setContacto(empresaDTO.getContacto());
 
@@ -77,6 +78,7 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
         empleado.setEmpresa(empresa);
 
+        empleadoRepository.save(empleado);
 
 
         usuario.setEmail(usuarioDTO.getEmail());

@@ -64,9 +64,12 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
                           @ModelAttribute UsuarioDTO usuarioDTO,
                           @ModelAttribute EmpleadoDTO empleadoDTO){
 
+        model.addAttribute("usuarioDTO", usuarioDTO);
         model.addAttribute("empresaDTO", empresaDTO);
+        model.addAttribute("empleadoDTO", empleadoDTO);
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
+
 
         return "registroEmpresa/registroEmpresa3"; // Nombre de la plantilla para mostrar todas las entidades
     }
@@ -77,7 +80,9 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
                           @ModelAttribute UsuarioDTO usuarioDTO,
                           @ModelAttribute EmpleadoDTO empleadoDTO){
 
+        model.addAttribute("usuarioDTO", usuarioDTO);
         model.addAttribute("empresaDTO", empresaDTO);
+        model.addAttribute("empleadoDTO", empleadoDTO);
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
 
@@ -115,8 +120,6 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
                          @ModelAttribute EmpleadoDTO empleadoDTO) {
 
         usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO);
-
-
 
         return "/registroEmpresa/registroEmpresa5";
     }

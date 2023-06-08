@@ -38,36 +38,61 @@
             </div>
             <h2 >QUE TIPO DE NEGOCIO LLEVAS</h2><br>
 
-            <form th:object="${empresaDTO}" th:action="@{/empresas/createEmpresa5}" th:method="POST">
+
+            <form th:object="${empresaDTO}" th:action="@{/empresas/altaEmpresa}" th:method="POST">
                 <div class="modal-body text-center" id="registroempresas" >
                     <label for="descripcion">Descripcion Empresa:</label><br>
+                    <input type="hidden" name="cif" th:value="${empresaDTO.cif}" />
 
                     <input type="text" name="Nombre de Empresa" id="descripcion" th:field="${empresaDTO.descripcionEmpresa}" required/> <br><br>
                 </div>
 
                 <input  class="btn btn-dark" type="submit" name="registrarse" value="Continuar" /> <br><br>
-            </form>
-            <div>
-                <input type="checkbox" name="barberia" id ="barberia" value="barberia"required style="margin-left: 20px"  />
+
+
+
+                <h1>CAMPOS A MOSTRAR</h1>
+
+                <p th:text="${empresaDTO.nombreEmpresa}"></p>
+                <p th:text="${empleadoDTO.nombreEmpleado}"></p>
+                <p th:text="${usuarioDTO.email}"></p>
+
+                <h1>FIN DE CAMPOS A MOSTRAR</h1>
+                <div>
+                <input type="checkbox" name="barberia" id ="barberia" th:field="${empresaDTO.tipoNegocio}" value="barberia" style="margin-left: 20px"  />
                 <label for="barberia"> &nbspBarberia</label><br/><br>
             </div>
             <div >
-                <input type="checkbox" name="peluqueria" id ="peluqueria" value="peluqueria"required style="margin-left: 20px"   />
+                <input type="checkbox" name="peluqueria" id ="peluqueria" th:field="${empresaDTO.tipoNegocio}" value="peluqueria" style="margin-left: 20px"   />
                 <label for="peluqueria"> &nbspPeluquería</label><br/><br>
             </div>
             <div >
-                <input type="checkbox" name="belleza" id ="belleza" value="belleza"required style="margin-left: 20px"   />
+                <input type="checkbox" name="belleza" id ="belleza" th:field="${empresaDTO.tipoNegocio}" value="belleza" style="margin-left: 20px"   />
                 <label for="belleza"> &nbspSalón de belleza</label><br/><br>
             </div>
             <div>
-                <input type="checkbox" name="piel" id ="piel" value="piel"required style="margin-left: 20px"  />
+                <input type="checkbox" name="piel" id ="piel" th:field="${empresaDTO.tipoNegocio}" value="piel" style="margin-left: 20px"  />
                 <label for="piel"> &nbspCuidado de la piel</label><br/><br>
             </div>
             <div>
-                <input type="checkbox" name="otros" id ="otros" value="otros"required style="margin-left: 20px"  />
+                <input type="checkbox" name="otros" id ="otros" th:field="${empresaDTO.tipoNegocio}" value="otros"style="margin-left: 20px"  />
                 <label for="otros"> &nbspOtros</label><br/><br>
             </div>
-            <a href="registroEmpresa5" class="btn btn-primary" id="continuar">Continuar</a>
+
+<!--                CAMPOS REGISTRO EMPRESA 2-->
+
+                <input type="hidden" name="Nombre de Empresa" id="nombreEmpresa" th:field="${empresaDTO.nombreEmpresa}" >
+                <input type="hidden" name="cif" id="cif" th:field="${empresaDTO.cif}" />
+                <input type="hidden" name="email" id="email" th:field="${usuarioDTO.email}" >
+                <input type="hidden" name="password" id="password"  />
+                <input type="hidden" name="repetirpassword" id="repetirpassword" th:field="${usuarioDTO.pass}" />
+                <input type="hidden" name="nombreJefe" id="NombreJefe" th:field="${empleadoDTO.NombreEmpleado}" />
+                <input type="hidden" name="apellido1" id="apellido1" th:field="${empleadoDTO.Apellido1Empleado}" />
+                <input type="hidden" name="apellido2" id="apellido2" th:field="${empleadoDTO.Apellido2Empleado}" />
+
+
+            </form>
+
         </section>
     </main>
 
