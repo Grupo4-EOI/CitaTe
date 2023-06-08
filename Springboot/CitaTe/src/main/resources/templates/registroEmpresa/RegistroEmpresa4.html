@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="carousel.css">
     <link rel="stylesheet" th:href="CitaTe.css">
 
+    <!--    <link rel="stylesheet" th:href="@{/css/CitaTe.css}">-->
+
 
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <link href="/webjars/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="/webjars/bootstrap/4.6.0/js/bootstrap.min.js"></script>
 
-<!--    <link rel="stylesheet" th:href="@{/css/CitaTe.css}">-->
+
 
 
 
@@ -38,11 +40,26 @@
             </div>
             <h2 >QUE TIPO DE NEGOCIO LLEVAS</h2><br>
 
-            <form th:object="${empresaDTO}" th:action="@{/empresas/createEmpresa5}" th:method="POST">
+            <form th:object="${empresaDTO}" th:action="@{/empresas/altaEmpresa}" th:method="POST">
                 <div class="modal-body text-center" id="registroempresas" >
                     <label for="descripcion">Descripcion Empresa:</label><br>
 
                     <input type="text" name="Nombre de Empresa" id="descripcion" th:field="${empresaDTO.descripcionEmpresa}" required/> <br><br>
+                </div>
+
+                <div>
+
+                    <input type="hidden" name="Nombre de Empresa" id="nombreEmpresa" th:field="${empresaDTO.nombreEmpresa}" >
+                    <input type="hidden" name="cif" id="cif" th:field="${empresaDTO.cif}" />
+                    <input type="hidden" name="email" id="email" th:field="${usuarioDTO.email}" >
+                    <input type="hidden" name="password" id="password"  />
+                    <input type="hidden" name="repetirpassword" id="repetirpassword" th:field="${usuarioDTO.pass}" />
+                    <input type="hidden" name="nombreJefe" id="NombreJefe" th:field="${empleadoDTO.NombreEmpleado}" />
+                    <input type="hidden" name="apellido1" id="apellido1" th:field="${empleadoDTO.Apellido1Empleado}" />
+                    <input type="hidden" name="apellido2" id="apellido2" th:field="${empleadoDTO.Apellido2Empleado}" />
+
+
+
                 </div>
 
                 <input  class="btn btn-dark" type="submit" name="registrarse" value="Continuar" /> <br><br>
