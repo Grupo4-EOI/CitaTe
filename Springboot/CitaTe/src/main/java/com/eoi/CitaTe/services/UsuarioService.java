@@ -1,10 +1,7 @@
 package com.eoi.CitaTe.services;
 
 import com.eoi.CitaTe.abstraccomponents.GenericServiceConJPA;
-import com.eoi.CitaTe.dto.ClienteDTO;
-import com.eoi.CitaTe.dto.EmpleadoDTO;
-import com.eoi.CitaTe.dto.EmpresaDTO;
-import com.eoi.CitaTe.dto.UsuarioDTO;
+import com.eoi.CitaTe.dto.*;
 import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.repositories.EmpleadoRepository;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
@@ -22,7 +19,7 @@ import java.util.Set;
 public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+   private  UsuarioRepository usuarioRepository;
 
 
     @Autowired
@@ -62,10 +59,12 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
 
 
+
         empresa.setDescripcionEmpresa(empresaDTO.getDescripcionEmpresa());
         empresa.setNombreEmpresa(empresaDTO.getNombreEmpresa());
         empresa.setCif(empresaDTO.getCif());
-        empresa.setLogoEmpresa(empresaDTO.getLogoEmpresa());
+        //
+        //empresa.setLogoEmpresa(empresaDTO.getLogoEmpresa());
 
 //      empresa.setContacto(empresaDTO.getContacto());
 
@@ -76,7 +75,6 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         empleado.setApellido2Empleado(empleadoDTO.getApellido2Empleado());
 
         empleado.setEmpresa(empresa);
-
 
 
         usuario.setEmail(usuarioDTO.getEmail());

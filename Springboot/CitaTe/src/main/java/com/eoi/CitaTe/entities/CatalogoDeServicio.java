@@ -22,4 +22,5 @@ public class CatalogoDeServicio {
     @OneToOne(mappedBy = "catalogoDeServicio")
     private Empresa empresa;
 
+
 }

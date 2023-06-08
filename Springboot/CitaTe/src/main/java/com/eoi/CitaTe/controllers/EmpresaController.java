@@ -1,10 +1,7 @@
 package com.eoi.CitaTe.controllers;
 
 import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
-import com.eoi.CitaTe.dto.ClienteDTO;
-import com.eoi.CitaTe.dto.EmpleadoDTO;
-import com.eoi.CitaTe.dto.EmpresaDTO;
-import com.eoi.CitaTe.dto.UsuarioDTO;
+import com.eoi.CitaTe.dto.*;
 import com.eoi.CitaTe.entities.Empresa;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
@@ -40,7 +37,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     }
 
 
-    //Enviar los datos al registro de empresa
+    //Enviar los datos al registro de empresa ////////////////////////////////////////////////////////////////////
 
     @GetMapping("/createEmpresa")
     public String create(Model model) {
@@ -96,12 +93,8 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         model.addAttribute("entityName", entityName);
 
         return "registroEmpresa/registroEmpresa5"; // Nombre de la plantilla para mostrar todas las entidades
+
     }
-
-
-
-
-
 
 
     //// alta//////////////////////////////////////
@@ -118,7 +111,8 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
 
 
-        return "/registroEmpresa/registroEmpresa5";
+
+        return "/registroEmpresa/registroEmpresa6";
     }
 
 

@@ -41,51 +41,51 @@
             <h2 >QUE TIPO DE NEGOCIO LLEVAS</h2><br>
 
             <form th:object="${empresaDTO}" th:action="@{/empresas/altaEmpresa}" th:method="POST">
-                <div class="modal-body text-center" id="registroempresas" >
-                    <label for="descripcion">Descripcion Empresa:</label><br>
+                    <div class="modal-body text-center" id="registroempresas" >
+                        <label for="descripcion">Descripcion Empresa:</label><br>
+                        <input type="text" name="Nombre de Empresa" id="descripcion" th:field="${empresaDTO.descripcionEmpresa}" required/> <br><br>
 
-                    <input type="text" name="Nombre de Empresa" id="descripcion" th:field="${empresaDTO.descripcionEmpresa}" required/> <br><br>
-                </div>
+
+                    </div>
+
+                    <!--          ///////////        ARRASTRAMOS CAMPOS DE REGISTRO EMPRESA 2          //////////////-->
+                    <div>
+                        <input type="hidden" name="Nombre de Empresa" id="nombreEmpresa" th:field="${empresaDTO.nombreEmpresa}" >
+                        <input type="hidden" name="cif" id="cif" th:field="${empresaDTO.cif}" />
+                        <input type="hidden" name="email" id="email" th:field="${usuarioDTO.email}" >
+                        <input type="hidden" name="password" id="password"  />
+                        <input type="hidden" name="repetirpassword" id="repetirpassword" th:field="${usuarioDTO.pass}" />
+                        <input type="hidden" name="nombreJefe" id="NombreJefe" th:field="${empleadoDTO.NombreEmpleado}" />
+                        <input type="hidden" name="apellido1" id="apellido1" th:field="${empleadoDTO.Apellido1Empleado}" />
+                        <input type="hidden" name="apellido2" id="apellido2" th:field="${empleadoDTO.Apellido2Empleado}" />
+                    </div>
+                    <!--    //////////////           //////////////              //////////////   ///////////-->
+
+
 
                 <div>
-
-                    <input type="hidden" name="Nombre de Empresa" id="nombreEmpresa" th:field="${empresaDTO.nombreEmpresa}" >
-                    <input type="hidden" name="cif" id="cif" th:field="${empresaDTO.cif}" />
-                    <input type="hidden" name="email" id="email" th:field="${usuarioDTO.email}" >
-                    <input type="hidden" name="password" id="password"  />
-                    <input type="hidden" name="repetirpassword" id="repetirpassword" th:field="${usuarioDTO.pass}" />
-                    <input type="hidden" name="nombreJefe" id="NombreJefe" th:field="${empleadoDTO.NombreEmpleado}" />
-                    <input type="hidden" name="apellido1" id="apellido1" th:field="${empleadoDTO.Apellido1Empleado}" />
-                    <input type="hidden" name="apellido2" id="apellido2" th:field="${empleadoDTO.Apellido2Empleado}" />
-
-
-
+                    <input type="checkbox" name="barberia" id ="barberia" value="barberia"required style="margin-left: 20px" th:field="${empleadoDTO.catalogoDeServicio}" />
+                    <label for="barberia"> &nbspBarberia</label><br/><br>
                 </div>
-
+                <div >
+                    <input type="checkbox" name="peluqueria" id ="peluqueria" value="peluqueria"required style="margin-left: 20px" th:field="${empleadoDTO.catalogoDeServicio}"  />
+                    <label for="peluqueria"> &nbspPeluquería</label><br/><br>
+                </div>
+                <div >
+                    <input type="checkbox" name="belleza" id ="belleza" value="belleza"required style="margin-left: 20px"  th:field="${empleadoDTO.catalogoDeServicio}" />
+                    <label for="belleza"> &nbspSalón de belleza</label><br/><br>
+                </div>
+                <div>
+                    <input type="checkbox" name="piel" id ="piel" value="piel"required style="margin-left: 20px" th:field="${empleadoDTO.catalogoDeServicio}"  />
+                    <label for="piel"> &nbspCuidado de la piel</label><br/><br>
+                </div>
+                <div>
+                    <input type="checkbox" name="otros" id ="otros" value="otros"required style="margin-left: 20px" th:field="${empleadoDTO.catalogoDeServicio}" />
+                    <label for="otros"> &nbspOtros</label><br/><br>
+                </div>
                 <input  class="btn btn-dark" type="submit" name="registrarse" value="Continuar" /> <br><br>
-            </form>
-            <div>
-                <input type="checkbox" name="barberia" id ="barberia" value="barberia"required style="margin-left: 20px"  />
-                <label for="barberia"> &nbspBarberia</label><br/><br>
-            </div>
-            <div >
-                <input type="checkbox" name="peluqueria" id ="peluqueria" value="peluqueria"required style="margin-left: 20px"   />
-                <label for="peluqueria"> &nbspPeluquería</label><br/><br>
-            </div>
-            <div >
-                <input type="checkbox" name="belleza" id ="belleza" value="belleza"required style="margin-left: 20px"   />
-                <label for="belleza"> &nbspSalón de belleza</label><br/><br>
-            </div>
-            <div>
-                <input type="checkbox" name="piel" id ="piel" value="piel"required style="margin-left: 20px"  />
-                <label for="piel"> &nbspCuidado de la piel</label><br/><br>
-            </div>
-            <div>
-                <input type="checkbox" name="otros" id ="otros" value="otros"required style="margin-left: 20px"  />
-                <label for="otros"> &nbspOtros</label><br/><br>
-            </div>
-            <a href="registroEmpresa5" class="btn btn-primary" id="continuar">Continuar</a>
-        </section>
+            </section>
+        </form>
     </main>
 
            <!--Fooooterrrrr-->

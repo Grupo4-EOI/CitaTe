@@ -34,7 +34,7 @@ public class MiSecurityConfig {
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/","" ).permitAll()
                 .requestMatchers("/webjars/**").permitAll()
-                .requestMatchers("/error/**").permitAll()
+                .requestMatchers("/error/error/**").permitAll()
                 .requestMatchers("/registroEmpresa*").permitAll()
                 .requestMatchers("/citaTeP1").permitAll()
                 .requestMatchers("/CitaTe.css").permitAll()

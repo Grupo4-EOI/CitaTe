@@ -91,7 +91,6 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
 
         return "registroEmpresa/registroEmpresa12";
-
     }
 
 
