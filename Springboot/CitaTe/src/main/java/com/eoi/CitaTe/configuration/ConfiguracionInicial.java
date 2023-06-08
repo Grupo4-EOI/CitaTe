@@ -74,7 +74,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
 
             empresa.setCif("B999999999");
             empresa.setNombreEmpresa("Ache");
-//            empresa.setDireccion(new Direccion("principal",5,"Madrid","Getafe",28001,"sin_defenir"));
+            empresa.setDireccion(new Direccion("principal",5,"Madrid","Getafe",28001,"sin_defenir"));
             empresa.setDescripcionEmpresa("La mejor peluqueria");
 //            empresa.setContacto(new Contacto("612314123","","ayuda@gmail.com"));
             empresaRepository.save(empresa);

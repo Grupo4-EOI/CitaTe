@@ -66,6 +66,23 @@
                         <div class="text-center">
                             <input  class="btn btn-dark" type="submit" name="continuar" value="Continuar" />
                         </div>
+
+<!--///////////////////////////////////////////////// ARRASTRADOS /////////////////////////////////////////////////////////////////////-->
+                        <!--  /////////// ARRASTRADOS DE REGISTRO EMPRESA 2 ///////////////////  -->
+                        <input type="hidden" name="Nombre de Empresa" id="nombreEmpresa" th:field="${empresaDTO.nombreEmpresa}" >
+                        <input type="hidden" name="cif" id="cif" th:field="${empresaDTO.cif}" />
+                        <input type="hidden" name="email" id="email" th:field="${usuarioDTO.email}" >
+                        <input type="hidden" name="password" id="password"  />
+                        <input type="hidden" name="repetirpassword" id="repetirpassword" th:field="${usuarioDTO.pass}" />
+                        <input type="hidden" name="nombreJefe" id="NombreJefe" th:field="${empleadoDTO.NombreEmpleado}" />
+                        <input type="hidden" name="apellido1" id="apellido1" th:field="${empleadoDTO.Apellido1Empleado}" />
+                        <input type="hidden" name="apellido2" id="apellido2" th:field="${empleadoDTO.Apellido2Empleado}" />
+                        <!--   /////////// ARRASTRADOS DE REGISTRO EMPRESA 2 ///////////////////////-->
+                        <!--   /////////// ARRASTRADOS DE REGISTRO EMPRESA 4 ///////////////////////-->
+                        <input type="hidden" name="Nombre de Empresa" id="descripcion" th:field="${empresaDTO.descripcionEmpresa}" />
+                        <input type="hidden"  th:field="${empresaDTO.tipoNegocio}" />
+                        <!--   /////////// ARRASTRADOS DE REGISTRO EMPRESA 4 ///////////////////////-->
+<!--///////////////////////////////////////////////// ARRASTRADOS /////////////////////////////////////////////////////////////////////-->
                     </form>
             </div>
             <div class="text-center">

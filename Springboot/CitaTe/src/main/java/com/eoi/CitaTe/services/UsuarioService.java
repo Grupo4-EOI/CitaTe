@@ -59,6 +59,7 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         Empresa empresa = new Empresa();
         Empleado empleado = new Empleado();
         Usuario usuario = new Usuario();
+        Direccion direccion = new Direccion();
 
 
 
@@ -67,6 +68,9 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         empresa.setCif(empresaDTO.getCif());
         empresa.setLogoEmpresa(empresaDTO.getLogoEmpresa());
         empresa.setTipoNegocio(empresaDTO.getTipoNegocio());
+
+        empresa.setDireccion(empresaDTO.getDireccion());
+
 
 
 //      empresa.setContacto(empresaDTO.getContacto());
