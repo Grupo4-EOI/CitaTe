@@ -23,7 +23,7 @@ public class EmpresaDTO {
     private Long id;
     private String nombreEmpresa;
     private String cif;
-    private Direccion direccion;
+    private DireccionDTO direccionDTO;
     private String descripcionEmpresa;
     //private Contacto contacto;
     private byte[] logoEmpresa;
@@ -37,3 +37,6 @@ public class EmpresaDTO {
 //    private MetodoPagoMensual metodoPagoMensual;
 //    private Pago pago;
 }
+
+
+

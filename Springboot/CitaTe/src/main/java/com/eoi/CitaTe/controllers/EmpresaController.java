@@ -92,13 +92,12 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     public String create3(Model model,
                           @ModelAttribute EmpresaDTO empresaDTO,
                           @ModelAttribute UsuarioDTO usuarioDTO,
-                          @ModelAttribute EmpleadoDTO empleadoDTO,
-                          @ModelAttribute DireccionDTO direccionDTO){
+                          @ModelAttribute EmpleadoDTO empleadoDTO){
 
         model.addAttribute("usuarioDTO", usuarioDTO);
         model.addAttribute("empresaDTO", empresaDTO);
         model.addAttribute("empleadoDTO", empleadoDTO);
-        model.addAttribute("direccionDTO", direccionDTO);
+
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
 
@@ -119,13 +118,6 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
         return "registroEmpresa/registroEmpresa6"; // Nombre de la plantilla para mostrar todas las entidades
     }
-
-
-
-
-
-
-
     //// alta//////////////////////////////////////
 
     private final UsuarioService usuarioService;
@@ -141,9 +133,4 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
         return "/registroEmpresa/registroEmpresa6";
     }
-
-
-
-
-
 }

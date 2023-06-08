@@ -16,4 +16,7 @@ public class DireccionDTO {
     private String provincia;
     private String ciudad;
     private String codigoPostal;
+
+
+
 }
