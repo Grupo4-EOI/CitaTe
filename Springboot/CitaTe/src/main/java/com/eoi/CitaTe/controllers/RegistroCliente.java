@@ -2,12 +2,11 @@ package com.eoi.CitaTe.controllers;
 
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 //h
 @Controller
-public class registroCliente {
+public class RegistroCliente {
 
     @PostMapping("/registroCliente")
     public String datosCliente(

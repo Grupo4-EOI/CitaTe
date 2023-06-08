@@ -68,6 +68,7 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         empresa.setLogoEmpresa(empresaDTO.getLogoEmpresa());
         empresa.setTipoNegocio(empresaDTO.getTipoNegocio());
 
+
 //      empresa.setContacto(empresaDTO.getContacto());
 
         empresaRepository.save(empresa);

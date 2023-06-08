@@ -39,27 +39,34 @@
                      alt="mapamaps" width="50%"><br>
                 <div class="d-flex flex-wrap row justify-content-center">
 
-                    <div class="text-center">
-                      <label class="col-6" for="calle">Provincia: </label>
-                      <input class="col-6" type="text" name="provincia" id="provincia" value="" size="20" required /><br><br>
-                    </div>
-                    <div class="text-center">
-                      <label class="col-6" for="calle">Ciudad: </label>
-                      <input class="col-6" type="text" name="ciudad" id="ciudad" value="" size="20" required /><br><br>
-                    </div>
-                    <div class="text-center">
-                      <label class="col-6" for="calle">CP: </label>
-                      <input class="col-6" type="text" name="cp" id="cp" value="" size="20" required /><br><br>
-                    </div>
-                    <div class="text-center">
-                      <label class="col-6" for="calle">Calle: </label>
-                      <input class="col-6" type="text" name="calle" id="calle" value="" size="20" required /><br><br>
-                    </div>
-                    <div class="text-center">
-                      <label class="col-6" for="calle">Número: </label>
-                      <input class="col-6" type="text" name="numero" id="numero" value="" size="20" required /><br><br>
-                    </div>
-                </div>
+                    <form th:object="${empresaDTO}" th:action="@{/empresas/altaEmpresa}">
+                        <div class="d-flex flex-wrap row justify-content-center">
+
+                            <div class="text-center">
+                                <label class="col-6" for="calle">Provincia: </label>
+                                <input class="col-6" type="text" name="provincia" id="provincia" value="" size="20" th:field="${empresaDTO.direccion.provincia}"/><br><br>
+                            </div>
+                            <div class="text-center">
+                                <label class="col-6" for="calle">Ciudad: </label>
+                                <input class="col-6" type="text" name="ciudad" id="ciudad" value="" size="20" th:field="${empresaDTO.direccion.ciudad}" /><br><br>
+                            </div>
+                            <div class="text-center">
+                                <label class="col-6" for="calle">CP: </label>
+                                <input class="col-6" type="text" name="cp" id="cp" value="" size="20" th:field="${empresaDTO.direccion.codigoPostal}" /><br><br>
+                            </div>
+                            <div class="text-center">
+                                <label class="col-6" for="calle">Calle: </label>
+                                <input class="col-6" type="text" name="calle" id="calle" value="" size="20" th:field="${empresaDTO.direccion.calle}" /><br><br>
+                            </div>
+                            <div class="text-center">
+                                <label class="col-6" for="calle">Número: </label>
+                                <input class="col-6" type="text" name="numero" id="numero" value="" size="20" th:field="${empresaDTO.direccion.numero}" /><br><br>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <input  class="btn btn-dark" type="submit" name="continuar" value="Continuar" />
+                        </div>
+                    </form>
             </div>
             <div class="text-center">
               <a href="registroEmpresa6" class="btn btn-primary" id="continuar">Continuar</a>

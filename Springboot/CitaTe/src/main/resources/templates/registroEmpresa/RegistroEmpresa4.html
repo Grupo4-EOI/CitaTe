@@ -39,10 +39,10 @@
             <h2 >QUE TIPO DE NEGOCIO LLEVAS</h2><br>
 
 
-            <form th:object="${empresaDTO}" th:action="@{/empresas/altaEmpresa}" th:method="POST">
+            <form th:object="${empresaDTO}" th:action="@{/empresas/createEmpresa5}" th:method="POST">
                 <div class="modal-body text-center" id="registroempresas" >
                     <label for="descripcion">Descripcion Empresa:</label><br>
-                    <input type="hidden" name="cif" th:value="${empresaDTO.cif}" />
+
 
                     <input type="text" name="Nombre de Empresa" id="descripcion" th:field="${empresaDTO.descripcionEmpresa}" required/> <br><br>
                 </div>
@@ -50,14 +50,15 @@
                 <input  class="btn btn-dark" type="submit" name="registrarse" value="Continuar" /> <br><br>
 
 
-
+<!--////////////////////// BORRAR /////////////////////-->
                 <h1>CAMPOS A MOSTRAR</h1>
-
                 <p th:text="${empresaDTO.nombreEmpresa}"></p>
                 <p th:text="${empleadoDTO.nombreEmpleado}"></p>
                 <p th:text="${usuarioDTO.email}"></p>
-
                 <h1>FIN DE CAMPOS A MOSTRAR</h1>
+<!--////////////////////// BORRAR /////////////////////-->
+
+
                 <div>
                 <input type="checkbox" name="barberia" id ="barberia" th:field="${empresaDTO.tipoNegocio}" value="barberia" style="margin-left: 20px"  />
                 <label for="barberia"> &nbspBarberia</label><br/><br>
@@ -79,8 +80,7 @@
                 <label for="otros"> &nbspOtros</label><br/><br>
             </div>
 
-<!--                CAMPOS REGISTRO EMPRESA 2-->
-
+<!--  /////////////////////        CAMPOS REGISTRO EMPRESA 2              /////////////////////////////////////-->
                 <input type="hidden" name="Nombre de Empresa" id="nombreEmpresa" th:field="${empresaDTO.nombreEmpresa}" >
                 <input type="hidden" name="cif" id="cif" th:field="${empresaDTO.cif}" />
                 <input type="hidden" name="email" id="email" th:field="${usuarioDTO.email}" >
@@ -89,6 +89,7 @@
                 <input type="hidden" name="nombreJefe" id="NombreJefe" th:field="${empleadoDTO.NombreEmpleado}" />
                 <input type="hidden" name="apellido1" id="apellido1" th:field="${empleadoDTO.Apellido1Empleado}" />
                 <input type="hidden" name="apellido2" id="apellido2" th:field="${empleadoDTO.Apellido2Empleado}" />
+<!--  /////////////////////        CAMPOS REGISTRO EMPRESA 2              /////////////////////////////////////-->
 
 
             </form>
