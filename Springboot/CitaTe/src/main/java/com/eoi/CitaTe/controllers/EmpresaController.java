@@ -37,6 +37,33 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     }
 
 
+    @GetMapping("/avanzarPagina")
+    private String avanzarPaginaRegistroEmpresa(@RequestParam int pasoActual, Model model)
+    {   Integer paso;
+        paso=pasoActual+1;
+        model.addAttribute("paso",paso);
+
+        return "registroEmpresa/registroEmpresa";
+    }
+
+
+    @GetMapping("/createEmpresaTei")
+    public String createEmpresaTei(Model model) {
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        EmpresaDTO empresaDTO = new EmpresaDTO();
+        EmpleadoDTO empleadoDTO = new EmpleadoDTO();
+        int paso = 1;
+        model.addAttribute("paso",paso);
+        model.addAttribute("usuarioDTO", usuarioDTO);
+        model.addAttribute("empresaDTO", empresaDTO);
+        model.addAttribute("empleadoDTO", empleadoDTO);
+//        model.addAttribute("url", url);
+        model.addAttribute("entityName", entityName);
+
+        return "registroEmpresa/registroEmpresa"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+
     //Enviar los datos al registro de empresa ////////////////////////////////////////////////////////////////////
 
     @GetMapping("/createEmpresa")

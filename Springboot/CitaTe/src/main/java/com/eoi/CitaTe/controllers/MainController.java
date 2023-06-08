@@ -31,68 +31,6 @@ public class MainController {
         return "perfil/Perfil.html";
     }
 
-    @GetMapping("/registroEmpresa1")
-    public String regEmp1() {
-        return "registroEmpresa/RegistroEmpresa1.html";
-    }
-
-    @GetMapping("/registroEmpresa2")
-    public String regEmp2() {
-        return "registroEmpresa/RegistroEmpresa2.html";
-    }
-
-    @GetMapping("/registroEmpresa3")
-    public String regEmp3(){
-        return "registroEmpresa/RegistroEmpresa3.html";
-    }
-
-    @GetMapping("/registroEmpresa4")
-    public String regEmp4(){
-        return "registroEmpresa/RegistroEmpresa4.html";
-    }
-
-    @GetMapping("/registroEmpresa5")
-    public String regEmp5(){
-        return "registroEmpresa/RegistroEmpresa5.html";
-    }
-
-    @GetMapping("/registroEmpresa6")
-    public String regEmp6(){
-        return "registroEmpresa/RegistroEmpresa6.html";
-    }
-
-    @GetMapping("/registroEmpresa7")
-    public String regEmp7(){
-        return "registroEmpresa/RegistroEmpresa7.html";
-    }
-
-    @GetMapping("/registroEmpresa8")
-    public String regEmp8(){
-        return "registroEmpresa/RegistroEmpresa8.html";
-    }
-
-    @GetMapping("/registroEmpresa9")
-    public String regEmp9(){
-        return "registroEmpresa/RegistroEmpresa9.html";
-    }
-    @GetMapping("/registroEmpresa10")
-    public String regEmp10(){
-        return "registroEmpresa/RegistroEmpresa10.html";
-    }
-    @GetMapping("/registroEmpresa11")
-    public String regEmp11(){
-        return "registroEmpresa/RegistroEmpresa11.html";
-    }
-    @GetMapping("/registroEmpresa12")
-    public String regEmp12(){
-        return "registroEmpresa/RegistroEmpresa12.html";
-    }
-    @GetMapping("/homepostregistro")
-    public String homepregistro(){
-        return "home/HomePostRegistro.html";
-    }
-
-
 
 
 }
