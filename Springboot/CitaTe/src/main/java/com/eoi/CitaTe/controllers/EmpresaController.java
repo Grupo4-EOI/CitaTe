@@ -99,26 +99,27 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         model.addAttribute("empresaDTO", empresaDTO);
         model.addAttribute("empleadoDTO", empleadoDTO);
         model.addAttribute("direccionDTO", direccionDTO);
+
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
 
         return "registroEmpresa/registroEmpresa5"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
-    @PostMapping("/createEmpresa6")
-    public String create4(Model model,
-                          @ModelAttribute EmpresaDTO empresaDTO,
-                          @ModelAttribute UsuarioDTO usuarioDTO,
-                          @ModelAttribute EmpleadoDTO empleadoDTO){
-
-        model.addAttribute("usuarioDTO", usuarioDTO);
-        model.addAttribute("empresaDTO", empresaDTO);
-        model.addAttribute("empleadoDTO", empleadoDTO);
-//        model.addAttribute("url", url);
-        model.addAttribute("entityName", entityName);
-
-        return "registroEmpresa/registroEmpresa6"; // Nombre de la plantilla para mostrar todas las entidades
-    }
+//    @PostMapping("/createEmpresa6")
+//    public String create4(Model model,
+//                          @ModelAttribute EmpresaDTO empresaDTO,
+//                          @ModelAttribute UsuarioDTO usuarioDTO,
+//                          @ModelAttribute EmpleadoDTO empleadoDTO){
+//
+//        model.addAttribute("usuarioDTO", usuarioDTO);
+//        model.addAttribute("empresaDTO", empresaDTO);
+//        model.addAttribute("empleadoDTO", empleadoDTO);
+////        model.addAttribute("url", url);
+//        model.addAttribute("entityName", entityName);
+//
+//        return "registroEmpresa/registroEmpresa6"; // Nombre de la plantilla para mostrar todas las entidades
+//    }
 
 
 
@@ -137,7 +138,8 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
                          @ModelAttribute EmpleadoDTO empleadoDTO,
                          @ModelAttribute DireccionDTO direccionDTO) {
 
-        usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO, direccionDTO);
+        usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO,direccionDTO );
+
 
         return "/registroEmpresa/registroEmpresa6";
     }
