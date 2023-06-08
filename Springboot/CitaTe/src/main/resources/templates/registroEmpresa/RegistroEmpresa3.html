@@ -59,7 +59,33 @@
                             </div>
                             <div class="modal-body"><!-- Contenido de la ventana emergente -->
                                 <h1>Protección de datos</h1>
-                                <form   th:action="@{/empresas/createEmpresa4}" th:method="POST">
+
+
+                                <form  th:action="@{/empresas/createEmpresa4}" th:method="POST">
+                                    <p th:text="${empleadoDTO.nombreEmpleado}"></p>
+
+<!--                                    ARRASTRAMOS CAMPOS DE REGISTRO EMPRESA 2-->
+                                    <div>
+
+                                        <input type="hidden" name="Nombre de Empresa" id="nombreEmpresa" th:field="${empresaDTO.nombreEmpresa}" >
+                                        <input type="hidden" name="cif" id="cif" th:field="${empresaDTO.cif}" />
+                                        <input type="hidden" name="email" id="email" th:field="${usuarioDTO.email}" >
+                                        <input type="hidden" name="password" id="password"  />
+                                        <input type="hidden" name="repetirpassword" id="repetirpassword" th:field="${usuarioDTO.pass}" />
+                                        <input type="hidden" name="nombreJefe" id="NombreJefe" th:field="${empleadoDTO.NombreEmpleado}" />
+                                        <input type="hidden" name="apellido1" id="apellido1" th:field="${empleadoDTO.Apellido1Empleado}" />
+                                        <input type="hidden" name="apellido2" id="apellido2" th:field="${empleadoDTO.Apellido2Empleado}" />
+
+                                    </div>
+<!--                                    ///////////-->
+
+
+
+
+
+
+
+
                                     <div style="display: inline-flex;">
                                         <input type="checkbox" name="Terminosdeuso1" id="terminosdeuso1" value="terminosdeuso1" required
                                                style="margin-top: -20px;" />
