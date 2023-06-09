@@ -26,6 +26,8 @@ public class Empresa {
     private Direccion direccion;
 
 
+
+
     private String descripcionEmpresa;
     //Como introducimos el horario desde los html????
     private String horario;
