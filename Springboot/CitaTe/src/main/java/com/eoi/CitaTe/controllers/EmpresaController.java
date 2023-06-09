@@ -1,17 +1,12 @@
 package com.eoi.CitaTe.controllers;
-
 import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
 import com.eoi.CitaTe.dto.*;
 import com.eoi.CitaTe.entities.Empresa;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
-import com.eoi.CitaTe.repositories.UsuarioRepository;
-import com.eoi.CitaTe.services.EmpleadoService;
 import com.eoi.CitaTe.services.EmpresaService;
 import com.eoi.CitaTe.services.UsuarioService;
 import jakarta.annotation.PostConstruct;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,10 +98,6 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
         return "registroEmpresa/registroEmpresa5"; // Nombre de la plantilla para mostrar todas las entidades
     }
-
-
-
-
 
 
 

@@ -42,7 +42,6 @@
             <form th:object="${empresaDTO}" th:action="@{/empresas/createEmpresa5}" th:method="POST">
                 <div class="modal-body text-center" id="registroempresas" >
                     <label for="descripcion">Descripcion Empresa:</label><br>
-                    <input type="hidden" name="cif" th:value="${empresaDTO.cif}" />
 
                     <input type="text" name="Nombre de Empresa" id="descripcion" th:field="${empresaDTO.descripcionEmpresa}" required/> <br><br>
                 </div>

@@ -23,5 +23,8 @@ public class DisponibilidadController extends MiControladorGenerico<Disponibilid
         super.entityName = entityName;
         super.url = url;
     }
+
+
+
     }
 
