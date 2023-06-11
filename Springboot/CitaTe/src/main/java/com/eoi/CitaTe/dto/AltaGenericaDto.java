@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AltaGenericaDto {
-
+    String tipoalta;
     Usuario usuario = new Usuario();
     Cliente cliente = new Cliente();
     Empleado empleado = new Empleado();

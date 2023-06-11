@@ -15,6 +15,66 @@
     <link th:href="@{/css/nuevoestilo.css}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
+        function checkAltaCliente() {
+            document.getElementById("myCheckaltacliente").checked = true;
+            document.getElementById("myCheckaltaempleado").checked = false;
+            document.getElementById("myCheckaltaempresa").checked = false;
+            ul = document.getElementById("signup-step")
+            ul.innerHTML = ""
+            var entry = document.createElement('li');
+            entry.id = "usuario"
+            entry.className = "active"
+            entry.textContent = "Datos del usuario"
+            ul.appendChild(entry)
+            var entrysec = document.createElement('li');
+            entrysec.id = "cliente"
+            entrysec.textContent = "Cliente"
+            ul.appendChild(entrysec)
+            document.getElementById("tipoalta").value = "cliente"
+
+        }
+
+
+        function checkAltaEmpleado() {
+            document.getElementById("myCheckaltacliente").checked = false;
+            document.getElementById("myCheckaltaempleado").checked = true;
+            document.getElementById("myCheckaltaempresa").checked = false;
+            ul = document.getElementById("signup-step")
+            ul.innerHTML = ""
+            var entry = document.createElement('li');
+            entry.id = "usuario"
+            entry.className = "active"
+            entry.textContent = "Datos del usuario"
+            ul.appendChild(entry)
+            var entrysec = document.createElement('li');
+            entrysec.id = "empleado"
+            entrysec.textContent = "Empleado"
+            ul.appendChild(entrysec)
+            document.getElementById("tipoalta").value = "empleado"
+        }
+        function checkAltaEmpresa() {
+            document.getElementById("myCheckaltacliente").checked = false;
+            document.getElementById("myCheckaltaempleado").checked = false;
+            document.getElementById("myCheckaltaempresa").checked = true;
+            ul = document.getElementById("signup-step")
+            ul.innerHTML = ""
+            var entry = document.createElement('li');
+            entry.id = "usuario"
+            entry.className = "active"
+            entry.textContent = "Datos del usuario"
+            ul.appendChild(entry)
+            var entrysec = document.createElement('li');
+            entrysec.id = "empleado"
+            entrysec.textContent = "Empleado"
+            ul.appendChild(entrysec)
+            var entrysec1 = document.createElement('li');
+            entrysec1.id = "empresa"
+            entrysec1.textContent = "Empresa"
+            ul.appendChild(entrysec1)
+            document.getElementById("tipoalta").value = "empresa"
+        }
+
+
         function validate() {
             var output = true;
             $(".signup-error").html('');
@@ -72,6 +132,17 @@
                     output = false;
                     $("#apellido2Empleado-error").html("apellido1Empleado obligatorio!");
                 }
+            }
+            if ($("#empleado-field").css('display') != 'none') {
+                if (!($("#nombreEmpresa").val())) {
+                    output = false;
+                    $("#nombreEmpresa-error").html("nombreEmpresa obligatorio!");
+                }
+                if (!($("#cif").val())) {
+                    output = false;
+                    $("#cif-error").html("cif obligatorio!");
+                }
+
             }
         return output;
     }
@@ -146,77 +217,116 @@
 <div th:replace="~{fragmentos/headerRegistro :: header}"></div>
 
 <div class="container" style="min-height: 50%">
-
+    <input type="hidden" name="tipoalta" id="tipoalta" th:field="*{usuario.email}" class="demoInputBox" />
+    <div>
+        <label for ="myCheckaltacliente">Alta cliente</label>
+        <input type="checkbox" id="myCheckaltacliente" th:checked="true">
+        <label for ="myCheckaltaempleado">Alta empleado</label>
+        <input type="checkbox" id="myCheckaltaempleado" th:checked="false">
+        <label for ="myCheckaltaempleado">Alta empresa</label>
+        <input type="checkbox" id="myCheckaltaempresa" th:checked="false">
+    </div>
+    <div>
+        <button id = "altacliente" onclick="checkAltaCliente()">Alta usuario</button>
+        <button id = "altaEmpleado" onclick="checkAltaEmpleado()">Alta empleado</button>
+        <button id = "altaEmpresa" onclick="checkAltaEmpresa()">Alta empresa</button>
+    </div>
     <ul id="signup-step">
         <li id="usuario" class="active">Datos del usuario</li>
         <li id="cliente">Cliente</li>
-        <li id="empleado">Empleado</li>
     </ul>
 
-    <form name='frmRegistration' id='signup-form' th:action="@{/}" th:object="${datos}" method="post">
-        <div id="usuario-field">
-            <label for="email">email</label><span id="email-error" class="signup-error"></span>
-            <div>
-                <input type="text" name="email" id="email" th:field="*{usuario.email}" class="demoInputBox" />
-            </div>
-            <label>Enter Password</label><span id="password-error"
-                                               class="signup-error"></span>
-            <div>
-                <input type="password" name="password" th:field="*{usuario.pass}" id="user-password"
-                       class="demoInputBox" />
-            </div>
-            <label>Re-enter Password</label><span id="confirm-password-error"
-                                                  class="signup-error"></span>
-            <div>
-                <input type="password" name="confirm-password" id="confirm-password"
-                       class="demoInputBox" />
-            </div>
-        </div>
-
-
-        <div id="cliente-field" style="display: none;">
-            <label for = "nombreCliente">Nombre</label><span id="nombreCliente-error" class="signup-error"></span>
-            <div>
-                <input type="text" name="nombreCliente" id ="nombreCliente" th:field="*{cliente.nombreCliente}" class="demoInputBox" />
-            </div>
-            <label for = "apellido1Cliente">apellido1Cliente</label><span id="apellido1Cliente-error" class="signup-error"></span>
-            <div>
-                <input type="text" name="apellido1Cliente" id ="apellido1Cliente" th:field="*{cliente.apellido1Cliente}" class="demoInputBox" />
-            </div>
-            <label for = "apellido2Cliente">apellido2Cliente</label><span id="apellido2Cliente-error" class="signup-error"></span>
-            <div>
-                <input type="text" name="apellido2Cliente" id ="apellido2Cliente" th:field="*{cliente.apellido2Cliente}" class="demoInputBox" />
-            </div>
-            <label for = "telefono">telefono</label><span id="telefono-error" class="telefono-error"></span>
-            <div>
-                <input type="text" name="telefono" id ="telefono" th:field="*{cliente.telefono}" class="demoInputBox" />
+        <form name='frmRegistration' id='signup-form' th:action="@{/}" th:object="${datos}" method="post">
+            <input type="hidden" name="tipoalta" id="tipoalta" th:field="*{tipoalta}" " />
+            <div id="usuario-field">
+                <label for="email">email</label><span id="email-error" class="signup-error"></span>
+                <div>
+                    <input type="text" name="email" id="email" th:field="*{usuario.email}" class="demoInputBox" />
+                </div>
+                <label>Enter Password</label><span id="password-error"
+                                                   class="signup-error"></span>
+                <div>
+                    <input type="password" name="password" th:field="*{usuario.pass}" id="user-password"
+                           class="demoInputBox" />
+                </div>
+                <label>Re-enter Password</label><span id="confirm-password-error"
+                                                      class="signup-error"></span>
+                <div>
+                    <input type="password" name="confirm-password" id="confirm-password"
+                           class="demoInputBox" />
+                </div>
             </div>
 
+
+            <div id="cliente-field" style="display: none;">
+                <label for = "nombreCliente">Nombre</label><span id="nombreCliente-error" class="signup-error"></span>
+                <div>
+                    <input type="text" name="nombreCliente" id ="nombreCliente" th:field="*{cliente.nombreCliente}" class="demoInputBox" />
+                </div>
+                <label for = "apellido1Cliente">apellido1Cliente</label><span id="apellido1Cliente-error" class="signup-error"></span>
+                <div>
+                    <input type="text" name="apellido1Cliente" id ="apellido1Cliente" th:field="*{cliente.apellido1Cliente}" class="demoInputBox" />
+                </div>
+                <label for = "apellido2Cliente">apellido2Cliente</label><span id="apellido2Cliente-error" class="signup-error"></span>
+                <div>
+                    <input type="text" name="apellido2Cliente" id ="apellido2Cliente" th:field="*{cliente.apellido2Cliente}" class="demoInputBox" />
+                </div>
+                <label for = "telefono">telefono</label><span id="telefono-error" class="telefono-error"></span>
+                <div>
+                    <input type="text" name="telefono" id ="telefono" th:field="*{cliente.telefono}" class="demoInputBox" />
+                </div>
+
+            </div>
+            <div id="empleado-field" style="display: none;">
+                <label for = "nombreEmpleado">nombreEmpleado</label><span id="nombreEmpleado-error" class="signup-error"></span>
+                <div>
+                    <input type="text" name="nombreEmpleado" id ="nombreEmpleado" th:field="*{empleado.nombreEmpleado}" class="demoInputBox" />
+                </div>
+                <label for = "apellido1Empleado">apellido1Empleado</label><span id="apellido1Empleado-error" class="signup-error"></span>
+                <div>
+                    <input type="text" name="apellido1Empleado" id ="apellido1Empleado" th:field="*{empleado.apellido1Empleado}" class="demoInputBox" />
+                </div>
+                <label for = "apellido2Empleado">apellido2Empleado</label><span id="apellido2Empleado-error" class="signup-error"></span>
+                <div>
+                    <input type="text" name="apellido2Empleado" id ="apellido2Empleado" th:field="*{empleado.apellido2Empleado}" class="demoInputBox" />
+                </div>
+                <!-- ¿Como seleccionar elementos de una lista con thymeleaf-->
+                <!--div class="d-flex flex-row align-items-center mb-4">
+                    <label for="etiqueta1"  class="form-label mt-2 mb-1">Etiqueta 1</label>
+                    <select th:field="*{etiquetas}" class="form-control"  id="etiqueta1">
+                        <option value="" th:disabled="disabled" th:selected="selected">
+                            Selecciona un elemento
+                        </option>
+                        <th:block th:each="etiq1: ${listaEtiquetas}">
+                            <option th:value="${etiq1.id}" th:text="${etiq1.name}"></option>
+                        </th:block>
+                    </select>
+                </div-->
+            </div>
+
+            <div id="empresas-field" style="display: none;">
+                <input type="hiden" name="nombreEmpresaid" id ="nombreEmpresaid" th:field="*{empresa.id}"  />
+                <label for = "nombreEmpresa">nombreEmpresa</label><span id="nombreEmpresa-error" class="signup-error"></span>
+                <div>
+                    <input type="text" name="nombreEmpresanombreEmpleado" id ="nombreEmpresa" th:field="*{empresa.nombreEmpresa}" class="demoInputBox" />
+                </div>
+                <label for = "cif">cif</label><span id="cif-error" class="signup-error"></span>
+                <div>
+                    <input type="text" name="cif" id ="cif" th:field="*{empresa.cif}" class="demoInputBox" />
+                </div>
+            </div>
+
+
+            <div>
+                <input class="btnAction" type="button" name="back" id="back"
+                       value="Back" style="display: none;"> <input
+                    class="btnAction" type="button" name="next" id="next" value="Next">
+                <input class="btnAction" type="submit" name="finish" id="finish"
+                       value="Finish" style="display: none;">
         </div>
-        <div id="empleado-field" style="display: none;">
-            <label for = "nombreEmpleado">nombreEmpleado</label><span id="nombreEmpleado-error" class="signup-error"></span>
-            <div>
-                <input type="text" name="nombreEmpleado" id ="nombreEmpleado" th:field="*{empleado.nombreEmpleado}" class="demoInputBox" />
-            </div>
-            <label for = "apellido1Empleado">apellido1Empleado</label><span id="apellido1Empleado-error" class="signup-error"></span>
-            <div>
-                <input type="text" name="apellido1Empleado" id ="apellido1Empleado" th:field="*{empleado.apellido1Empleado}" class="demoInputBox" />
-            </div>
-            <label for = "apellido2Empleado">apellido2Empleado</label><span id="apellido2Empleado-error" class="signup-error"></span>
-            <div>
-                <input type="text" name="apellido2Empleado" id ="apellido2Empleado" th:field="*{empleado.apellido2Empleado}" class="demoInputBox" />
-            </div>
-        </div>
-        <div>
-            <input class="btnAction" type="button" name="back" id="back"
-                   value="Back" style="display: none;"> <input
-                class="btnAction" type="button" name="next" id="next" value="Next">
-            <input class="btnAction" type="submit" name="finish" id="finish"
-                   value="Finish" style="display: none;">
+        </form>
     </div>
-    </form>
-</div>
-<!--Fooooterrrrr-->
+    <!--Fooooterrrrr-->
 
 <div th:replace="~{fragmentos/footer1 :: footer}"></div>
 

@@ -89,7 +89,11 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @GetMapping("/create/nuevaalta")
     public String createEmp(Model model) {
         AltaGenericaDto  altaGenericaDto = new AltaGenericaDto();
+        altaGenericaDto.setEmpresa(empresaService.getById(1));
+        List<Disponibilidad> disponibilidadList = disponibilidadService.listAll();
+
         model.addAttribute("datos",altaGenericaDto);
+        model.addAttribute("listadisponibilidad" ,disponibilidadList );
         return "registroEmpresa/nuevaalta";
     }
 
