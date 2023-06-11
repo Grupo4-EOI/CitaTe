@@ -19,6 +19,8 @@ public class Servicio {
     @Column(name = "id_servicio", nullable = false)
     private Long id;
 
+    private String desc;
+
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "Empleados_has_Servicios",
         joinColumns = @JoinColumn(name = "servicio_id", referencedColumnName = "id_servicio"),

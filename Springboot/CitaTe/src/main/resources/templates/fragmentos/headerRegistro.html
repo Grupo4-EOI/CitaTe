@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-
+<html  xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
   <div th:fragment="header" >
 
   <!--Cabecera con la imagen de Citate -->
   <header class="d-flex flex-wrap justify-content-center align-items-center">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <div class="col-sm-12 col-md-4 text-center" >
-        <img class="p-3" src="img/logoazul.png" alt="citatelogo" id="logocitate">
+        <img class="p-3" th:src="@{/img/logoazul.png}" alt="citatelogo" id="logocitate">
       </div>
     </a>
 
@@ -17,8 +18,8 @@
       <li class="nav-item dropdown" sec:authorize="!isAuthenticated()">
         <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="botonregister">Registrate</a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="clienteempresa">
-          <li class="nolink"><a class="dropdown-item btn" style="color: grey;" href="#" data-bs-toggle="modal" data-bs-target="#clienteModal" >Cliente</a></li>
-          <li class="nolink"><a class="dropdown-item btn" style="color: grey;" href="/registroEmpresa1" >Empresa</a></li>
+          <li class="nolink"><a class="dropdown-item btn" style="color: grey;" th:href="@{/usuarios/create/cliente}" >Cliente</a></li>
+          <li class="nolink"><a class="dropdown-item btn" style="color: grey;" th:href="@{/usuarios/create/empleado}" >Empresa</a></li>
         </ul>
       </li>
       <li class="nav-item"><a href="#" class="nav-link btn"  id="botonidioma">Idioma</a></li>

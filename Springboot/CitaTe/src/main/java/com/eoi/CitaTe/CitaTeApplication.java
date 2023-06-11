@@ -8,11 +8,5 @@ public class CitaTeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CitaTeApplication.class, args);
-
-
-
 	}
-
-
-
 }

@@ -9,19 +9,77 @@
 <h1>Crear Usuario</h1>
 
 
-<form th:object="${entity}" th:action="@{/usuarios/pepe}" method="POST" th:method="POST">
+<form th:object="${entity}" th:action="@{/usuarios/create}" th:method="POST">
+  <div class="mb-3">
+    <input type="hidden" class="form-control" id="id_usr" name="id_usr" th:field="${entity.id}">
+  </div>
+  <h2>Datos de usuario</h2>
   <div class="mb-3">
     <label  class="form-label">Email</label>
-    <input type="email" th:field="*{email}" required><br><br>
+    <input type="email" th:field="${entity.email}" required><br><br>
   </div>
   <div class="mb-3">
     <label  class="form-label">Contraseña</label>
-    <input type="text" class="form-control" id="pass" name="pass" th:field="*{pass}">
+    <input type="password" class="form-control" id="pass" name="pass" th:field="${entity.pass}">
   </div>
   <div class="mb-3">
-    <input type="hidden" class="form-control" id="activo" name="activo" th:field="*{activo}">
+    <input type="hidden" class="form-control" id="id_tipo_alta" name="id_tipo_alta" th:field="${entity.tipoAlta}">
   </div>
-
+  <div id="altacliente" name="altacliente" th:if="${entity.tipoAlta == 'cliente'} ">
+    <h1>Alta con clientes</h1>
+    <label  class="form-label">nombreCliente</label>
+    <input type="text" class="form-control" id="nombreCliente" name="nombreCliente" th:field="${entity.getClienteDTONuevo.nombreCliente}">
+    <br>
+    <label  class="form-label">apellido1Cliente</label>
+    <input type="text" class="form-control" id="apellido1Cliente" name="apellido1Cliente" th:field="${entity.getClienteDTONuevo.apellido1Cliente}">
+    <br>
+    <label  class="form-label">apellido2Cliente</label>
+    <input type="text" class="form-control" id="apellido2Cliente" name="apellido2Cliente" th:field="${entity.getClienteDTONuevo.apellido2Cliente}">
+    <br>
+    <label  class="form-label">telefono</label>
+    <input type="text" class="form-control" id="telefono" name="telefono" th:field="${entity.getClienteDTONuevo.telefono}">
+  </div>
+  <div id="altaempleado" name="altaempleado" th:if="${entity.tipoAlta == 'empleado'}">
+      <h1>Alta con empleados</h1>
+    <label  class="form-label">nombreEmpleado</label>
+    <input type="text" class="form-control" id="nombreEmpleado" name="nombreEmpleado"  th:field="${entity.empleadoDTONuevo.nombreEmpleado}">
+    <br>
+    <label  class="form-label">apellido1Empleado</label>
+    <input type="text" class="form-control" id="apellido1Empleado" name="apellido1Empleado"  th:field="${entity.empleadoDTONuevo.apellido1Empleado}">
+    <br>
+    <label  class="form-label">apellido2Empleado</label>
+    <input type="text" class="form-control" id="apellido2Empleado" name="apellido2Empleado"  th:field="${entity.empleadoDTONuevo.apellido2Empleado}">
+    <br>
+    <br>
+    <!-- ¿Como seleccionar elementos de una lista con thymeleaf-->
+    <div th:if="${empresas!=null and !empresas.empty}"  class="form-group col-md-12">
+      <label for="empresas" th:text="Lista de empresas"></label>
+      <select th:field="${entity.empleadoDTONuevo.empresa_id}" class="form-control"  id="empresas">
+        <option value="0">Seleciona uno</option>
+        <option  th:each="elemento : ${empresas}" th:value="${elemento.id}" th:text="${elemento.nombreEmpresa}" ></option>
+      </select>
+    </div>
+    <!-- ¿Como seleccionar elementos de una lista con thymeleaf-->
+    <div th:if="${disponibilidades!=null and !disponibilidades.empty}"  class="form-group col-md-12">
+      <label for="disponibilidades" th:text="Horarios"></label>
+      <select th:field="${entity.empleadoDTONuevo.disponibilidad_id}" class="form-control"  id="disponibilidades">
+        <option value="0">Seleciona uno</option>
+        <option  th:each="elemento : ${disponibilidades}" th:value="${elemento.id}" th:text="${elemento.descri}" ></option>
+      </select>
+    </div>
+    <div  th:if="${ entity.empleadoDTONuevo.serviciosdto ==null or   entity.empleadoDTONuevo.serviciosdt.empty}" >
+      <div class="d-flex flex-row align-items-center mb-4">
+        <label for="servicio"  class="form-label mt-2 mb-1">Servicios a seleccionar</label>
+        <select th:field="*{empleadoDTONuevo.serviciosdto}" class="form-control"  id="servicio">
+          <option th:each="serv: ${servicios}"
+                  th:value="${serv.id}"
+                  th:selected="${empleadoDTONuevo.serviciosdto}"
+                  th:text="${serv.desc}">
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
   <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 

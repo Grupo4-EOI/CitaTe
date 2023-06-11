@@ -2,12 +2,16 @@ package com.eoi.CitaTe.controllers;
 
 
 import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
-import com.eoi.CitaTe.dto.UsuarioDTO;
-import com.eoi.CitaTe.entities.Usuario;
+import com.eoi.CitaTe.dto.AltaGenericaDto;
+import com.eoi.CitaTe.dto.UsuarioDTO1;
+import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
+import com.eoi.CitaTe.services.DisponibilidadService;
+import com.eoi.CitaTe.services.EmpresaService;
+import com.eoi.CitaTe.services.ServicioService;
 import com.eoi.CitaTe.services.UsuarioService;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +19,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Controlador para la entidad Usuario.
@@ -42,6 +48,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("${url.usuario}")
 @RequiredArgsConstructor
 public class UsuarioController extends MiControladorGenerico<Usuario> {
+    @Autowired
+    UsuarioService usuarioService;
+
+    @Autowired
+    EmpresaService empresaService;
+
+    @Autowired
+    DisponibilidadService disponibilidadService;
+
+    @Autowired
+    ServicioService servicioService;
 
     @Value("${url.usuario}")
     private String urlBase;
@@ -69,16 +86,48 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
      */
 
 
+    @GetMapping("/create/nuevaalta")
+    public String createEmp(Model model) {
+        AltaGenericaDto  altaGenericaDto = new AltaGenericaDto();
+        model.addAttribute("datos",altaGenericaDto);
+        return "registroEmpresa/nuevaalta";
+    }
 
-    @Override
-    @GetMapping("/create")
-    public String create(Model model) {
-        UsuarioDTO entity = new UsuarioDTO();
-        model.addAttribute("entity", entity);
+    @GetMapping("/create/cliente")
+    public String createCl(Model model) {
+        UsuarioDTO1 usuarioDTO1 = new UsuarioDTO1();
+        List<Empresa> empresaList = empresaService.listAll();
+        List<Disponibilidad> disponibilidadList = disponibilidadService.listAll();
+        List<Servicio> servicioList = servicioService.listAll();
+
+        usuarioDTO1.setTipoAlta("cliente");
+        model.addAttribute("entity", usuarioDTO1);
+        model.addAttribute("empresas",empresaList);
+        model.addAttribute("disponibilidades",disponibilidadList);
+        model.addAttribute("servicios",servicioList);
+        //        model.addAttribute("url", url);
+        model.addAttribute("entityName", entityName);
+
+        return "usuarios/altaUsuario"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+    @GetMapping("/create/empleado")
+    public String createEmpl(Model model) {
+        UsuarioDTO1 usuarioDTO1 = new UsuarioDTO1();
+        usuarioDTO1.setTipoAlta("empleado");
+        model.addAttribute("entity", usuarioDTO1);
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
 
         return "usuarios/altaUsuario"; // Nombre de la plantilla para mostrar todas las entidades
+    }
+
+    @PostMapping(value = {"/create"})
+    public String update(@ModelAttribute UsuarioDTO1 usuarioDTO) {
+        usuarioService.CrearUsuario(usuarioDTO);
+
+        return "registroEmpresa/registroEmpresa12";
+
     }
 
 
@@ -95,23 +144,6 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
         model.addAttribute("usuarios", usuarioPage);
         return "usuarios/usuariosPaginados";
     }
-
-
-    /// Pruebas DTO dia 03/06
-
-    private final UsuarioService usuarioService;
-
-
-
-    @PostMapping(value = {"/pepe"})
-    public String update(@ModelAttribute UsuarioDTO usuarioDTO) {
-        usuarioService.CrearUsuario(usuarioDTO);
-
-        return "registroEmpresa/registroEmpresa12";
-
-    }
-
-
 
 }
 

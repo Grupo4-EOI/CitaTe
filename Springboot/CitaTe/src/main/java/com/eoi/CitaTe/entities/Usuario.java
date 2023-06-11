@@ -18,7 +18,7 @@ public class Usuario {
 
     private String email;
     private String pass;
-    @Basic(optional = false)
+    @Basic(optional = true)
     private boolean activo;
 
     @OneToOne(cascade = CascadeType.ALL)

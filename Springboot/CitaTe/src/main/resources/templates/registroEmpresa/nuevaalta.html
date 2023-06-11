@@ -1,0 +1,228 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Multi Step Registro</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link href="/webjars/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/CitaTe.css}">
+    <link th:href="@{/css/nuevoestilo.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        function validate() {
+            var output = true;
+            $(".signup-error").html('');
+
+            if ($("#usuario-field").css('display') != 'none') {
+                if (!($("#email").val())) {
+                    output = false;
+                    $("#email-error").html("Name required!");
+                }
+                if (!($("#user-password").val())) {
+                    output = false;
+                    $("#password-error").html("Password required!");
+                }
+
+                if (!($("#confirm-password").val())) {
+                    output = false;
+                    $("#confirm-password-error").html("Confirm password required!");
+                }
+
+                if ($("#user-password").val() != $("#confirm-password").val()) {
+                    output = false;
+                    $("#confirm-password-error").html("Password not matched!");
+                }
+            }
+
+            if ($("#cliente-field").css('display') != 'none') {
+                if (!($("#telefono").val())) {
+                    output = false;
+                    $("#telefono-error").html("Telefono obligatorio!");
+                }
+
+                if (!($("#nombreCliente").val())) {
+                    output = false;
+                    $("#nombreCliente-error").html("nombreCliente obligatorio!");
+                }
+                if (!($("#apellido1Cliente").val())) {
+                    output = false;
+                    $("#apellido1Cliente-error").html("apellido1Cliente obligatorio!");
+                }
+                if (!($("#apellido2Cliente").val())) {
+                    output = false;
+                    $("#apellido2Cliente-error").html("apellido2Cliente obligatorio!");
+                }
+            }
+            if ($("#empleado-field").css('display') != 'none') {
+                if (!($("#nombreEmpleado").val())) {
+                    output = false;
+                    $("#nombreEmpleado-error").html("nombreEmpleado obligatorio!");
+                }
+                if (!($("#apellido1Empleado").val())) {
+                    output = false;
+                    $("#apellido1Empleado-error").html("apellido1Empleado obligatorio!");
+                }
+                if (!($("#apellido1Empleado").val())) {
+                    output = false;
+                    $("#apellido2Empleado-error").html("apellido1Empleado obligatorio!");
+                }
+            }
+        return output;
+    }
+
+    $(document).ready(function() {
+        $("#next").click(function() {
+            console.log("Siguiente pestaña" );
+            var output = validate();
+            if (output === true) {
+                var current = $(".active");
+                var next = $(".active").next("li");
+                if (next.length > 0) {
+                    $("#" + current.attr("id") + "-field").hide();
+                    console.log("Siguiente pestaña:" + next.attr("id") )
+                    $("#" + next.attr("id") + "-field").show();
+                    $("#back").show();
+                    $("#finish").hide();
+                    $(".active").removeClass("active");
+                    next.addClass("active");
+                    if ($(".active").attr("id") == $("li").last().attr("id")) {
+                        $("#next").hide();
+                        $("#finish").show();
+                    }
+                }
+            }
+        });
+
+        $("#back").click(function() {
+            var current = $(".active");
+            var prev = $(".active").prev("li");
+            if (prev.length > 0) {
+                $("#" + current.attr("id") + "-field").hide();
+                $("#" + prev.attr("id") + "-field").show();
+                $("#next").show();
+                $("#finish").hide();
+                $(".active").removeClass("active");
+                prev.addClass("active");
+                if ($(".active").attr("id") == $("li").first().attr("id")) {
+                    $("#back").hide();
+                }
+            }
+        });
+
+        $("input#finish").click(function(e) {
+            var output = validate();
+            var current = $(".active");
+
+            if (output === true) {
+                return true;
+            } else {
+                //prevent refresh
+                e.preventDefault();
+                $("#" + current.attr("id") + "-field").show();
+                $("#back").show();
+                $("#finish").show();
+            }
+        });
+    });
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+<!--Header-->
+
+<div th:replace="~{fragmentos/headerRegistro :: header}"></div>
+
+<div class="container" style="min-height: 50%">
+
+    <ul id="signup-step">
+        <li id="usuario" class="active">Datos del usuario</li>
+        <li id="cliente">Cliente</li>
+        <li id="empleado">Empleado</li>
+    </ul>
+
+    <form name='frmRegistration' id='signup-form' th:action="@{/}" th:object="${datos}" method="post">
+        <div id="usuario-field">
+            <label for="email">email</label><span id="email-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="email" id="email" th:field="*{usuario.email}" class="demoInputBox" />
+            </div>
+            <label>Enter Password</label><span id="password-error"
+                                               class="signup-error"></span>
+            <div>
+                <input type="password" name="password" th:field="*{usuario.pass}" id="user-password"
+                       class="demoInputBox" />
+            </div>
+            <label>Re-enter Password</label><span id="confirm-password-error"
+                                                  class="signup-error"></span>
+            <div>
+                <input type="password" name="confirm-password" id="confirm-password"
+                       class="demoInputBox" />
+            </div>
+        </div>
+
+
+        <div id="cliente-field" style="display: none;">
+            <label for = "nombreCliente">Nombre</label><span id="nombreCliente-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="nombreCliente" id ="nombreCliente" th:field="*{cliente.nombreCliente}" class="demoInputBox" />
+            </div>
+            <label for = "apellido1Cliente">apellido1Cliente</label><span id="apellido1Cliente-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="apellido1Cliente" id ="apellido1Cliente" th:field="*{cliente.apellido1Cliente}" class="demoInputBox" />
+            </div>
+            <label for = "apellido2Cliente">apellido2Cliente</label><span id="apellido2Cliente-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="apellido2Cliente" id ="apellido2Cliente" th:field="*{cliente.apellido2Cliente}" class="demoInputBox" />
+            </div>
+            <label for = "telefono">telefono</label><span id="telefono-error" class="telefono-error"></span>
+            <div>
+                <input type="text" name="telefono" id ="telefono" th:field="*{cliente.telefono}" class="demoInputBox" />
+            </div>
+
+        </div>
+        <div id="empleado-field" style="display: none;">
+            <label for = "nombreEmpleado">nombreEmpleado</label><span id="nombreEmpleado-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="nombreEmpleado" id ="nombreEmpleado" th:field="*{empleado.nombreEmpleado}" class="demoInputBox" />
+            </div>
+            <label for = "apellido1Empleado">apellido1Empleado</label><span id="apellido1Empleado-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="apellido1Empleado" id ="apellido1Empleado" th:field="*{empleado.apellido1Empleado}" class="demoInputBox" />
+            </div>
+            <label for = "apellido2Empleado">apellido2Empleado</label><span id="apellido2Empleado-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="apellido2Empleado" id ="apellido2Empleado" th:field="*{empleado.apellido2Empleado}" class="demoInputBox" />
+            </div>
+        </div>
+        <div>
+            <input class="btnAction" type="button" name="back" id="back"
+                   value="Back" style="display: none;"> <input
+                class="btnAction" type="button" name="next" id="next" value="Next">
+            <input class="btnAction" type="submit" name="finish" id="finish"
+                   value="Finish" style="display: none;">
+    </div>
+    </form>
+</div>
+<!--Fooooterrrrr-->
+
+<div th:replace="~{fragmentos/footer1 :: footer}"></div>
+
+<!--Fooooterrrrr-->
+
+
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

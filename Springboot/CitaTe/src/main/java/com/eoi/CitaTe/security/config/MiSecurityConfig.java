@@ -33,6 +33,7 @@ public class MiSecurityConfig {
         //Configuramos el Metodo HTTPSecurity para indicar la cadena de filtros de Autotización que vamos a seguir;
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/","" ).permitAll()
+                .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/webjars/**").permitAll()
                 .requestMatchers("/error/**").permitAll()
                 .requestMatchers("/registroEmpresa*").permitAll()

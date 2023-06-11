@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/6.0.9-alpha3/dist/css/bootstrap.min.css">
     <script src="/webjars/bootstrap/6.0.9-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="carousel.css">
-    <link rel="stylesheet" href="CitaTe.css">
+    <link rel="stylesheet" th:href="@{/css/CitaTe.css}">
 
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <link href="/webjars/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <div class="col-sm-12 col-md-4 text-center" >
-            <img src="img/logoazul.png" alt="citatelogo" id="logocitate" width="140px">
+            <img th:src="@{/img/logoazul.png}" alt="citatelogo" id="logocitate" width="140px">
         </div>
     </a>
 
