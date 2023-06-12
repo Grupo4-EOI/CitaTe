@@ -217,7 +217,7 @@
 <div th:replace="~{fragmentos/headerRegistro :: header}"></div>
 
 <div class="container" style="min-height: 50%">
-    <input type="hidden" name="tipoalta" id="tipoalta" th:field="*{usuario.email}" class="demoInputBox" />
+
     <div>
         <label for ="myCheckaltacliente">Alta cliente</label>
         <input type="checkbox" id="myCheckaltacliente" th:checked="true">
@@ -237,7 +237,7 @@
     </ul>
 
         <form name='frmRegistration' id='signup-form' th:action="@{/}" th:object="${datos}" method="post">
-            <input type="hidden" name="tipoalta" id="tipoalta" th:field="*{tipoalta}" " />
+            <input type="hidden" name="tipoalta" id="tipoalta" th:field="*{tipoalta}"  />
             <div id="usuario-field">
                 <label for="email">email</label><span id="email-error" class="signup-error"></span>
                 <div>
