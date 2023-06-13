@@ -84,7 +84,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
             keywordciudad = null;
 
             //Neciso un método que ordene por ciudad
-            empresaPageable = empresaPageableService.getRepo().findEmpresaByNombreContainingIgnoreCase(keywordnombre,pageable);
+            empresaPageable = empresaPageableService.getRepo().findEmpresaByNombreEmpresaContainingIgnoreCase(keywordnombre,pageable);
             interfazConPantalla.addAttribute("keywordnombre",keywordnombre);
         }
 

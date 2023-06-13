@@ -9,5 +9,5 @@ public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 
     Page<Empresa> findByDireccionProvinciaIgnoreCase(String provincia, Pageable pageable);
 
-    Page<Empresa> findEmpresaByNombreContainingIgnoreCase(String keywordciudad, Pageable pageable);
+    Page<Empresa> findEmpresaByNombreEmpresaContainingIgnoreCase(String keywordciudad, Pageable pageable);
 }
