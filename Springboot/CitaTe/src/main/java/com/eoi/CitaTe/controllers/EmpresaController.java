@@ -6,24 +6,20 @@ import com.eoi.CitaTe.entities.Empresa;
 import com.eoi.CitaTe.entities.Usuario;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
-import com.eoi.CitaTe.services.EmpleadoService;
-import com.eoi.CitaTe.services.EmpresaMapperService;
-import com.eoi.CitaTe.services.EmpresaService;
-import com.eoi.CitaTe.services.UsuarioService;
+import com.eoi.CitaTe.services.*;
 import jakarta.annotation.PostConstruct;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -49,28 +45,60 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     @Autowired
     EmpresaMapperService empresaMapperService;
 
-//    @GetMapping("/paginados")
-//    public String getAllPaginated(@RequestParam(defaultValue = "1") int page,
-//                                  @RequestParam(defaultValue = "10") int size,
-//                                  Model model) {
-//
-//        Pageable pageable = PageRequest.of(page-1, size);
-//        Page<Usuario> usuariosPage = usuarioRepository.findAll(pageable);
-//
-//        model.addAttribute("usuarios", usuariosPage);
-//
-//        int totalPages = usuariosPage.getTotalPages();
-//
-//        if (totalPages > 0) {
-//            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-//                    .boxed()
-//                    .collect(Collectors.toList());
-//            model.addAttribute("pageNumbers", pageNumbers);
-//        }
-//
-//        return entityName + "/" + "paginas";
-//    }
+    @Autowired
+    EmpresaPageableService empresaPageableService;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @GetMapping("/empresas/listaempresasporbusq")
+    public String getAllEmpresasPagOrdBusq(@RequestParam("page") Optional<Integer> page,
+                                           @RequestParam("size") Optional<Integer> size,
+                                           @RequestParam(required = false) String keywordciudad,
+                                           @RequestParam(required = false) String keywordnombre,
+                                           @RequestParam(defaultValue = "id,asc") String[] sort,
+                                           ModelMap interfazConPantalla) {
+        //Gestion de los datos de ordenación
+        String sortField = sort[0];
+        String sortDirection = sort[1];
+
+        Sort.Direction direction = sortDirection.equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort.Order order = new Sort.Order(direction, sortField);
+        //Gestion de los datos de paginas
+        Integer pagina = 1;
+        if (page.isPresent()) {
+            pagina = page.get() -1;
+        }
+        Integer maxelementos = 10;
+        if (size.isPresent()) {
+            maxelementos = size.get();
+        }
+        //generamos el contenedor
+        //Objetos genericos de ordenamiento y paginacion
+        Pageable pageable = PageRequest.of(pagina, maxelementos, Sort.by(order));
+        Page<Empresa> empresaPageable = null;
+        //El objeto empresaPageable cambiara de contenido en función de los filtros y/o del orden
+        if (keywordciudad == null &&  keywordnombre == null ) {
+            empresaPageable = this.empresaPageableService.buscarTodos(pageable);
+
+        } else if (keywordnombre != null && keywordnombre.length() > 0  ){
+            keywordciudad = null;
+
+            //Neciso un método que ordene por ciudad
+            empresaPageable = empresaPageableService.getRepo().findEmpresaByNombreContainingIgnoreCase(keywordnombre,pageable);
+            interfazConPantalla.addAttribute("keywordnombre",keywordnombre);
+        }
+
+        interfazConPantalla.addAttribute(pageNumbersAttributeKey,dameNumPaginas(empresaPageable));
+        interfazConPantalla.addAttribute("currentPage", empresaPageable.getNumber() );
+        interfazConPantalla.addAttribute("pageSize", maxelementos);
+        interfazConPantalla.addAttribute("lista", empresaPageable);
+        interfazConPantalla.addAttribute("sortField", sortField);
+        interfazConPantalla.addAttribute("sortDirection", sortDirection);
+        interfazConPantalla.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
+        return "empresas/allpagordbusq";
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @GetMapping("/paginados")
     public String paginados(Model model,

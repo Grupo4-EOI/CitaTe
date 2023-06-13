@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 
     Page<Empresa> findByDireccionProvinciaIgnoreCase(String provincia, Pageable pageable);
+
+    Page<Empresa> findEmpresaByNombreContainingIgnoreCase(String keywordciudad, Pageable pageable);
 }
