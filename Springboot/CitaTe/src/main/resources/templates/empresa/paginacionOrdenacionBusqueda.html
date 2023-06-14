@@ -49,6 +49,11 @@
 
 
                 <th><button type="submit"  class="btn btn-info">Buscar</button></th>
+                <th>
+                  <a class="btn btn-info" th:href="@{paginadosBusqueda(numeroPagina=${primeraPagina}, tamanoPagina=${tamanoPagina})}">
+                  Limpiar
+                  </a>
+                </th>
 
 
 
@@ -97,7 +102,7 @@
             </a>
           </div>
           <div class="btn ">
-            <a th:if="${siguientePagina}" th:href="@{paginadosBusqueda(numeroPagina=${siguientePagina}, tamanoPagina=${tamanoPagina})}">
+            <a  th:if="${siguientePagina}" th:href="@{paginadosBusqueda(numeroPagina=${siguientePagina}, tamanoPagina=${tamanoPagina})}">
               Siguiente página
             </a>
           </div>
