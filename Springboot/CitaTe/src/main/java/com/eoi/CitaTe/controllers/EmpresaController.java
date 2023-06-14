@@ -30,7 +30,6 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
     @Value("${url.empresa}")
     private String urlBase;
-
     private String url = "empresas";
     private String entityName = "empresa";
 
@@ -51,9 +50,8 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @GetMapping("/listaempresasporbusq")
-    public String getAllEmpresasPagOrdBusq(@RequestParam("page") Optional<Integer> page,
-                                           @RequestParam("size") Optional<Integer> size,
-                                           @RequestParam(required = false) String keywordciudad,
+    public String getAllEmpresasPagOrdBusq(@RequestParam(defaultValue = "0") Optional<Integer> page,
+                                           @RequestParam(defaultValue = "10") Optional<Integer> size,
                                            @RequestParam(required = false) String keywordnombre,
                                            @RequestParam(required = false) String keywordcif,
                                            @RequestParam(defaultValue = "id,asc") String[] sort,
@@ -64,15 +62,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
         Sort.Direction direction = sortDirection.equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
         Sort.Order order = new Sort.Order(direction, sortField);
-        //Gestion de los datos de paginas
-        Integer pagina = 0;
-        if (page.isPresent()) {
-            pagina = page.get() -1;
-        }
-        Integer maxelementos = 10;
-        if (size.isPresent()) {
-            maxelementos = size.get();
-        }
+
         //generamos el contenedor
         //Objetos genericos de ordenamiento y paginacion
         Pageable pageable = PageRequest.of(pagina, maxelementos, Sort.by(order));
