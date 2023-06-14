@@ -33,7 +33,7 @@
               <tr>
                 <th>id</th>
                 <th th:replace="~{fragmentos/sortingempresas :: sorting('nombre','Nombre')}"></th>
-<!--                <th th:replace="~{fragments/sortingempresas :: sorting('pais','Pais')}"></th>-->
+                <th th:replace="~{fragments/sortingempresas :: sorting('cif','Cif')}"></th>
 <!--                <th th:replace="~{fragments/sortingempresas :: sorting('region','Region')}"></th>-->
 <!--                <th>codigo_postal</th>-->
 <!--                <th th:replace="~{fragments/sortingempresas :: sorting('telefono','Telefono')}"></th>-->
@@ -47,10 +47,10 @@
                   <input id="keywordnombre" type="search" name="keywordnombre" th:value="${keywordnombre}"  class="form-control"
                          placeholder="Enter values">
                 </th>
-<!--                <th >-->
-<!--                  <input id="keywordciudad" type="search" name="keywordciudad" th:value="${keywordciudad}"  class="form-control"-->
-<!--                         placeholder="Enter keywordciudad">-->
-<!--                </th>-->
+                <th >
+                  <input id="keywordcif" type="search" name="keywordcif" th:value="${keywordcif}"  class="form-control"
+                         placeholder="Enter keywordcif">
+                </th>
 <!--                <th >-->
 <!--                  <input id="keywordregion" type="search" name="keywordregion" th:value="${keywordregion}"  class="form-control"-->
 <!--                         placeholder="Enter keywordregion">-->

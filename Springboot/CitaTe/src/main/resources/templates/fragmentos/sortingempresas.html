@@ -1,6 +1,7 @@
 <th scope="col" th:fragment="sorting(field, label)">
   <a th:href="@{'/empresas/listaempresasporbusq?'
                             + ${keywordnombre!=null && keywordnombre!=''? 'keywordnombre=' + keywordnombre + '&' : ''}
+                            + ${keywordcif!=null && keywordcif!=''? 'keywordcif=' + keywordcif + '&' : ''}
 
                 + 'page=' + ${currentPage} + '&size=' + ${pageSize}
                 + ${sortField!=null ? '&sort=' + field + ','
