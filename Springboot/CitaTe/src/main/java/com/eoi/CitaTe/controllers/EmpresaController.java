@@ -50,8 +50,8 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @GetMapping("/listaempresasporbusq")
-    public String getAllEmpresasPagOrdBusq(@RequestParam(defaultValue = "0") Optional<Integer> page,
-                                           @RequestParam(defaultValue = "10") Optional<Integer> size,
+    public String getAllEmpresasPagOrdBusq(@RequestParam(defaultValue = "0") int numeroPagina,
+                                           @RequestParam(defaultValue = "10") int tamanoPagina,
                                            @RequestParam(required = false) String keywordnombre,
                                            @RequestParam(required = false) String keywordcif,
                                            @RequestParam(defaultValue = "id,asc") String[] sort,
@@ -65,16 +65,16 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
         //generamos el contenedor
         //Objetos genericos de ordenamiento y paginacion
-        Pageable pageable = PageRequest.of(pagina, maxelementos, Sort.by(order));
+        Pageable pageable = PageRequest.of(numeroPagina, tamanoPagina, Sort.by(order));
         Page<Empresa> empresaPageable = null;
         //El objeto empresaPageable cambiara de contenido en función de los filtros y/o del orden
-        if (keywordciudad == null &&  keywordnombre == null ) {
+        if (keywordnombre == null &&  keywordcif == null ) {
             empresaPageable = this.empresaPageableService.buscarTodos(pageable);
 
         } else if (keywordnombre != null && keywordnombre.length() > 0  ){
             keywordcif = null;
 
-            //Neciso un método que ordene por ciudad
+            //Necesiso un método que ordene por ciudad
             empresaPageable = empresaPageableService.getRepo().findEmpresaByNombreEmpresaContainingIgnoreCase(keywordnombre,pageable);
             interfazConPantalla.addAttribute("keywordnombre",keywordnombre);
         }
@@ -88,7 +88,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
         interfazConPantalla.addAttribute(pageNumbersAttributeKey,dameNumPaginas(empresaPageable));
         interfazConPantalla.addAttribute("currentPage", empresaPageable.getNumber() );
-        interfazConPantalla.addAttribute("pageSize", maxelementos);
+        interfazConPantalla.addAttribute("pageSize", tamanoPagina);
         interfazConPantalla.addAttribute("lista", empresaPageable);
         interfazConPantalla.addAttribute("sortField", sortField);
         interfazConPantalla.addAttribute("sortDirection", sortDirection);
