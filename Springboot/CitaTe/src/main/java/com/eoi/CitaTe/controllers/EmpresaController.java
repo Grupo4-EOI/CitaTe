@@ -49,13 +49,13 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @GetMapping("/listaempresasporbusq")
+    @GetMapping("/paginadosBusqueda")
     public String getAllEmpresasPagOrdBusq(@RequestParam(defaultValue = "0") int numeroPagina,
-                                           @RequestParam(defaultValue = "10") int tamanoPagina,
+                                           @RequestParam(defaultValue = "5") int tamanoPagina,
                                            @RequestParam(required = false) String keywordnombre,
-                                           @RequestParam(required = false) String keywordcif,
+                                           @RequestParam(required = false) String keywordprovincia,
                                            @RequestParam(defaultValue = "id,asc") String[] sort,
-                                           ModelMap interfazConPantalla) {
+                                           ModelMap model) {
         //Gestion de los datos de ordenación
         String sortField = sort[0];
         String sortDirection = sort[1];
@@ -68,31 +68,41 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         Pageable pageable = PageRequest.of(numeroPagina, tamanoPagina, Sort.by(order));
         Page<Empresa> empresaPageable = null;
         //El objeto empresaPageable cambiara de contenido en función de los filtros y/o del orden
-        if (keywordnombre == null &&  keywordcif == null ) {
+        if (keywordnombre == null &&  keywordprovincia == null ) {
             empresaPageable = this.empresaPageableService.buscarTodos(pageable);
 
         } else if (keywordnombre != null && keywordnombre.length() > 0  ){
-            keywordcif = null;
+            keywordprovincia = null;
 
             //Necesiso un método que ordene por ciudad
             empresaPageable = empresaPageableService.getRepo().findEmpresaByNombreEmpresaContainingIgnoreCase(keywordnombre,pageable);
-            interfazConPantalla.addAttribute("keywordnombre",keywordnombre);
+            model.addAttribute("keywordnombre",keywordnombre);
         }
-        else if (keywordcif != null && keywordcif.length() > 0  ){
+        else if (keywordprovincia != null && keywordprovincia.length() > 0  ){
             keywordnombre = null;
 
             //Neciso un método que ordene por ciudad
-            empresaPageable = empresaPageableService.getRepo().findEmpresaByCifContainingIgnoreCase(keywordcif,pageable);
-            interfazConPantalla.addAttribute("keywordcif",keywordcif);
+            empresaPageable = empresaPageableService.getRepo().findEmpresaByDireccionProvinciaContainingIgnoreCase(keywordprovincia,pageable);
+            model.addAttribute("keywordcif",keywordprovincia);
         }
 
-        interfazConPantalla.addAttribute(pageNumbersAttributeKey,dameNumPaginas(empresaPageable));
-        interfazConPantalla.addAttribute("currentPage", empresaPageable.getNumber() );
-        interfazConPantalla.addAttribute("pageSize", tamanoPagina);
-        interfazConPantalla.addAttribute("lista", empresaPageable);
-        interfazConPantalla.addAttribute("sortField", sortField);
-        interfazConPantalla.addAttribute("sortDirection", sortDirection);
-        interfazConPantalla.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
+        model.addAttribute(pageNumbersAttributeKey,dameNumPaginas(empresaPageable));
+        model.addAttribute("currentPage", empresaPageable.getNumber() );
+        model.addAttribute("pageSize", tamanoPagina);
+        model.addAttribute("lista", empresaPageable);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+        model.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
+
+        // Verificar si hay una página anterior
+        if (empresaPageable.hasPrevious()) {
+            model.addAttribute("paginaAnterior", numeroPagina - 1);
+        }
+        // Verificar si hay una página siguiente
+        if (empresaPageable.hasNext()) {
+            model.addAttribute("siguientePagina", numeroPagina + 1);
+        }
+        model.addAttribute("Inicio", 0);
         return "empresa/paginacionOrdenacionBusqueda";
     }
 
