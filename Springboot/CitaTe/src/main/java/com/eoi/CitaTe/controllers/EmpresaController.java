@@ -50,7 +50,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @GetMapping("/empresas/listaempresasporbusq")
+    @GetMapping("/listaempresasporbusq")
     public String getAllEmpresasPagOrdBusq(@RequestParam("page") Optional<Integer> page,
                                            @RequestParam("size") Optional<Integer> size,
                                            @RequestParam(required = false) String keywordciudad,
@@ -64,7 +64,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         Sort.Direction direction = sortDirection.equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
         Sort.Order order = new Sort.Order(direction, sortField);
         //Gestion de los datos de paginas
-        Integer pagina = 1;
+        Integer pagina = 0;
         if (page.isPresent()) {
             pagina = page.get() -1;
         }
@@ -95,7 +95,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         interfazConPantalla.addAttribute("sortField", sortField);
         interfazConPantalla.addAttribute("sortDirection", sortDirection);
         interfazConPantalla.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
-        return "empresas/allpagordbusq";
+        return "empresa/paginacionOrdenacionBusqueda";
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////
