@@ -5,6 +5,7 @@
   xmlns:sd="http://www.w3.org/1999/xhtml"
   xmlns:sec="http://www.w3.org/1999/xhtml"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
 <link rel="stylesheet" th:href="@{/CitaTe.css}">
 
 <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
@@ -19,6 +20,7 @@
 
 
       <div class="box-body">
+        <span sd:page-size-selector="javascript"></span>
 
         <form  method="get">
           <table class="table">
@@ -89,23 +91,45 @@
       </div>
 
       <!--Botones para cambio de pagina-->
-      <div class="col">
-        <div class="col-11" >
-          <div class="btn ">
-            <a th:href="@{paginadosBusqueda(numeroPagina=${primeraPagina}, tamanoPagina=${tamanoPagina})}">
-              Ir a la primera página
-            </a>
-          </div>
-          <div class="btn ">
-            <a th:if="${paginaAnterior >= 0}" th:href="@{paginadosBusqueda(numeroPagina=${paginaAnterior}, tamanoPagina=${tamanoPagina})}">
-              Página anterior
-            </a>
-          </div>
-          <div class="btn ">
-            <a  th:if="${siguientePagina}" th:href="@{paginadosBusqueda(numeroPagina=${siguientePagina}, tamanoPagina=${tamanoPagina})}">
-              Siguiente página
-            </a>
-          </div>
+<!--      <div class="col">-->
+<!--        <div class="col-11" >-->
+<!--          <div class="btn ">-->
+<!--            <a th:href="@{paginadosBusqueda(numeroPagina=${primeraPagina}, tamanoPagina=${tamanoPagina})}">-->
+<!--              Ir a la primera página-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="btn ">-->
+<!--            <a th:if="${paginaAnterior >= 0}" th:href="@{paginadosBusqueda(numeroPagina=${paginaAnterior}, tamanoPagina=${tamanoPagina})}">-->
+<!--              Página anterior-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <div class="btn ">-->
+<!--            <a  th:if="${siguientePagina}" th:href="@{paginadosBusqueda(numeroPagina=${siguientePagina}, tamanoPagina=${tamanoPagina})}">-->
+<!--              Siguiente página-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+      <!-- preparamos el div para poner los numeros de pagina-->
+      <div  th:if="${lista!=null and !lista.empty}" >
+        <div class="text-center">
+          <nav>
+            <ul class="pagination" sd:pagination="full">
+              <!--  si hay menos del numero minimo de registos no muestro la barra-->
+              <div  th:if="${lista.totalPages > 0}" class="pagination"
+                    th:each="pageNumber : ${pageNumbers}">
+                <div>
+                  <li th:class="${pageNumber==lista.number + 1} ? active">
+                    <a href="#" th:href="@{/empresas/paginadosBusqueda(size=${lista.size}, page=${pageNumber})}"
+                       th:text=${pageNumber}></a>
+                  </li>
+
+                </div>
+              </div>
+            </ul>
+          </nav>
         </div>
       </div>
 
