@@ -181,7 +181,7 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
                 correoCambioContrasenia.setFrom("notificaciones@agestturnos.es");
                 correoCambioContrasenia.setTo(email);
                 correoCambioContrasenia.setSubject("Cambio de contraseña");
-                correoCambioContrasenia.setContent("http://localhost:8080/resetpass/" + email +"/" + token);
+                correoCambioContrasenia.setContent("http://localhost:8080/usuarios/resetpass/" + email +"/" + token);
 
                 emailService.sendMail(correoCambioContrasenia);
 
