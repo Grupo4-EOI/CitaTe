@@ -25,6 +25,27 @@
 
 <div class="container">
 
+  <h1>Sercios que ofrece esta peluqueria</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Nombre del servicio</th>
+      <th>Precio</th>
+      <th>Descripcion</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="catalogoDeServicio : ${empresa.catalogoDeServicios}">
+      <td th:text="${catalogoDeServicio.nombre}"></td>
+      <td th:text="${catalogoDeServicio.precio}"></td>
+      <td th:text="${catalogoDeServicio.descripcion}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+
+
   <h1>Empleados</h1>
     <table class="table table-striped">
       <thead>

@@ -2,10 +2,7 @@ package com.eoi.CitaTe.controllers;
 
 import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
 import com.eoi.CitaTe.dto.*;
-import com.eoi.CitaTe.entities.Empleado;
-import com.eoi.CitaTe.entities.Empresa;
-import com.eoi.CitaTe.entities.Usuario;
-import com.eoi.CitaTe.entities.Valoracion;
+import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
@@ -310,6 +307,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
         model.addAttribute("empresa", empresa);
         model.addAttribute("empleado", new Empleado());
+        model.addAttribute("catalogoDeServicio", new CatalogoDeServicio());
 
         return "empresa/details";
     }
