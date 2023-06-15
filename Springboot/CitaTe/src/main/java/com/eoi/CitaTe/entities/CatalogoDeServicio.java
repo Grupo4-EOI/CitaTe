@@ -16,7 +16,7 @@ public class CatalogoDeServicio {
     @Column(name = "id_catalogoDeServicio", nullable = false)
     private Long id;
     private String nombre;
-    private  String precio;
+    private  String precio; // cambiar a float
     private String descripcion;
 
     @OneToOne(mappedBy = "catalogoDeServicio")
