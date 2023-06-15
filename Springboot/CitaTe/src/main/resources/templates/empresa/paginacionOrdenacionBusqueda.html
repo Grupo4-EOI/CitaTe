@@ -121,8 +121,13 @@
               <div  th:if="${lista.totalPages > 0}" class="pagination"
                     th:each="pageNumber : ${pageNumbers}">
                 <div>
+
                   <li th:class="${pageNumber==lista.number + 1} ? active">
-                    <a href="#" th:href="@{/empresas/paginadosBusqueda(size=${lista.size}, page=${pageNumber})}"
+                    <a href="#"  th:href="@{'paginadosBusqueda?' +
+                            ${keywordnombre!=null && keywordnombre!=''? 'keywordnombre=' + keywordnombre + '&' : ''}
+                            + ${keywordprovincia!=null && keywordprovincia!=''? 'keywordprovincia=' + keywordprovincia + '&' : ''}
+                            + 'page=' + ${pageNumber} + '&size=' + ${pageSize}
+                            + ${sortField!=null ? '&sort=' + sortField + ',' + sortDirection : ''}}"
                        th:text=${pageNumber}></a>
                   </li>
 

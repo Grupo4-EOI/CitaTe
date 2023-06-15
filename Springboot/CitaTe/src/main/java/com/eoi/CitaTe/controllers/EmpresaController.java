@@ -93,7 +93,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
             //Necesiso un método que ordene por provincia, ojo provincia esta dentro de la clase Embeddable
             empresaPageable = empresaPageableService.getRepo().findEmpresaByDireccionProvinciaContainingIgnoreCase(keywordprovincia,pageable);
-            model.addAttribute("keywordcif",keywordprovincia);
+            model.addAttribute("keywordprovincia",keywordprovincia);
         }
 
         model.addAttribute(pageNumbersAttributeKey,dameNumPaginas(empresaPageable));
