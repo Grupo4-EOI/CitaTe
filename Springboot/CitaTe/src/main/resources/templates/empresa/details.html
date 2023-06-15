@@ -38,7 +38,7 @@
     <tbody>
     <tr th:each="catalogoDeServicio : ${empresa.catalogoDeServicios}">
       <td th:text="${catalogoDeServicio.nombre}"></td>
-      <td th:text="${catalogoDeServicio.precio}"></td>
+      <td th:text="${catalogoDeServicio.precio} + '€' "></td>
       <td th:text="${catalogoDeServicio.descripcion}"></td>
     </tr>
     </tbody>
