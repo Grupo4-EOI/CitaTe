@@ -37,9 +37,9 @@ public class Empresa {
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private Set<Empleado> empleados = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "catalogoDeServicio_id", referencedColumnName = "id_catalogoDeServicio")
-    private CatalogoDeServicio catalogoDeServicio;
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private Set<CatalogoDeServicio> catalogoDeServicios = new HashSet<>();
+
 
     private ArrayList<String> tipoNegocio = new ArrayList<>();
 

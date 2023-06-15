@@ -182,17 +182,20 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             CatalogoDeServicio catalogoDeServicio = new CatalogoDeServicio();
             catalogoDeServicio.setNombre("Corte");
             catalogoDeServicio.setDescripcion("Corte de pelo corto normal");
+            //catalogoDeServicio.setEmpresa(empresa);
             catalogoDeServicio.setPrecio("10");
 
 
             CatalogoDeServicio catalogoDeServicio2 = new CatalogoDeServicio();
             catalogoDeServicio2.setNombre("Degradado");
             catalogoDeServicio2.setDescripcion("corte de pelo con degrado y peinado");
+            //catalogoDeServicio.setEmpresa(empresa);
             catalogoDeServicio2.setPrecio("15");
 
             CatalogoDeServicio catalogoDeServicio3 = new CatalogoDeServicio();
             catalogoDeServicio3.setNombre("Barba");
             catalogoDeServicio3.setDescripcion("corte de barba o afeitado");
+            //catalogoDeServicio.setEmpresa(empresa);
             catalogoDeServicio3.setPrecio("5");
 
             catalogoDeServicioRepository.save(catalogoDeServicio);

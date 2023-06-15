@@ -19,7 +19,9 @@ public class CatalogoDeServicio {
     private  String precio; // cambiar a float
     private String descripcion;
 
-    @OneToOne(mappedBy = "catalogoDeServicio")
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id", referencedColumnName = "id_empresa")
     private Empresa empresa;
 
 
