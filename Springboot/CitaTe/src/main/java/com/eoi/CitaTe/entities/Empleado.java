@@ -26,22 +26,20 @@ public class Empleado {
     @JoinColumn(name = "empresa_id", referencedColumnName = "id_empresa")
     private Empresa empresa;
 
-
     @OneToOne(mappedBy ="empleado")
     private Usuario usuario;
-
 
     @OneToOne(mappedBy = "empleado")
     private Disponibilidad disponibilidad;
 
 
-    @ManyToMany(mappedBy = "empleados", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
     private Set<Servicio> servicios = new HashSet<>();
-
-
+//
+//
     public void addServicio(Servicio servicio){
         servicios.add(servicio);
-        servicio.getEmpleados().add(this);
+        servicio.setEmpleado(this);
     }
 
 }

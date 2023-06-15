@@ -285,10 +285,10 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
 
             /// Servicio ///
 
-            Servicio servicio= new Servicio();
-            servicio.setTiempo(10);
-            //servicio.setEmpleados();
-            servicioRepository.save(servicio);
+//            Servicio servicio= new Servicio();
+//            servicio.setTiempo(10);
+//            //servicio.setEmpleados();
+//            servicioRepository.save(servicio);
 
             /// Servicio ///
 

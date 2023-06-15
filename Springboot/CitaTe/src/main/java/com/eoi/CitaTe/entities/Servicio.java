@@ -19,12 +19,9 @@ public class Servicio {
     @Column(name = "id_servicio", nullable = false)
     private Long id;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "Empleados_has_Servicios",
-        joinColumns = @JoinColumn(name = "servicio_id", referencedColumnName = "id_servicio"),
-        inverseJoinColumns = @JoinColumn(name = "empleado_id", referencedColumnName = "id_empleado"))
-
-    private Set<Empleado> empleados = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "empleado_id", referencedColumnName = "id_empleado")
+    Empleado empleado;
 
     //Tiempo que tarda el empleado en ejecutar el servicio del catalogo de servicio
     private int tiempo;
@@ -33,9 +30,9 @@ public class Servicio {
 
     //private CatalogoDeServicio catalogoDeServicio; // NO HACER FK, PARA EVITAR RELACION CIRCULAR (TEC. MOD. DOM.)
 
-
-    public void addEmpleado(Empleado empleado){
-        empleados.add(empleado);
-        empleado.getServicios().add(this);
-    }
+//
+//    public void addEmpleado(Empleado empleado){
+//        empleados.add(empleado);
+//        empleado.getServicios().add(this);
+//    }
 }
