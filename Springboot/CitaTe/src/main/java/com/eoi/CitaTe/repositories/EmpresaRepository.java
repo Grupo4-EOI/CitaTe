@@ -7,5 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 
-    Page<Empresa> findByDireccionProvinciaIgnoreCase(String provincia, Pageable pageable);
+
+    Page<Empresa> findEmpresaByNombreEmpresaContainingIgnoreCase(String keywordciudad, Pageable pageable);
+
+    Page<Empresa> findEmpresaByCifContainingIgnoreCase(String keywordcif, Pageable pageable);
+
+    Page<Empresa> findEmpresaByDireccionProvinciaContainingIgnoreCase(String keywordprovincia, Pageable pageable);
 }

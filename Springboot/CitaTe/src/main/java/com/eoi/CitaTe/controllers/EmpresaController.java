@@ -6,24 +6,20 @@ import com.eoi.CitaTe.entities.Empresa;
 import com.eoi.CitaTe.entities.Usuario;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
-import com.eoi.CitaTe.services.EmpleadoService;
-import com.eoi.CitaTe.services.EmpresaMapperService;
-import com.eoi.CitaTe.services.EmpresaService;
-import com.eoi.CitaTe.services.UsuarioService;
+import com.eoi.CitaTe.services.*;
 import jakarta.annotation.PostConstruct;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -34,7 +30,6 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
     @Value("${url.empresa}")
     private String urlBase;
-
     private String url = "empresas";
     private String entityName = "empresa";
 
@@ -49,28 +44,70 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     @Autowired
     EmpresaMapperService empresaMapperService;
 
-//    @GetMapping("/paginados")
-//    public String getAllPaginated(@RequestParam(defaultValue = "1") int page,
-//                                  @RequestParam(defaultValue = "10") int size,
-//                                  Model model) {
-//
-//        Pageable pageable = PageRequest.of(page-1, size);
-//        Page<Usuario> usuariosPage = usuarioRepository.findAll(pageable);
-//
-//        model.addAttribute("usuarios", usuariosPage);
-//
-//        int totalPages = usuariosPage.getTotalPages();
-//
-//        if (totalPages > 0) {
-//            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-//                    .boxed()
-//                    .collect(Collectors.toList());
-//            model.addAttribute("pageNumbers", pageNumbers);
-//        }
-//
-//        return entityName + "/" + "paginas";
-//    }
+    @Autowired
+    EmpresaPageableService empresaPageableService;
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @GetMapping("/paginadosBusqueda")
+    public String getAllEmpresasPagOrdBusq(@RequestParam("page") Optional<Integer> page,
+                                           @RequestParam("size") Optional<Integer> size,
+                                           @RequestParam(required = false) String keywordnombre,
+                                           @RequestParam(required = false) String keywordprovincia,
+                                           @RequestParam(defaultValue = "id,asc") String[] sort,
+                                           ModelMap model) {
+        //Gestion de los datos de ordenación
+        String sortField = sort[0];
+        String sortDirection = sort[1];
+
+        Sort.Direction direction = sortDirection.equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort.Order order = new Sort.Order(direction, sortField);
+
+        //Gestion de los datos de paginas
+        Integer pagina = 0;
+        if (page.isPresent()) {
+            pagina = page.get() -1;
+        }
+        Integer maxelementos = 5;
+        if (size.isPresent()) {
+            maxelementos = size.get();
+        }
+
+        //generamos el contenedor
+        //Objetos genericos de ordenamiento y paginacion
+        Pageable pageable = PageRequest.of(pagina, maxelementos, Sort.by(order));
+        Page<Empresa> empresaPageable = null;
+        //El objeto empresaPageable cambiara de contenido en función de los filtros y/o del orden
+        if (keywordnombre == null &&  keywordprovincia == null ) {
+            empresaPageable = this.empresaPageableService.buscarTodos(pageable);
+
+        } else if (keywordnombre != null && keywordnombre.length() > 0  ){
+            keywordprovincia = null;
+
+            //Necesiso un método que ordene por nombre
+            empresaPageable = empresaPageableService.getRepo().findEmpresaByNombreEmpresaContainingIgnoreCase(keywordnombre,pageable);
+            model.addAttribute("keywordnombre",keywordnombre);
+        }
+        else if (keywordprovincia != null && keywordprovincia.length() > 0  ){
+            keywordnombre = null;
+
+            //Necesiso un método que ordene por provincia, ojo provincia esta dentro de la clase Embeddable
+            empresaPageable = empresaPageableService.getRepo().findEmpresaByDireccionProvinciaContainingIgnoreCase(keywordprovincia,pageable);
+            model.addAttribute("keywordprovincia",keywordprovincia);
+        }
+
+        model.addAttribute(pageNumbersAttributeKey,dameNumPaginas(empresaPageable));
+        model.addAttribute("currentPage", empresaPageable.getNumber() );
+        model.addAttribute("pageSize", maxelementos);
+        model.addAttribute("lista", empresaPageable);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+        model.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
+
+        return "empresa/paginacionOrdenacionBusqueda";
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @GetMapping("/paginados")
     public String paginados(Model model,
@@ -82,48 +119,30 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         Pageable pageable = PageRequest.of(numeroPagina, tamanoPagina);
 
         // Pasamos todos los empresaDTO como una page
-        Page<EmpresaDTO> entitiesPage = empresaMapperService.buscarTodos(pageable);
-
-        // Hacemos una lista de empresaDTO filtrando por
-        List<EmpresaDTO> listaFiltradaProvincia = entitiesPage.getContent().stream()
-                .filter(empresaDTO -> empresaDTO.getDireccion().getProvincia().equalsIgnoreCase(provincia))
-                .collect(Collectors.toList());
-
-//        int totalElements = listaFiltradaProvincia.size(); // Total de elementos en la lista filtrada
-//
-//        int startIndex = numeroPagina * tamanoPagina;
-//        int endIndex = Math.min(startIndex + tamanoPagina, totalElements);
-//
-//        // Obtiene la sublista de elementos para la página actual
-//        List<EmpresaDTO> pageElements = listaFiltradaProvincia.subList(startIndex, endIndex);
-
-
-
+        Page<Empresa> entitiesPage = null;
 
         if (provincia != null){
 
-            // no hace ni puto caso al tamanio
-            tamanoPagina = 10;
-            Pageable pageableProvincia = PageRequest.of(2, 15);
-
-
-
-            Page<EmpresaDTO> filteredEntitiesPage = new PageImpl<>(listaFiltradaProvincia, pageableProvincia, listaFiltradaProvincia.size());
+            entitiesPage = this.empresaPageableService.buscarTodos(pageable);
 
             //Pasamos dto al model
-            model.addAttribute("entities", filteredEntitiesPage);
+            model.addAttribute("entities", entitiesPage);
 
             // Verificar si hay una página anterior
-            if (filteredEntitiesPage.hasPrevious()) {
+            if (entitiesPage.hasPrevious()) {
                 model.addAttribute("paginaAnterior", numeroPagina - 1);
             }
             // Verificar si hay una página siguiente
-            if (filteredEntitiesPage.hasNext()) {
+            if (entitiesPage.hasNext()) {
                 model.addAttribute("siguientePagina", numeroPagina + 1);
             }
 
 
         }else {
+
+            entitiesPage = empresaPageableService.getRepo().findEmpresaByNombreEmpresaContainingIgnoreCase(provincia,pageable);
+
+            entitiesPage = this.empresaPageableService.buscarTodos(pageable);
                     //Pasamos dto al model
                     model.addAttribute("entities", entitiesPage);
 

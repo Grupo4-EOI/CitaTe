@@ -4,11 +4,15 @@
 
 
     import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.data.domain.Page;
     import org.springframework.security.access.prepost.PreAuthorize;
     import org.springframework.ui.Model;
     import org.springframework.web.bind.annotation.*;
 
+    import java.util.ArrayList;
     import java.util.List;
+    import java.util.stream.Collectors;
+    import java.util.stream.IntStream;
 
     /**
      * Controlador genérico para entidades utilizando Spring MVC.
@@ -62,6 +66,19 @@
 
         @Autowired
         protected GenericServiceConJPA<T,?> service;
+
+        protected final String pageNumbersAttributeKey = "pageNumbers";
+        //Metodo para obtener los numeros de pagina
+        protected List<Integer> dameNumPaginas(Page<T> obj){
+            List<Integer> pageNumbers = new ArrayList<>();
+            int totalPages = obj.getTotalPages();
+            if (totalPages > 0) {
+                pageNumbers = IntStream.rangeClosed(1, totalPages)
+                        .boxed()
+                        .collect(Collectors.toList());
+            }
+            return pageNumbers;
+        }
 
 
         /**
