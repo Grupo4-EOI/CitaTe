@@ -52,7 +52,8 @@
             <td th:text="${empresadto.DescripcionEmpresa}"></td>
             <td th:text="${empresadto.direccion.provincia}"></td>
                         <td>
-                            <a th:href="@{/citaTeP1}" class="btn btn-primary">Ver</a>
+
+                            <a th:href="@{/empresas/details/{id}(id=${empresadto.id})}" class="btn btn-primary">Ver</a>
 
 
                         </td> <!-- Columna para los botones de edición y eliminación -->
@@ -60,7 +61,7 @@
 
 
             <!--            <td>-->
-<!--                <a th:href="@{/valoraciones/{id}(id=${empresadto.id})}" class="btn btn-primary">Editar</a>-->
+<!--                <a th:href="@{/empresas/{id}(id=${empresadto.id})}" class="btn btn-primary">Editar</a>-->
 <!--                <a th:href="@{/valoraciones/delete/{id}(id=${empresadto.id})}" class="btn btn-danger">Eliminar</a>-->
 <!--            </td> &lt;!&ndash; Columna para los botones de edición y eliminación &ndash;&gt;-->
         </tr>

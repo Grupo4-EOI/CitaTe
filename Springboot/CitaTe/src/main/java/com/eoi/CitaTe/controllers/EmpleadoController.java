@@ -71,7 +71,7 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
     }
     @Override
-    @GetMapping("/{id}")
+    @GetMapping("/allporempresa")
     public String getById(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
         this.url = entityName + "/";
         try {
@@ -94,6 +94,20 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         return "redirect:/" + url +  "all";
     }
 
+
+    @GetMapping("/{id}")
+    public String getByIdempre(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
+        this.url = entityName + "/";
+        try {
+            Empleado entity = service.getById(id);
+            model.addAttribute("entity", entity);
+            return url + "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad
+        } catch (MiEntidadNoEncontradaException ex) {
+            model.addAttribute("mensaje", "Entidad no encontrada");
+            model.addAttribute("error", ex.getMessage());
+            return "error/error.html"; // Nombre de la plantilla para mostrar la página de error
+        }
+    }
 
 
 

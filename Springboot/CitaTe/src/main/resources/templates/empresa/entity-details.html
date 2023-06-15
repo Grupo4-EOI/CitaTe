@@ -31,16 +31,12 @@
 <!--        con otro ID auto incrementado-->
 
 
-        <input type="hidden" name="id" id="id"th:field="*{id}">
+        <tr th:each="empleado : ${entities}">
 
-        <div class="mb-3">
-            <label for="Comentario" class="form-label">Comentario</label>
-            <input type="text" class="form-control" id="Comentario" name="Comentario" th:field="*{comentario}">
-        </div>
-        <div class="mb-3">
-            <label for="Puntuacion" class="form-label">Puntuacion</label>
-            <input type="text" class="form-control" id="Puntuacion" name="Puntuacion" th:field="*{puntuacion}">
-        </div>
+        <td th:text="${empresa.NombreEmpresa}"></td>
+        <td th:text="${empresa.Cif}"></td>
+        <td th:text="${empresa.DescripcionEmpresa}"></td>
+        <td th:text="${empresadto.direccion.provincia}"></td>
 
 
 

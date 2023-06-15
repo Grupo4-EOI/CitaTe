@@ -2,8 +2,11 @@ package com.eoi.CitaTe.controllers;
 
 import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
 import com.eoi.CitaTe.dto.*;
+import com.eoi.CitaTe.entities.Empleado;
 import com.eoi.CitaTe.entities.Empresa;
 import com.eoi.CitaTe.entities.Usuario;
+import com.eoi.CitaTe.entities.Valoracion;
+import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
 import com.eoi.CitaTe.services.*;
@@ -277,6 +280,38 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO, direccionDTO);
 
         return "/registroEmpresa/registroEmpresa6";
+    }
+
+    ////////////////////////////////////////////////////
+
+
+    @Override
+    @GetMapping("/{id}")
+    public String getById(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
+        this.url = entityName + "/";
+        try {
+            Empresa entity = service.getById(id);
+            model.addAttribute("entity", entity);
+            return url + "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad
+        } catch (MiEntidadNoEncontradaException ex) {
+            model.addAttribute("mensaje", "Entidad no encontrada");
+            model.addAttribute("error", ex.getMessage());
+            return "error/error.html"; // Nombre de la plantilla para mostrar la página de error
+        }
+    }
+
+    //////////borra arriba
+
+    //// prueba 2
+
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable(value = "id") long id, Model model) {
+        Empresa empresa = service.getById(id);
+
+        model.addAttribute("empresa", empresa);
+        model.addAttribute("empleado", new Empleado());
+
+        return "empresa/details";
     }
 
 
