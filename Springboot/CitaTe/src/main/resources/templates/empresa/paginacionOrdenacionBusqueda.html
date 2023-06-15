@@ -113,22 +113,22 @@
 
 
       <!-- preparamos el div para poner los numeros de pagina-->
-      <div  th:if="${lista!=null and !lista.empty}" >
-        <div class="text-center">
+      <div  th:if="${lista!=null and !lista.empty}"  class="container">
+        <div class="d-flex align-items-center justify-content-center">
           <nav>
             <ul class="pagination" sd:pagination="full">
               <!--  si hay menos del numero minimo de registos no muestro la barra-->
               <div  th:if="${lista.totalPages > 0}" class="pagination"
                     th:each="pageNumber : ${pageNumbers}">
-                <div>
+                <div >
 
                   <li th:class="${pageNumber==lista.number + 1} ? active">
-                    <a href="#"  th:href="@{'paginadosBusqueda?' +
+                    <a class="page-link"  th:href="@{'paginadosBusqueda?' +
                             ${keywordnombre!=null && keywordnombre!=''? 'keywordnombre=' + keywordnombre + '&' : ''}
                             + ${keywordprovincia!=null && keywordprovincia!=''? 'keywordprovincia=' + keywordprovincia + '&' : ''}
                             + 'page=' + ${pageNumber} + '&size=' + ${pageSize}
                             + ${sortField!=null ? '&sort=' + sortField + ',' + sortDirection : ''}}"
-                       th:text=${pageNumber}></a>
+                       th:text=${pageNumber} ></a>
                   </li>
 
                 </div>
@@ -136,6 +136,14 @@
             </ul>
           </nav>
         </div>
+      </div>
+
+      <!-- pruevas-->
+
+      <div class="btn ">
+                    <a  th:if="${siguientePagina}" th:href="@{paginadosBusqueda(numeroPagina=${siguientePagina}, tamanoPagina=${tamanoPagina})}">
+                      Siguiente página
+                    </a>
       </div>
 
 
