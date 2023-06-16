@@ -29,9 +29,7 @@ public class Servicio {
     @OneToOne
     private CatalogoDeServicio catalogoDeServicio;
 
-    // Con el one to one no se si la he liado parda
-
-
+    // Con el one to one no se si la he liado parda pero sino peta la app
 
     //private CatalogoDeServicio catalogoDeServicio; // NO HACER FK, PARA EVITAR RELACION CIRCULAR (TEC. MOD. DOM.)
 
