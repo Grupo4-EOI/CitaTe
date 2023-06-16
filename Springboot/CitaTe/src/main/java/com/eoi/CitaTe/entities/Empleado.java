@@ -35,13 +35,9 @@ public class Empleado {
     private Disponibilidad disponibilidad;
 
 
-    @ManyToMany(mappedBy = "empleados", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
     private Set<Servicio> servicios = new HashSet<>();
 
 
-    public void addServicio(Servicio servicio){
-        servicios.add(servicio);
-        servicio.getEmpleados().add(this);
-    }
 
 }

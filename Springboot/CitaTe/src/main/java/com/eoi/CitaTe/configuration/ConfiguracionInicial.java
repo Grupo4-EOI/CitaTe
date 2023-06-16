@@ -66,7 +66,6 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
                 return;
 
             // Empresas///////////////////////////////////////////////////
-
             Empresa empresa = new Empresa();
             Empresa empresa2 = new Empresa();
             Empresa empresa3 = new Empresa();
@@ -118,7 +117,6 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             empleado.setNombreEmpleado("Antonio");
             empleado.setApellido1Empleado("Martinez");
             empleado.setApellido2Empleado("Sanchez");
-
             empleado.setEmpresa(empresa);
             empleadoRepository.save(empleado);
 
@@ -154,7 +152,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             cliente.setTelefono("631415925");
             //// clientes///////////////////////////////////////////////////
 
-            /// valoraciones///////////////////////////////////////////////
+            /// Valoraciones///////////////////////////////////////////////
 
 //            private String comentario;
 //
@@ -176,8 +174,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             valoracionRepository.save(valoracion2);
             /// valoraciones///////////////////////////////////////////////
 
-            /// catalogo de servicios/////////////////////////////////////
-
+            /// Catalogo de servicios/////////////////////////////////////
 
             CatalogoDeServicio catalogoDeServicio = new CatalogoDeServicio();
             catalogoDeServicio.setNombre("Corte");
@@ -285,10 +282,42 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
 
             /// Servicio ///
 
-            Servicio servicio= new Servicio();
-            servicio.setTiempo(10);
-            //servicio.setEmpleados();
+            Servicio servicio = new Servicio();
+            Servicio servicio1 = new Servicio();
+            Servicio servicio2 = new Servicio();
+            Servicio servicio3 = new Servicio();
+            Servicio servicio4 = new Servicio();
+            Servicio servicio5 = new Servicio();
+
+            servicio.setTiempo(15);
+            servicio.setEmpleado(empleado);
+            servicio.setCatalogoDeServicio(catalogoDeServicio);
             servicioRepository.save(servicio);
+
+            servicio1.setTiempo(20);
+            servicio1.setEmpleado(empleado);
+            servicio1.setCatalogoDeServicio(catalogoDeServicio2);
+            servicioRepository.save(servicio1);
+
+            servicio2.setTiempo(5);
+            servicio2.setEmpleado(empleado);
+            servicio2.setCatalogoDeServicio(catalogoDeServicio3);
+            servicioRepository.save(servicio2);
+
+            servicio3.setTiempo(20);
+            servicio3.setEmpleado(empleado2);
+            servicio3.setCatalogoDeServicio(catalogoDeServicio);
+            servicioRepository.save(servicio3);
+
+            servicio4.setTiempo(30);
+            servicio4.setEmpleado(empleado2);
+            servicio4.setCatalogoDeServicio(catalogoDeServicio2);
+            servicioRepository.save(servicio4);
+
+            servicio5.setTiempo(9);
+            servicio5.setEmpleado(empleado3);
+            servicio5.setCatalogoDeServicio(catalogoDeServicio);
+            servicioRepository.save(servicio5);
 
             /// Servicio ///
 
