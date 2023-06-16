@@ -34,8 +34,9 @@
         <input type="hidden" name="id" id="id"th:field="*{id}">
 
         <div class="mb-3">
+
             <label for="nombreRol" class="form-label">Nombre del Rol</label>
-            <input type="text" class="form-control" id="nombreRol" name="nombreRol" th:field="*{nombreRol}">
+            <input type="text" class="form-control" id="nombreRol" name="nombreRol" th:field="${entity.nombreRol}">
         </div>
 
 

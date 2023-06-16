@@ -21,7 +21,7 @@ public class ClienteMapper extends AbstractServiceMapper<Cliente, ClienteDTO>{
         final Cliente entidad = new Cliente();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(dto,entidad);
-        long id =  dto.getId();
+       // long id =  dto.getId();
         //Buscamos las reservas
        // entidad.setReservas(clienteRepository.findById(id).get().getReservas());
         return entidad;

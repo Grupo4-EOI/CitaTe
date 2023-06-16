@@ -29,14 +29,15 @@ public class RolController extends MiControladorGenerico<Rol> {
         super();
     }
 
+    @Autowired
+    RolMapperService rolMapperService;
+
+
     @PostConstruct
     private void init() {
         super.entityName = urlBase;
         super.url = entityName + "/";
     }
-
-    @Autowired
-    RolMapperService rolMapperService;
 
     @Override
     @GetMapping("/all")

@@ -230,23 +230,23 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidadRepository.save(disponibilidad3);
             /// DISPONIBILIDADES///////////////////////////////////////////////
 
-            /// ROL  ///////////////////////////////////////////////
-            Rol rolCliente = new Rol();
-            Rol rolEmpleado = new Rol();
-            Rol rolEncargado = new Rol();
-            Rol rolJefe = new Rol();
-            Rol rolAdmin = new Rol();
+             /// ROL  ///////////////////////////////////////////////
+             Rol rolCliente = new Rol();
+             Rol rolEmpleado = new Rol();
+             Rol rolEncargado = new Rol();
+             Rol rolJefe = new Rol();
+             Rol rolAdmin = new Rol();
 
-            rolCliente.setNombreRol("rolCliente");
-            rolEmpleado.setNombreRol("rolEmpleado");
-            rolEncargado.setNombreRol("rolEncargado");
-            rolJefe.setNombreRol("rolJefe");
-            rolAdmin.setNombreRol("rolAdmin");
+             rolCliente.setNombreRol("rolCliente");
+             rolEmpleado.setNombreRol("rolEmpleado");
+             rolEncargado.setNombreRol("rolEncargado");
+             rolJefe.setNombreRol("rolJefe");
+             rolAdmin.setNombreRol("rolAdmin");
 
-            rolRepository.save(rolCliente);
-            rolRepository.save(rolEmpleado);
-            rolRepository.save(rolJefe);
-            rolRepository.save(rolAdmin);
+             rolRepository.save(rolCliente);
+             rolRepository.save(rolEmpleado);
+             rolRepository.save(rolJefe);
+             rolRepository.save(rolAdmin);
             /// ROL  ///////////////////////////////////////////////
 
 
@@ -331,7 +331,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             usuario.setCliente(cliente);
             usuario.setPass(codificadorContraseña.encode("prueba"));
             usuario.setToken("pepe");
-            usuario.setRol(rolCliente);
+           // usuario.setRol("rolCliente");
             usuarioRepository.save(usuario);
 
             Usuario usuario2 = new Usuario();
@@ -339,7 +339,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             usuario2.setActivo(true);
             usuario2.setEmpleado(empleado);
             usuario2.setPass(codificadorContraseña.encode("prueba"));
-            usuario2.setRol(rolEmpleado);
+            //usuario2.setRol("rolEmpleado");
             usuarioRepository.save(usuario2);
 
             Usuario usuario3 = new Usuario();
@@ -347,14 +347,14 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             usuario3.setActivo(true);
             usuario3.setEmpleado(empleado2);
             usuario3.setPass(codificadorContraseña.encode("prueba"));
-            usuario3.setRol(rolJefe);
+            //usuario3.setRol("rolJefe");
             usuarioRepository.save(usuario3);
 
             Usuario usuario4 = new Usuario();
             usuario4.setEmail("admin@citate.com");
             usuario4.setActivo(true);
             usuario4.setPass(codificadorContraseña.encode("prueba"));
-            usuario4.setRol(rolAdmin);
+            //usuario4.setRol("rolAdmin");
             usuarioRepository.save(usuario4);
 
 //            Usuario usuario5 = new Usuario();
