@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Empleados</title>
+  <title>Servicios</title>
 
   <link rel="stylesheet" th:href="@{/CitaTe.css}">
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
@@ -25,7 +25,7 @@
 
 <div class="container">
 
-  <h1>Sercios que ofrece esta peluqueria</h1>
+  <h1>Servicios que ofrece este empleado</h1>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -36,35 +36,13 @@
     </thead>
 
     <tbody>
-    <tr th:each="catalogoDeServicio : ${empresa.catalogoDeServicios}">
-      <td th:text="${catalogoDeServicio.nombre}"></td>
-      <td th:text="${catalogoDeServicio.precio} + '€' "></td>
-      <td th:text="${catalogoDeServicio.descripcion}"></td>
+    <tr th:each="servicio : ${empleado.servicios}">
+      <td th:text="${servicio.tiempo}"></td>
+
     </tr>
     </tbody>
   </table>
 
-
-
-  <h1>Empleados</h1>
-    <table class="table table-striped">
-      <thead>
-            <tr>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-            </tr>
-      </thead>
-
-      <tbody>
-            <tr th:each="empleado : ${empresa.empleados}">
-                  <td th:text="${empleado.nombreEmpleado}"></td>
-                  <td th:text="${empleado.apellido1Empleado}"></td>
-                  <td>
-                      <a th:href="@{/empleados/details/{id}(id=${empleado.id})}" class="btn btn-primary">Ver</a>
-                  </td>
-            </tr>
-      </tbody>
-    </table>
 
 </div>
 

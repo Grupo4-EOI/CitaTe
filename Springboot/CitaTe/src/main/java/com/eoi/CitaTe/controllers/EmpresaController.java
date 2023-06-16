@@ -281,26 +281,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
     ////////////////////////////////////////////////////
 
-
-    @Override
-    @GetMapping("/{id}")
-    public String getById(@PathVariable Object id, Model model) throws MiEntidadNoEncontradaException {
-        this.url = entityName + "/";
-        try {
-            Empresa entity = service.getById(id);
-            model.addAttribute("entity", entity);
-            return url + "entity-details"; // Nombre de la plantilla para mostrar los detalles de la entidad
-        } catch (MiEntidadNoEncontradaException ex) {
-            model.addAttribute("mensaje", "Entidad no encontrada");
-            model.addAttribute("error", ex.getMessage());
-            return "error/error.html"; // Nombre de la plantilla para mostrar la página de error
-        }
-    }
-
-    //////////borra arriba
-
-    //// prueba 2
-
+    //// Detalles de la empresa
     @GetMapping("/details/{id}")
     public String details(@PathVariable(value = "id") long id, Model model) {
         Empresa empresa = service.getById(id);

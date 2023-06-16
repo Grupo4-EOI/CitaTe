@@ -5,8 +5,7 @@ import com.eoi.CitaTe.dto.ClienteDTO;
 import com.eoi.CitaTe.dto.EmpleadoDTO;
 import com.eoi.CitaTe.dto.UsuarioDTO;
 import com.eoi.CitaTe.dto.ValoracionDTO;
-import com.eoi.CitaTe.entities.Empleado;
-import com.eoi.CitaTe.entities.Valoracion;
+import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.eoi.CitaTe.services.EmpleadoMapperService;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
@@ -107,6 +106,17 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
             model.addAttribute("error", ex.getMessage());
             return "error/error.html"; // Nombre de la plantilla para mostrar la página de error
         }
+    }
+
+    //// Detalles del trabajador
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable(value = "id") long id, Model model) {
+
+        Empleado empleado = service.getById(id);
+        model.addAttribute("empleado", empleado);
+        model.addAttribute("servicio", new Servicio());
+
+        return "empleados/details";
     }
 
 
