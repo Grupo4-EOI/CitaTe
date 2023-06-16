@@ -52,4 +52,9 @@ public class Empresa {
         empleados.add(empleado);
         empleado.setEmpresa(this);
     }
+
+    public void addCatalogoDeServicio(CatalogoDeServicio catalogoDeServicio){
+        catalogoDeServicios.add(catalogoDeServicio);
+        catalogoDeServicio.setEmpresa(this);
+    }
 }

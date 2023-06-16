@@ -291,32 +291,37 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
 
             servicio.setTiempo(15);
             servicio.setEmpleado(empleado);
-            servicio.setCatalogoDeServicio(catalogoDeServicio);
+
+            servicio.setCatalogoDeServicio2(1L);
+
+
+//            servicio.setCatalogoDeServicio(catalogoDeServicio);
             servicioRepository.save(servicio);
+
 
             servicio1.setTiempo(20);
             servicio1.setEmpleado(empleado);
-            servicio1.setCatalogoDeServicio(catalogoDeServicio2);
+//            servicio1.setCatalogoDeServicio(catalogoDeServicio2);
             servicioRepository.save(servicio1);
 
             servicio2.setTiempo(5);
             servicio2.setEmpleado(empleado);
-            servicio2.setCatalogoDeServicio(catalogoDeServicio3);
+//            servicio2.setCatalogoDeServicio(catalogoDeServicio3);
             servicioRepository.save(servicio2);
 
             servicio3.setTiempo(20);
             servicio3.setEmpleado(empleado2);
-            servicio3.setCatalogoDeServicio(catalogoDeServicio);
+//            servicio3.setCatalogoDeServicio(catalogoDeServicio);
             servicioRepository.save(servicio3);
 
             servicio4.setTiempo(30);
             servicio4.setEmpleado(empleado2);
-            servicio4.setCatalogoDeServicio(catalogoDeServicio2);
+//            servicio4.setCatalogoDeServicio(catalogoDeServicio2);
             servicioRepository.save(servicio4);
 
             servicio5.setTiempo(9);
             servicio5.setEmpleado(empleado3);
-            servicio5.setCatalogoDeServicio(catalogoDeServicio);
+//            servicio5.setCatalogoDeServicio(catalogoDeServicio);
             servicioRepository.save(servicio5);
 
             /// Servicio ///

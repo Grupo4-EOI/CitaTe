@@ -290,6 +290,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
         model.addAttribute("empleado", new Empleado());
         model.addAttribute("catalogoDeServicio", new CatalogoDeServicio());
 
+
         return "empresa/details";
     }
 

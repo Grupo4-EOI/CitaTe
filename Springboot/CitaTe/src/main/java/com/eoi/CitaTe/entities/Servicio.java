@@ -26,12 +26,15 @@ public class Servicio {
     //Tiempo que tarda el empleado en ejecutar el servicio del catalogo de servicio
     private int tiempo;
 
-    @OneToOne
-    private CatalogoDeServicio catalogoDeServicio;
+
+//    private Set<CatalogoDeServicio> catalogoDeServicio = new HashSet<>();
+
 
     // Con el one to one no se si la he liado parda pero sino peta la app
 
     //private CatalogoDeServicio catalogoDeServicio; // NO HACER FK, PARA EVITAR RELACION CIRCULAR (TEC. MOD. DOM.)
+
+    private Long catalogoDeServicio2;
 
 
 }
