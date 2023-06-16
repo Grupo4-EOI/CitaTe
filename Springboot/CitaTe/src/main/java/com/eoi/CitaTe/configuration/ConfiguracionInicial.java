@@ -377,7 +377,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
                 usuario2.setEmail("empleado" + i + "@citate.com");
                 usuario2.setActivo(true);
                 usuario2.setPass(codificadorContraseña.encode("prueba"));
-                usuario2.setRol(rolEmpleado);
+                //usuario2.setRol("rolEmpleado");
                 usuarioRepository.save(usuario2);
 
             }

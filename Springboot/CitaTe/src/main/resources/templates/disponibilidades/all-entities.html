@@ -31,7 +31,8 @@
         <thead>
         <tr>
 <!--            <th>Dia</th>-->
-            <th>Hora inicio mañana</th>
+
+            <th>Fecha</th>
             <th>Hora fin tarde</th>
             <th>Hora inicio tarde</th>
             <th>Hora fin tarde</th>
@@ -42,7 +43,8 @@
         <tbody>
         <tr th:each="disponibilidaddto : ${entities}">
 <!--            <td th:text="${disponibilidad.fecha}"></td>-->
-            <td th:text="${disponibilidaddto.horaInicioManiana}"></td>
+
+            <td th:text="${disponibilidaddto.fecha}"></td>
             <td th:text="${disponibilidaddto.horaFinManiana}"></td>
             <td th:text="${disponibilidaddto.horaInicioTarde}"></td>
             <td th:text="${disponibilidaddto.horaFinTarde}"></td>

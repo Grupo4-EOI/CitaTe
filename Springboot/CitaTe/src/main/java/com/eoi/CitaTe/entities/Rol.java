@@ -15,6 +15,7 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_rol", nullable = false)
     private Long id;
+
     private String nombreRol;
 
     @OneToOne(mappedBy = "rol", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

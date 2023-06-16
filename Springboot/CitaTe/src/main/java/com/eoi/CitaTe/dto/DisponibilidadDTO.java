@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -17,7 +18,7 @@ import java.util.Date;
 public class DisponibilidadDTO {
 
     private Long id;
-//    private Date fecha;
+    private LocalDate fecha;
     private String horaInicioManiana;
     private String horaFinManiana;
     private String horaInicioTarde;

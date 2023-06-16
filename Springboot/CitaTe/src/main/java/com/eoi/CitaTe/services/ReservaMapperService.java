@@ -24,7 +24,7 @@ public class ReservaMapperService extends AbstractBusinessService<Reserva, Long,
 
         reserva.setId(reservaDTO.getId());
         reserva.setEstadoReserva(reservaDTO.isEstadoReserva());
-       // reserva.setFechaReserva(reservaDTO.getFechaReserva());
+        reserva.setFechaReserva(reservaDTO.getFechaReserva());
         reserva.setHora_fin(reservaDTO.getHora_fin());
         reserva.setHora_inicio(reservaDTO.getHora_inicio());
 
