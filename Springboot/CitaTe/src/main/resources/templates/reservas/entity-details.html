@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Disponibilidades</title>
+    <title>Reservas</title>
 
     <link rel="stylesheet" th:href="@{/CitaTe.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
@@ -24,26 +24,34 @@
 </br></br></br>
 
 <div class="container">
-    <h1>Editar Disponibilidad</h1>
-    <form th:object="${entity}" th:action="@{/disponibilidades/actualizar}" method="POST" th:method="POST">
+    <h1>Editar Reserva</h1>
+    <form th:object="${entity}" th:action="@{/reservas/actualizar}" method="POST" th:method="POST">
 
         <input type="hidden" name="id" id="id" th:field="*{id}">
 
+        <table class="table table-striped">
+            <thead>
+            <tr>
 
-            <h2>HORARIO DE APERTURA</h2> <br>
-            <div>
-                <label>Lunes</label>
+                <th>Estado Reserva</th>
+                <th>Fecha de Reserva</th>
+                <th>Hora inicio</th>
+                <th>Hora fin</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="checkbox" name="estadoReserva" id="estadoReserva" th:field="${entity.estadoReserva}"> Activo</td>
+                <td><input type="date" name="fechaReserva" id="fechaReserva" th:field="${entity.fechaReserva}"></td>
+                <td><input type="time" name="horaInicio" id="horaInicio" th:field="${entity.hora_inicio}"></td>
+                <td><input type="time" name="horaFin" id="horaFin" th:field="${entity.hora_fin}"></td>
 
-<!--                <input type="checkbox" name="lunes" id="lunes" th:field="*{fecha}">-->
+            </tr>
 
-                <input type="date" name="fecha" id="fecha" th:field="${entity.fecha}">
+            </tbody>
+        </table>
 
-                <input type="time" name="comienzo" id="comienzo1" th:field="${entity.horaInicioManiana}">
-                <input type="time" name="final" id="final1" th:field="${entity.horaFinManiana}">
-                <input type="time" name="comienzo" id="comienzo34" th:field="${entity.horaInicioTarde}">
-                <input type="time" name="final" id="final34" th:field="${entity.horaFinTarde}">
 
-            </div><br>
 
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

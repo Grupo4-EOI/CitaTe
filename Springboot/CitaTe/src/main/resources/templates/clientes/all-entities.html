@@ -26,32 +26,30 @@
 </br></br></br>
 
 <div class="container">
-    <h1>Disponibilidad</h1>
+    <h1>Clientes</h1>
     <table class="table table-striped">
         <thead>
         <tr>
 <!--            <th>Dia</th>-->
-
-            <th>Fecha</th>
-            <th>Hora fin tarde</th>
-            <th>Hora inicio tarde</th>
-            <th>Hora fin tarde</th>
+            <th>Nombre Cliente</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Telefono</th>
 
             <!-- Nueva columna para las acciones -->
         </tr>
         </thead>
         <tbody>
-        <tr th:each="disponibilidaddto : ${entities}">
+        <tr th:each="clientedto : ${entities}">
 <!--            <td th:text="${disponibilidad.fecha}"></td>-->
-
-            <td th:text="${disponibilidaddto.fecha}"></td>
-            <td th:text="${disponibilidaddto.horaFinManiana}"></td>
-            <td th:text="${disponibilidaddto.horaInicioTarde}"></td>
-            <td th:text="${disponibilidaddto.horaFinTarde}"></td>
+            <td th:text="${clientedto.nombreCliente}"></td>
+            <td th:text="${clientedto.apellido1Cliente}"></td>
+            <td th:text="${clientedto.apellido2Cliente}"></td>
+            <td th:text="${clientedto.telefono}"></td>
 
             <td>
-                <a th:href="@{/disponibilidades/{id}(id=${disponibilidaddto.id})}" class="btn btn-primary">Editar</a>
-                <a th:href="@{/disponibilidades/delete/{id}(id=${disponibilidaddto.id})}" class="btn btn-danger">Eliminar</a>
+                <a th:href="@{/clientes/{id}(id=${clientedto.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/clientes/delete/{id}(id=${clientedto.id})}" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
         </tbody>
@@ -59,7 +57,7 @@
 
 
     <div class=" btn" style="background-color: #3f4c63">
-        <a th:class="nolink" href="/disponibilidades/create" >Añadir nueva Disponibilidad</a>
+        <a th:class="nolink" href="/clientes/create" >Añadir nuevo Cliente</a>
     </div>
 </div>
 

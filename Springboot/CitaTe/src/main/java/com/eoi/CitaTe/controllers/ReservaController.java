@@ -31,8 +31,8 @@ public class ReservaController extends MiControladorGenerico<Reserva> {
 
     @PostConstruct
     private void init() {
-        super.entityName = entityName;
-        super.url = url;
+        super.entityName = urlBase;
+        super.url = entityName + "/";
     }
 
     @Autowired

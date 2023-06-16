@@ -30,8 +30,8 @@ public class ClienteController extends MiControladorGenerico<Cliente> {
 
     @PostConstruct
     private void init() {
-        super.entityName = entityName;
-        super.url = url;
+        super.entityName = urlBase;
+        super.url = entityName + "/";
     }
 
     @Autowired
@@ -49,7 +49,7 @@ public class ClienteController extends MiControladorGenerico<Cliente> {
     @Override
     @GetMapping("/create")
     public String create(Model model) {
-        DisponibilidadDTO entity = new DisponibilidadDTO();
+        ClienteDTO entity = new ClienteDTO();
         model.addAttribute("entity", entity);
         return url + "entity-details";
     }

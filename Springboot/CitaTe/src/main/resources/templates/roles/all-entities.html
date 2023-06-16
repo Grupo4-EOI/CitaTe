@@ -30,12 +30,18 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Tipo de Rol</th>
+<!--            <th>Dia</th>-->
+
+            <th>Nombre Rol</th>
+
+            <!-- Nueva columna para las acciones -->
         </tr>
         </thead>
         <tbody>
         <tr th:each="roldto : ${entities}">
+
             <td th:text="${roldto.nombreRol}"></td>
+
 
             <td>
                 <a th:href="@{/roles/{id}(id=${roldto.id})}" class="btn btn-primary">Editar</a>
@@ -46,10 +52,8 @@
     </table>
 
 
-
-
     <div class=" btn" style="background-color: #3f4c63">
-        <a th:class="nolink" href="/roles/create" >Añadir nuevo rol</a>
+        <a th:class="nolink" href="/roles/create" >Añadir nuevo Rol</a>
     </div>
 </div>
 

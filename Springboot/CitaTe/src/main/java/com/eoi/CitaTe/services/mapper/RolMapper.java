@@ -25,4 +25,6 @@ public class RolMapper extends AbstractServiceMapper <Rol, RolDTO>{
 
     public RolMapper() {
     }
+
+
 }
