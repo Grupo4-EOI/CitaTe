@@ -20,5 +20,7 @@ public class UsuarioDTOPsw {
 
     private String newpassword;
 
+    private String passwordNueva;
+
 
 }

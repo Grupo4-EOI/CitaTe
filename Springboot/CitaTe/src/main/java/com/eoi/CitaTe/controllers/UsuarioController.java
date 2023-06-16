@@ -25,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -250,28 +251,34 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
     //Controlador de cambio de password
     @GetMapping("/cambiopass")
-    public String vistaCambiopasword(){
+    public String vistaCambiopasword(Model model, UsuarioDTOPsw usuarioDTOPsw){
+        model.addAttribute("usuarioDTOPsw", usuarioDTOPsw);
         return "usuarios/cambiopass";
     }
     @PostMapping("/cambiopass")
-    public String cambioPasswordPst(@ModelAttribute(name = "loginForm" ) CambioPswDto cambioPswDto) throws Exception {
-        //Encriptamos las passwords
-        String passwordAnt =  passwordEncoder.encode(cambioPswDto.getPasswordant());
-        String passwordNueva =  passwordEncoder.encode(cambioPswDto.getPasswordnueva());
-        //Comprobamos que existe el usuario por email y passweord
-        if (usuarioMapperService.getRepo().repValidarPassword(cambioPswDto.getUsername(), passwordAnt) > 0)
-        {
-            //Modificicamos la passsword
-            Usuario usuario = usuarioMapperService.getRepo().findUsuarioByEmailAndPass(cambioPswDto.getUsername(),
-                    passwordAnt );
+    public String cambioPasswordPst(@ModelAttribute UsuarioDTOPsw usuarioDTOPsw, CambioPswDto cambioPswDto, RedirectAttributes redirectAttributes) throws Exception {
+        // Encriptamos las passwords
+        String passwordAnt = passwordEncoder.encode(cambioPswDto.getPasswordant());
+        String passwordNueva = passwordEncoder.encode(cambioPswDto.getPasswordnueva());
+
+        // Comprobamos que existe el usuario por email y password
+        if (usuarioMapperService.getRepo().repValidarPassword(cambioPswDto.getUsername(), passwordAnt) > 0) {
+            // Modificamos la contraseña
+            Usuario usuario = usuarioMapperService.getRepo().findUsuarioByEmailAndPass(cambioPswDto.getUsername(), passwordAnt);
             usuario.setPass(passwordNueva);
-            //Guardamos el usuario
+            // Guardamos el usuario
             Usuario usuario1 = usuarioMapperService.guardarEntidadEntidad(usuario);
-            return "/login";
-        }else {
-            return "usuarios/cambiopass";
+
+            // Agregar mensaje de éxito y redirigir a la página de inicio de sesión
+            redirectAttributes.addFlashAttribute("success", "Contraseña cambiada exitosamente. Por favor, inicia sesión con tu nueva contraseña.");
+            return "redirect:/login";
+        } else {
+            // Agregar mensaje de error y redirigir nuevamente a la página de cambio de contraseña
+            redirectAttributes.addFlashAttribute("error", "La contraseña anterior es incorrecta.");
+            return "redirect:/cambiopass";
         }
     }
+
 
 
 }
