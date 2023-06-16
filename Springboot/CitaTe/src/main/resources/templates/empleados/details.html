@@ -31,13 +31,17 @@
     <tr>
       <th>Nombre del servicio</th>
       <th>Precio</th>
-      <th>Descripcion</th>
+      <th>Tiempo</th>
     </tr>
     </thead>
 
     <tbody>
     <tr th:each="servicio : ${empleado.servicios}">
-      <td th:text="${servicio.tiempo}"></td>
+
+        <td th:text="${servicio.catalogoDeServicio.getNombre()}"></td>
+        <td th:text="${servicio.catalogoDeServicio.precio} + '€'"></td>
+        <td th:text="${servicio.tiempo} + ' min'"></td>
+
 
     </tr>
     </tbody>
