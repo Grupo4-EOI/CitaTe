@@ -32,8 +32,8 @@ public class Disponibilidad {
     private String horaFinTarde;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "empleado_id", referencedColumnName = "id_empleado")
-   private Empleado empleado;
+    private Empleado empleado;
 
 }

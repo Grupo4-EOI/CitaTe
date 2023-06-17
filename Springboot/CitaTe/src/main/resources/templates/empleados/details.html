@@ -47,6 +47,32 @@
     </tbody>
   </table>
 
+  <h1>Disponibilidad que tiene este empleado</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Dia</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="disponibilidad : ${empleado.disponibilidades}">
+
+      <td th:text="${disponibilidad.diaDeLaSemana}"></td>
+
+      <td th:text="${disponibilidad.horaInicioManiana}"></td>
+      <td th:text="${disponibilidad.horaFinManiana}"></td>
+
+      <td th:text="${disponibilidad.horaInicioTarde}"></td>
+      <td th:text="${disponibilidad.horaFinTarde}"></td>
+    </tr>
+    </tbody>
+  </table>
+
 
 </div>
 

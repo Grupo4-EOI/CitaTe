@@ -7,7 +7,9 @@ import com.eoi.CitaTe.dto.UsuarioDTO;
 import com.eoi.CitaTe.dto.ValoracionDTO;
 import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.eoi.CitaTe.services.DisponibilidadService;
 import com.eoi.CitaTe.services.EmpleadoMapperService;
+import com.eoi.CitaTe.services.EmpleadoService;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 @Controller
@@ -33,6 +36,9 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
     @Autowired
     EmpleadoMapperService empleadoMapperService;
+
+    @Autowired
+    DisponibilidadService disponibilidadService;
 
     @PostConstruct
     private void init() {
@@ -115,6 +121,33 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         Empleado empleado = service.getById(id);
         model.addAttribute("empleado", empleado);
         model.addAttribute("servicio", new Servicio());
+        //model.addAttribute("disponibilidad", new Disponibilidad());
+
+        // recorremos el set de disponibilidades del empleado
+        for(Disponibilidad disponibilidad : empleado.getDisponibilidades()) {
+
+            // parseamos los datos de String a int para poder operar
+            int inicioManiana = Integer.parseInt(disponibilidad.getHoraInicioManiana());
+            int finManiana = Integer.parseInt(disponibilidad.getHoraFinManiana());
+            int inicioTarde = Integer.parseInt(disponibilidad.getHoraInicioTarde());
+            int finTarde = Integer.parseInt(disponibilidad.getHoraFinTarde());
+
+            //caculamos la horas de por la mañana las pasamos a minutos y dividimos en huevos de 10 min
+
+            int huecosmaniana = finManiana - inicioManiana;
+            int huecostarde = finTarde - inicioTarde;
+            int huecos = huecosmaniana + huecostarde;
+
+            huecos *= 60;
+            huecos /= 10;
+
+            // Creamos un array con el numero de huecos para ese dia
+            //Array[] totalhHecosDelDia = new Array[huecos];
+        }
+
+
+
+
 
         return "empleados/details";
     }

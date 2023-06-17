@@ -18,7 +18,7 @@ import java.util.Date;
 public class DisponibilidadDTO {
 
     private Long id;
-    private LocalDate fecha;
+    private String diaDeLaSemana;
     private String horaInicioManiana;
     private String horaFinManiana;
     private String horaInicioTarde;

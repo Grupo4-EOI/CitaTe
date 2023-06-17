@@ -22,7 +22,7 @@ public class DisponibilidadMapperService extends AbstractBusinessService<Disponi
         Disponibilidad disponibilidad = new Disponibilidad();
 
         disponibilidad.setId(disponibilidadDTO.getId());
-        disponibilidad.setFecha(disponibilidadDTO.getFecha());
+        disponibilidad.setDiaDeLaSemana(disponibilidad.getDiaDeLaSemana());
         disponibilidad.setHoraInicioManiana(disponibilidadDTO.getHoraInicioManiana());
         disponibilidad.setHoraFinManiana(disponibilidadDTO.getHoraFinManiana());
         disponibilidad.setHoraInicioTarde(disponibilidadDTO.getHoraInicioTarde());
