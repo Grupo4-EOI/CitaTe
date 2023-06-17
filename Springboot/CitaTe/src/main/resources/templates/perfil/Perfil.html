@@ -98,35 +98,12 @@
               <span sec:authentication="name"></span>
             </a>
             <ul class="dropdown-menu text-small shadow">
-              <li>
-                <a href="#" class="nav-link link-body-emphasis" onclick="showChangePasswordForm()">
-                  <i class="bi bi-gear"></i>
-                  Settings
-                </a>
-              </li>
-              <div id="cambiopassword" class="container" style="display: none;">
-                <h2>Cambio de contraseña</h2>
-                <form action="/cambiopassword" method="post">
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="text" class="form-control" id="email" name="loginForm.email" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="passwordant" class="form-label">Contraseña anterior</label>
-                    <input type="password" class="form-control" id="passwordant" name="loginForm.passwordant" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="passwordnueva" class="form-label">Nueva contraseña</label>
-                    <input type="password" class="form-control" id="passwordnueva" name="loginForm.passwordnueva" required>
-                  </div>
-                </form>
-                  <form class="mx-auto" sec:authorize="isAuthenticated()" th:action="@{/login}" method="get">
-                  <i class="bi bi-arrow-in-left" ></i>
-                  <input data-bs-toggle="tooltip" data-bs-placement="top"
-                         data-bs-custom-class="custom-tooltip"
-                         data-bs-title="Haz click para cambiar la contraseña" class="mx-auto bi bi-arrow-90deg-left" type="submit" value="Cambiar contraseña"/>
-                </form>
-              </div>
+              <form class="mx-auto" th:action="@{/resetpass}"method="post">
+                <i class="bi bi-box-arrow-in-left"></i>
+                <input data-bs-toggle="tooltip" data-bs-placement="top"
+                       data-bs-custom-class="custom-tooltip"
+                       data-bs-title="Haz click para salir de la aplicación" class="mx-auto btn btn-primary" type="submit" value="Cambiar contraseña"/>
+              </form>
               <li>
                 <hr class="dropdown-divider">
               </li>
