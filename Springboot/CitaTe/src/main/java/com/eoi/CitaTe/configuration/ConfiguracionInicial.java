@@ -202,10 +202,11 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
 
             /// DISPONIBILIDADES///////////////////////////////////////////////
             Disponibilidad disponibilidad = new Disponibilidad();
+            Disponibilidad disponibilidad1 = new Disponibilidad();
             Disponibilidad disponibilidad2 = new Disponibilidad();
             Disponibilidad disponibilidad3 = new Disponibilidad();
 
-            disponibilidad.setFecha(LocalDate.parse("2023-06-14"));
+            disponibilidad.sediaDeLaSemana("Lunes");
             disponibilidad.setHoraInicioManiana("09:00");
             disponibilidad.setHoraFinManiana("14:00");
             disponibilidad.setHoraInicioTarde("17:00");
@@ -213,7 +214,15 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidad.setEmpleado(empleado);
             disponibilidadRepository.save(disponibilidad);
 
-            disponibilidad2.setFecha(LocalDate.parse("2023-06-14"));
+            disponibilidad1.sediaDeLaSemana("Martes");
+            disponibilidad1.setHoraInicioManiana("09:00");
+            disponibilidad1.setHoraFinManiana("14:00");
+            disponibilidad1.setHoraInicioTarde("17:00");
+            disponibilidad1.setHoraFinTarde("20:00");
+            disponibilidad1.setEmpleado(empleado);
+            disponibilidadRepository.save(disponibilidad1);
+
+            disponibilidad2.sediaDeLaSemana("Lunes");
             disponibilidad2.setHoraInicioManiana("09:00");
             disponibilidad2.setHoraFinManiana("14:00");
             disponibilidad2.setHoraInicioTarde("17:00");
@@ -221,7 +230,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidad2.setEmpleado(empleado2);
             disponibilidadRepository.save(disponibilidad2);
 
-            disponibilidad3.setFecha(LocalDate.parse("2023-06-14"));
+            disponibilidad3.sediaDeLaSemana("Lunes");
             disponibilidad3.setHoraInicioManiana("09:00");
             disponibilidad3.setHoraFinManiana("14:00");
             disponibilidad3.setHoraInicioTarde("17:00");

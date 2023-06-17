@@ -21,10 +21,11 @@ public class Disponibilidad {
     @Column(name = "id_disponibilidad", nullable = false)
     private Long id;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate fecha;
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+//    private LocalDate fecha;
 
 
+    private String diaDeLaSemana;
     private String horaInicioManiana;
     private String horaFinManiana;
     private String horaInicioTarde;
