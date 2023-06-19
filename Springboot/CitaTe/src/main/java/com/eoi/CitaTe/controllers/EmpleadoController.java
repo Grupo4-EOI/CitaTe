@@ -9,6 +9,7 @@ import com.eoi.CitaTe.dto.UsuarioDTO;
 import com.eoi.CitaTe.dto.ValoracionDTO;
 import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.eoi.CitaTe.services.DisponibilidadMapperService;
 import com.eoi.CitaTe.services.DisponibilidadService;
 import com.eoi.CitaTe.services.EmpleadoMapperService;
 import com.eoi.CitaTe.services.EmpleadoService;
@@ -46,6 +47,9 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
     @Autowired
     DisponibilidadService disponibilidadService;
+
+    @Autowired
+    DisponibilidadMapperService disponibilidadMapperService;
 
     @PostConstruct
     private void init() {
@@ -169,7 +173,7 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         Empleado empleado = service.getById(id);
         model.addAttribute("empleado", empleado);
         model.addAttribute("servicio", new Servicio());
-        //model.addAttribute("disponibilidad", new Disponibilidad());
+        model.addAttribute("disponibilidad", new Disponibilidad());
 
 
         ///////// Calendario ////////////////////////////
@@ -220,6 +224,7 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
                 //Añado la nueva semana al mes
                 mesCompleto.add(semana);
 
+
                 //SI es la primera semana del mes, puedo necesitar añadir huecos en blanco
                 if(semanaActual == 0)
                 {
@@ -268,6 +273,19 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         model.addAttribute("mesCompleto", mesCompleto);
 
         //Dias laborables
+
+        //Necesiso un método busque la disponibilidad del empleado
+
+
+        List<Disponibilidad> disponibilidades = disponibilidadMapperService.getRepo().findDisponibilidadByEmpleado_Id(id);
+
+
+
+
+//        for(Disponibilidad disponibilidad : empleado.getDisponibilidades()) {
+//
+//            diasLaborables.add(disponibilidad.getDiaDeLaSemana());
+//        }
         int diasintrabajo = 1;
         model.addAttribute("diasintrabajo", diasintrabajo);
 
