@@ -26,6 +26,10 @@ public class Reserva {
     private String hora_inicio;
     private String hora_fin;
 
+    private Integer diaMes; // en th es facil preguntar si el dia que tengo conincide con el dia de la reserva
+    // revisar gestion de turnos , calendario con eventos.
+
+
 
     @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "valoracion_id", referencedColumnName = "id_valoracion")

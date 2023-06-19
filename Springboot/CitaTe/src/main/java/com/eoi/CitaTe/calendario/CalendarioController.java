@@ -27,6 +27,7 @@ public class CalendarioController {
     public String getCalendario(@RequestParam("year") Optional<Integer> yearOK,
                                 @RequestParam("month") Optional<Integer> monthOK,
                                 @RequestParam("day") Optional<Integer> dayOK,
+                                @RequestParam("diasLaborables") List<Integer> diasLaborables,
                                 Model model,
                                 Principal principal)
     {
@@ -65,6 +66,9 @@ public class CalendarioController {
             //Calculo la fecha que está ahora mismo recorriendo el generador de calendarios
             LocalDate fechaEnUso = LocalDate.of(year,month,i);
 
+            // Comprobamos sobre los dias de disponibilidades si el empleado trabaja o no.-------
+            // al objeto dia d
+
             //Si la fecha en uso es Lunes (ordinal==0) o la semana actual es la semana 0 debo
             // crear un nuevo array de semana (lo que viene a ser empezar la semana)
             if(fechaEnUso.getDayOfWeek().ordinal() == 0 || semanaActual == 0)
@@ -85,6 +89,7 @@ public class CalendarioController {
                         DiaDelCalendario diaDelCalendario = new DiaDelCalendario();
                         diaDelCalendario.setFecha(fechaEnUso);
                         diaDelCalendario.setDiaNulo(true);
+                        // si j esta dentro de la lista marcamos el campo trabajado a 1 si no se queda a 0
                         mesCompleto.get(semanaActual).add(diaDelCalendario);
                     }
                 }

@@ -32,7 +32,7 @@
 
                 <td th:each="dia : ${semana}">
                     <div class="calendario2" >
-                        <span th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></span>
+                        <a th:href="urlcrearrerva" th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></a>
 
                         </br>
 

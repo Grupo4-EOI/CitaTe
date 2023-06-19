@@ -18,9 +18,13 @@ public class DiaDelCalendario {
 
     private boolean diaNulo = false;
 
-    private List<Evento> eventos;
+    private List<Reservas> reservas;
 
     private LocalDate fecha;
+
+    private Integer trabaja;
+
+    private Long idEmpleado;
 
 
 

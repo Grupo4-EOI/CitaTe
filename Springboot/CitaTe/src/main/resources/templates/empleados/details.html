@@ -64,7 +64,7 @@
 
       <td th:text="${disponibilidad.diaDeLaSemana}"></td>
 
-      <td th:text="${disponibilidad.horaInicioManiana}"></td>
+<!--      <td th:text="${disponibilidad.horaInicioManiana}"></td>-->
       <td th:text="${disponibilidad.horaFinManiana}"></td>
 
       <td th:text="${disponibilidad.horaInicioTarde}"></td>
@@ -72,6 +72,50 @@
     </tr>
     </tbody>
   </table>
+
+<!--  Calendario-->
+
+  <h1 th:text="${month + ' - ' + year }"></h1>
+  <table class="calendario">
+    <thead>
+    <tr>
+      <th>Lunes</th>
+      <th>Martes</th>
+      <th>Mierloes</th>
+      <th>Jueves</th>
+      <th>Viernes</th>
+      <th>Sabado</th>
+      <th>Domingo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="semana : ${mesCompleto}">
+
+<!--      Los dias en los que trabajaod sea 1 se pintaran verde, cero rojo-->
+      <!--      Los dias en los que trabajaod sea 1 llevaran un link en el numero, informado el id del usuario (se usara para cotejarlo con el usuario logueado),
+      id empleado y la fecha del dia  parametros que se incluiran como opciones en el get de reservas tal y coomo se hace con page y size al paginar-->
+      <td th:each="dia : ${semana}">
+        <div class="calendario2" >
+          <a th:href="urlcrearrerva" th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></a>
+
+          </br>
+
+          <a class="nolink"  th:each="evento: ${dia.eventos}">
+            <span th:text="${evento.nombre}"></span>
+          </a>
+
+        </div>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+
+  <a class="btn btn-primary" th:href="@{calendario?month={month}(month=${month-1})}"> Mes anterior</a>
+
+  <a class="btn btn-primary" th:href="@{calendario?month={month}(month=${month+1})}"> Siguente mes</a>
+
+</div>
 
 
 </div>
