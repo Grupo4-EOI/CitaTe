@@ -4,8 +4,7 @@ import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
 
 import com.eoi.CitaTe.dto.DisponibilidadDTO;
 import com.eoi.CitaTe.dto.ReservaDTO;
-import com.eoi.CitaTe.entities.Disponibilidad;
-import com.eoi.CitaTe.entities.Reserva;
+import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.eoi.CitaTe.repositories.ReservaRepository;
 import com.eoi.CitaTe.services.ReservaMapperService;
@@ -84,6 +83,18 @@ public class ReservaController extends MiControladorGenerico<Reserva> {
         service.delete(id);
         return "redirect:/" + url + "all";
     }
+
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable(value = "id") long id, Model model) {
+        Reserva reserva = service.getById(id);
+
+        model.addAttribute("reserva", reserva);
+        model.addAttribute("disponibilidad", new Disponibilidad());
+
+        return "reservas/details";
+    }
+
+
 
 
 

@@ -36,8 +36,8 @@ public class Reserva {
     private Valoracion valoracion;
 
 
-
-//    private Disponibilidad disponibilidad; no hacer fk
+    @OneToOne
+    private Disponibilidad disponibilidad;   //no hacer fk
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id_cliente")
