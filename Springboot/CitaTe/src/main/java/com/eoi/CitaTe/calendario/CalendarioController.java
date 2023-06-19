@@ -27,7 +27,7 @@ public class CalendarioController {
     public String getCalendario(@RequestParam("year") Optional<Integer> yearOK,
                                 @RequestParam("month") Optional<Integer> monthOK,
                                 @RequestParam("day") Optional<Integer> dayOK,
-                                @RequestParam(value = "diasLaborables", required = false) List<Integer> diasLaborables,
+                                @RequestParam(value = "diasLaborables", defaultValue = "1") List<Integer> diasLaborables,
                                 Model model,
                                 Principal principal)
     {
@@ -119,8 +119,11 @@ public class CalendarioController {
 
         }
 
+
+
         model.addAttribute("year", year);
         model.addAttribute("month", month);
+        model.addAttribute("diasLaborables", diasLaborables);
 
         //Paso al html el objeto dias
         model.addAttribute("mesCompleto", mesCompleto);

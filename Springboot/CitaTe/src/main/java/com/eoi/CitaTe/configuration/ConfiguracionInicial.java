@@ -206,7 +206,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             Disponibilidad disponibilidad2 = new Disponibilidad();
             Disponibilidad disponibilidad3 = new Disponibilidad();
 
-            disponibilidad.setDiaDeLaSemana("Lunes");
+            disponibilidad.setDiaDeLaSemana(0); // Lunes
             disponibilidad.setHoraInicioManiana("09:00");
             disponibilidad.setHoraFinManiana("14:00");
             disponibilidad.setHoraInicioTarde("17:00");
@@ -214,7 +214,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidad.setEmpleado(empleado);
             disponibilidadRepository.save(disponibilidad);
 
-            disponibilidad1.setDiaDeLaSemana("Martes");
+            disponibilidad1.setDiaDeLaSemana(1);  // martes
             disponibilidad1.setHoraInicioManiana("09:00");
             disponibilidad1.setHoraFinManiana("14:00");
             disponibilidad1.setHoraInicioTarde("17:00");
@@ -222,7 +222,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidad1.setEmpleado(empleado);
             disponibilidadRepository.save(disponibilidad1);
 
-            disponibilidad2.setDiaDeLaSemana("Lunes");
+            disponibilidad2.setDiaDeLaSemana(0); // Lunes
             disponibilidad2.setHoraInicioManiana("09:00");
             disponibilidad2.setHoraFinManiana("14:00");
             disponibilidad2.setHoraInicioTarde("17:00");
@@ -230,7 +230,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidad2.setEmpleado(empleado2);
             disponibilidadRepository.save(disponibilidad2);
 
-            disponibilidad3.setDiaDeLaSemana("Lunes");
+            disponibilidad3.setDiaDeLaSemana(0); // Lunes
             disponibilidad3.setHoraInicioManiana("09:00");
             disponibilidad3.setHoraFinManiana("14:00");
             disponibilidad3.setHoraInicioTarde("17:00");

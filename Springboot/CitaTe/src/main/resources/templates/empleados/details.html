@@ -64,7 +64,7 @@
 
       <td th:text="${disponibilidad.diaDeLaSemana}"></td>
 
-<!--      <td th:text="${disponibilidad.horaInicioManiana}"></td>-->
+      <td th:text="${disponibilidad.horaInicioManiana}"></td>
       <td th:text="${disponibilidad.horaFinManiana}"></td>
 
       <td th:text="${disponibilidad.horaInicioTarde}"></td>
@@ -96,13 +96,15 @@
       id empleado y la fecha del dia  parametros que se incluiran como opciones en el get de reservas tal y coomo se hace con page y size al paginar-->
       <td th:each="dia : ${semana}">
         <div class="calendario2" >
-          <a th:href="urlcrearrerva" th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></a>
+          <a th:class="${diasintrabajo == 1 ? 'cambiar-rojo' : ''}" th:href="urlcrearrerva" th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></a>
+
+
 
           </br>
 
-          <a class="nolink"  th:each="evento: ${dia.eventos}">
-            <span th:text="${evento.nombre}"></span>
-          </a>
+<!--          <a class="nolink"  th:each="evento: ${dia.eventos}">-->
+<!--            <span th:text="${evento.nombre}"></span>-->
+<!--          </a>-->
 
         </div>
       </td>

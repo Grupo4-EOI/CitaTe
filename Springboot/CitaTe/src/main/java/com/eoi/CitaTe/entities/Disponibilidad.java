@@ -24,8 +24,8 @@ public class Disponibilidad {
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 //    private LocalDate fecha;
 
-// en lugar de por nombre por nuemero desde el 0
-    private String diaDeLaSemana;
+// en lugar de por nombre por numero empezando desde el 0
+    private int diaDeLaSemana;
     private String horaInicioManiana;
     private String horaFinManiana;
     private String horaInicioTarde;
