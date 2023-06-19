@@ -31,8 +31,9 @@ public class Empleado {
     private Usuario usuario;
 
 
-    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
-    private Set<Disponibilidad> disponibilidades = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "disponibilidad_id", referencedColumnName = "id_disponibilidad")
+    private Disponibilidad disponibilidad;
 
 
     @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)

@@ -27,7 +27,7 @@ public class CalendarioController {
     public String getCalendario(@RequestParam("year") Optional<Integer> yearOK,
                                 @RequestParam("month") Optional<Integer> monthOK,
                                 @RequestParam("day") Optional<Integer> dayOK,
-                                @RequestParam(value = "diasLaborables", defaultValue = "1") List<Integer> diasLaborables,
+                                @RequestParam( "diasLaborables") Optional<String> diasLaborables,
                                 Model model,
                                 Principal principal)
     {

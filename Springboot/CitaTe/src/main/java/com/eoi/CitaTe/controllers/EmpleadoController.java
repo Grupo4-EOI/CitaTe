@@ -25,6 +25,7 @@ import java.lang.reflect.Array;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +41,8 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
     public EmpleadoController(){
         super();
     }
-
+    List<Reserva> reservaListPantalla = new ArrayList<>();
+    List<Reserva> reservaListDB = new ArrayList<>();
 
     @Autowired
     EmpleadoMapperService empleadoMapperService;
@@ -166,14 +168,23 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
                           @RequestParam("year") Optional<Integer> yearOK,
                           @RequestParam("month") Optional<Integer> monthOK,
                           @RequestParam("day") Optional<Integer> dayOK,
-                          @RequestParam(value = "diasLaborables", required = false) List<Integer> diasLaborables,
                           Model model,
                           Principal principal) {
+        //Inicvializamos las resevnas
+        reservaListDB.clear();
+        reservaListPantalla.clear();
 
         Empleado empleado = service.getById(id);
         model.addAttribute("empleado", empleado);
-        model.addAttribute("servicio", new Servicio());
-        model.addAttribute("disponibilidad", new Disponibilidad());
+        //queremos una lista de servicios
+        model.addAttribute("servicios", empleado.getServicios());
+        //generamos una lista con los numeros de dia de la semana que trabaja el empleado
+        String[] convertedDLaboArray = empleado.getDisponibilidad().getDiaslaborables().split(";");
+        List<Integer> convertedDLaboList = new ArrayList<Integer>();
+        for (String number : convertedDLaboArray) {
+            convertedDLaboList.add(Integer.parseInt(number.trim()));
+        }
+
 
 
         ///////// Calendario ////////////////////////////
@@ -185,17 +196,47 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         Integer month = monthOK.orElse(fechaActual.getMonthValue());
         Integer dayOfMonth = dayOK.orElse(1);
 
+
+
         //Si nos han dado un mes 13, sumamos uno al año y ponemos mes 1
+        String strdaymin = "";
+        String strdaymax = "";
         if(month == 13)
         {
             year+=1;
             month=1;
+            strdaymin =  	year + "-" +
+                    String.format("%02d" , month) + "-01 00:00:00";
+            strdaymax =  	year + "-" +
+                    String.format("%02d" , month+1) + "-01 00:00:00";
         }
         if(month==0)
         {
             year-=1;
             month=12;
+            strdaymin =  	year + "-" +
+                    String.format("%02d" , month) + "-01 00:00:00";
+            strdaymax =  	(year +1)  + "-" +
+                    String.format("%02d" , 1) + "-01 00:00:00";
         }
+        else{
+            strdaymin =  	year + "-" +
+                    String.format("%02d" , month) + "-01 00:00:00";
+            strdaymax =  	year + "-" +
+                    String.format("%02d" , month+1) + "-01 00:00:00";
+        }
+        //Ya tengo puedo consegui las fechas de inicio y de fin
+        //Generamos un
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTimemin = LocalDateTime.parse(strdaymin, formatter);
+        LocalDateTime dateTimemax = LocalDateTime.parse(strdaymax, formatter);
+        //Ahora puedo buscar las reservas del mes para el empleado llamo al repositorio de reservas
+        //para obrener reservaListDB
+
+
+
 
         //Primero calculo un objeto de fecha de la fecha que obtengo de las variables
         LocalDate fechaCalendario = LocalDate.of(year,month, dayOfMonth);
@@ -236,6 +277,23 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
                         DiaDelCalendario diaDelCalendario = new DiaDelCalendario();
                         diaDelCalendario.setFecha(fechaEnUso);
                         diaDelCalendario.setDiaNulo(true);
+                        //j va de 0( lunes ) a 6 (domingo) y si el número esta en la lista convertedDLaboList
+                        //el empleado trabaja
+                        if (convertedDLaboList.contains(j)) {
+                            diaDelCalendario.setTrabaja(1);
+                        }
+                        else {
+                            diaDelCalendario.setTrabaja(0);
+                        }
+                        diaDelCalendario.setDay(<numero del dia>);
+                        //Nos queda ver la lista de reservas
+                        //Comnponemos los eventos para la pantalla
+                        for (Reserva reserva : reservaListDB){
+                            if (reserva.getDiaMes().equals( <numero del dia>){
+                                reservaListPantalla.add(reserva);
+                            }
+                        }
+
                         // si j esta dentro de la lista marcamos el campo trabajado a 1 si no se queda a 0
                         mesCompleto.get(semanaActual).add(diaDelCalendario);
                     }
@@ -246,22 +304,6 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
             DiaDelCalendario diaDelCalendario = new DiaDelCalendario();
             diaDelCalendario.setFecha(fechaEnUso);
 
-            //Yo aqui creo una lista de eventos, siempre la misma para todos los dias.
-            //Aqui cada uno deberia rellenar la lista de eventos del dia segun considere.
-            // En el caso de tener el usuario y quere utilizar el principal ,por ejemplo hariamos.
-            //User usuario = UserRepository.findByUsername(principal.getName())
-
-//            List<Evento> usuario.getEventos();
-
-
-            List<Evento> eventos = new ArrayList<>();
-            Evento evento1 = new Evento();
-            evento1.setFechaInicio(LocalDateTime.of(2023, 5,29,15,50));
-            evento1.setNombre("Disponibilidad");
-            eventos.add(evento1);
-
-
-//            diaDelCalendario.setEventos(eventos);
             semana.add(diaDelCalendario);
 
         }
@@ -271,21 +313,9 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
         //Paso al html el objeto dias
         model.addAttribute("mesCompleto", mesCompleto);
-
-        //Dias laborables
-
-        //Necesiso un método busque la disponibilidad del empleado
+        model.addAttribute("reservas",reservaListPantalla);
 
 
-        List<Disponibilidad> disponibilidades = disponibilidadMapperService.getRepo().findDisponibilidadByEmpleado_Id(id);
-
-
-
-
-//        for(Disponibilidad disponibilidad : empleado.getDisponibilidades()) {
-//
-//            diasLaborables.add(disponibilidad.getDiaDeLaSemana());
-//        }
         int diasintrabajo = 1;
         model.addAttribute("diasintrabajo", diasintrabajo);
 

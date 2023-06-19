@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,10 +31,12 @@ public class Disponibilidad {
     private String horaFinManiana;
     private String horaInicioTarde;
     private String horaFinTarde;
+    //Formato para dias laborables
+    // 0;2;3;4;5
+    private String diaslaborables;
 
+    @OneToMany(mappedBy = "disponibilidad", cascade = CascadeType.ALL)
 
-    @ManyToOne
-    @JoinColumn(name = "empleado_id", referencedColumnName = "id_empleado")
-    private Empleado empleado;
+    private Set<Empleado> empleado;
 
 }
