@@ -15,4 +15,5 @@ public class CambioPswDto {
 
     private String passwordant;
     private String passwordnueva;
+    private String email;
 }

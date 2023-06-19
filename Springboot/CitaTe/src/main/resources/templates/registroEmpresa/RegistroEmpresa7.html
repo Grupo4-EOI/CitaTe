@@ -31,6 +31,18 @@
         alt="mapamaps" width="30%"><br>
       <div>
         <h2>MUESTRA TU LUGAR DE TRABAJO</h2> <br>
+        <!-- Creo un formulario para poder subir las cosas. Añadimos enctype="multipart/form-data" -->
+
+        <!-- Posteriormente añadimos en application-properties el tamaño máximo de foto que vamos a poder recibir -->
+
+        <!-- Nos aseguramos de tener en la entidad y el DTO el atributo correspondiente a las imagenes -->
+        <form th:object="${empresadto}" th:action="@{/usuarios/alta}" th:method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="archivo">Selecciona un archivo:</label><br><br>
+            <input type="file" class="form-control" id="fotos" name="fotos" th:field="*{logoEmpresa}">
+          </div>
+
+        </form>
 
         <div class="text-center">
           <label for="archivo">Selecciona un archivo:</label><br><br>

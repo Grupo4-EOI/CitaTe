@@ -12,56 +12,147 @@ body{
 
 }
 
-
-/************************************
-CLASES PROPIAS
-************************************/
+/* Header */
 
 
 
-
-/************************************
-ESTRUCTURA GENERAL
-************************************/
 header{
    margin-bottom: 30px;
-   background-color: #3f4c63;
+   background-color: #495057;}
+
+#headerregistroempresa2{
+    padding: 20px;
+    color: white;
+}
+
+/*Desplegable en Registrate para poder elegir Cliente o empresa*/
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/*Tamaño logo citate*/
+#logocitate{
+    width: 200px;
+}
+
+/* botones de login */
+
+#botonlogin {
+    font-size: 18px;
+    color: #e1e1e1;
+    font-family: Rubik;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+}
+
+#botonlogin:focus,
+#botonlogin:hover {
+    color: #fff;
+}
+
+#botonlogin:focus:after,
+#botonlogin:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+#botonlogin:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+}
+/* botones de Registro */
+
+#botonregister {
+    font-size: 18px;
+    color: #e1e1e1;
+    font-family: Rubik;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+}
+
+#botonregister:focus,
+#botonregister:hover {
+    color: #fff;
+}
+
+#botonregister:focus:after,
+#botonregister:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+#botonregister:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+}
+
+#headermodal{
+    background-color: rgb(67, 138, 183);
+}
 
 
-  }
+
+
+
+/* Header */
+
 
 main{
    min-height:90vh;
 }
 
-.footer{
-   background-color: #3f4c63;
-   color: aliceblue;
+
+/* Footer  -------------------- */
+
+.footer {
+ background-color: #3f4c63;
 }
 
-.footer li{
-   color: antiquewhite;
-}
+/*?????????????????????????????????????*/
+
+/*?????????????????????????????????????*/
+
+/*.footer li{
+   color: antiquewhite;}
 
 
+/*footer{
+ background-color: #E3E4E0;
+}*/
+/*?????????????????????????????????????*/
 
-
-
-/************************************
-ESTRUCTURA DETALLADA
-************************************/
-
-/* HEADER */
-
-
-/*Desplegable en Registrate para poder elegir Cliente o empresa*/
-.dropdown:hover .dropdown-menu {
-   display: block;
-}
-/*Tamaño logo citate*/
-#logocitate{
-width: 200px;
-}
+/* Footer  -------------------- */
 
 
 
@@ -116,9 +207,8 @@ width: 200px;
 #botonayuda{
  color: #ffffff;
 }
-footer{
- background-color: #E3E4E0;
-}
+
+
 #reservaservicios{
  background-color: #1B263B;
  border: #1B263B;
@@ -188,10 +278,7 @@ Alex
 
  .pcentrado{text-align: center;}
 
- #headerregistroempresa2{
-   padding: 20px;
-   color: white;
-}
+
 .calendario{
 border: solid;
 border-width: 1px;
@@ -240,9 +327,6 @@ p1*/
 
  }
 
- #headermodal{
-   background-color: rgb(67, 138, 183);
- }
 
  #botoncontinuar{
    background-color: rgb(67, 138, 183);
