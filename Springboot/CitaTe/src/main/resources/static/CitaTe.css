@@ -33,15 +33,32 @@ header{
 main{
    min-height:90vh;
 }
+.footer-07 {
+    padding: 20px; }
 
-.footer{
-   background-color: #3f4c63;
-   color: aliceblue;
-}
-
-.footer li{
-   color: antiquewhite;
-}
+.footer-07 {
+    background: #1b263b; }
+.footer-07 a {
+    color: #a3de83; }
+.footer-07 p {
+    color: rgba(255, 255, 255, 0.3); }
+.footer-07 .footer-heading {
+    font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 30px; }
+.footer-07 .footer-heading .logo {
+    color: #fff; }
+.footer-07 .menu {
+    margin-bottom: 30px; }
+.footer-07 .menu a {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px; }
+.footer-07 .ftco-footer-social li a {
+    background: transparent;
+    border: 1px solid #a3de83; }
 
 
 
