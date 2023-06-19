@@ -47,31 +47,31 @@
     </tbody>
   </table>
 
-  <h1>Disponibilidad que tiene este empleado</h1>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Dia</th>
-      <th>Inicio</th>
-      <th>Fin</th>
-      <th>Inicio</th>
-      <th>Fin</th>
-    </tr>
-    </thead>
+<!--  <h1>Disponibilidad que tiene este empleado</h1>-->
+<!--  <table class="table table-striped">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>Dia</th>-->
+<!--      <th>Inicio</th>-->
+<!--      <th>Fin</th>-->
+<!--      <th>Inicio</th>-->
+<!--      <th>Fin</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
 
-    <tbody>
-    <tr th:each="disponibilidad : ${empleado.disponibilidades}">
+<!--    <tbody>-->
+<!--    <tr th:each="disponibilidad : ${empleado.disponibilidades}">-->
 
-      <td th:text="${disponibilidad.diaDeLaSemana}"></td>
+<!--      <td th:text="${disponibilidad.diaDeLaSemana}"></td>-->
 
-      <td th:text="${disponibilidad.horaInicioManiana}"></td>
-      <td th:text="${disponibilidad.horaFinManiana}"></td>
+<!--      <td th:text="${disponibilidad.horaInicioManiana}"></td>-->
+<!--      <td th:text="${disponibilidad.horaFinManiana}"></td>-->
 
-      <td th:text="${disponibilidad.horaInicioTarde}"></td>
-      <td th:text="${disponibilidad.horaFinTarde}"></td>
-    </tr>
-    </tbody>
-  </table>
+<!--      <td th:text="${disponibilidad.horaInicioTarde}"></td>-->
+<!--      <td th:text="${disponibilidad.horaFinTarde}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
 
 <!--  Calendario-->
 
@@ -96,7 +96,7 @@
       id empleado y la fecha del dia  parametros que se incluiran como opciones en el get de reservas tal y coomo se hace con page y size al paginar-->
       <td th:each="dia : ${semana}">
         <div class="calendario2" >
-          <a th:class="${diasintrabajo == 1 ? 'cambiar-rojo' : ''}" th:href="urlcrearrerva" th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></a>
+          <a th:class="${ diaDelCalendario.getTrabaja() == 0 ? 'cambiar-rojo' : ''}" th:href="urlcrearrerva" th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></a>
 
 
 

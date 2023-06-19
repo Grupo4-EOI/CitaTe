@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
+import java.util.Set;
 
 
 @Component
@@ -108,35 +108,6 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
 
             // Empresas ///////////////////////////////////////////////////
 
-            // Empleado ///////////////////////////////////////////////////
-
-            Empleado empleado = new Empleado();
-            Empleado empleado2 = new Empleado();
-            Empleado empleado3 = new Empleado();
-
-            empleado.setNombreEmpleado("Antonio");
-            empleado.setApellido1Empleado("Martinez");
-            empleado.setApellido2Empleado("Sanchez");
-            empleado.setEmpresa(empresa);
-            empleadoRepository.save(empleado);
-
-            empleado2.setNombreEmpleado("Jose");
-            empleado2.setApellido1Empleado("Martinez");
-            empleado2.setApellido2Empleado("Muños");
-            empleado2.setEmpresa(empresa);
-            empleadoRepository.save(empleado2);
-
-            empleado3.setNombreEmpleado("Ana");
-            empleado3.setApellido1Empleado("Jimenez");
-            empleado3.setApellido2Empleado("Sanchez");
-            empleado3.setEmpresa(empresa);
-            //empleado3.setDisponibilidad();
-            empleadoRepository.save(empleado3);
-
-
-            // Empleado ///////////////////////////////////////////////////
-
-
             //// Clientes///////////////////////////////////////////////////
 
             Cliente cliente = new Cliente();
@@ -211,7 +182,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidad.setHoraFinManiana("14:00");
             disponibilidad.setHoraInicioTarde("17:00");
             disponibilidad.setHoraFinTarde("20:00");
-            disponibilidad.setEmpleado(empleado);
+           // disponibilidad.setEmpleado(empleado);
             disponibilidadRepository.save(disponibilidad);
 
             disponibilidad1.setDiaDeLaSemana(1);  // martes
@@ -219,7 +190,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidad1.setHoraFinManiana("14:00");
             disponibilidad1.setHoraInicioTarde("17:00");
             disponibilidad1.setHoraFinTarde("20:00");
-            disponibilidad1.setEmpleado(empleado);
+            disponibilidad1.setDiaslaborables("0;2;3");
             disponibilidadRepository.save(disponibilidad1);
 
             disponibilidad2.setDiaDeLaSemana(0); // Lunes
@@ -227,7 +198,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidad2.setHoraFinManiana("14:00");
             disponibilidad2.setHoraInicioTarde("17:00");
             disponibilidad2.setHoraFinTarde("20:00");
-            disponibilidad2.setEmpleado(empleado2);
+           // disponibilidad2.setEmpleado(empleado2);
             disponibilidadRepository.save(disponibilidad2);
 
             disponibilidad3.setDiaDeLaSemana(0); // Lunes
@@ -235,9 +206,39 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             disponibilidad3.setHoraFinManiana("14:00");
             disponibilidad3.setHoraInicioTarde("17:00");
             disponibilidad3.setHoraFinTarde("20:00");
-            disponibilidad3.setEmpleado(empleado3);
+           // disponibilidad3.setEmpleado(empleado3);
             disponibilidadRepository.save(disponibilidad3);
             /// DISPONIBILIDADES///////////////////////////////////////////////
+
+            // Empleado ///////////////////////////////////////////////////
+
+            Empleado empleado = new Empleado();
+            Empleado empleado2 = new Empleado();
+            Empleado empleado3 = new Empleado();
+
+            empleado.setNombreEmpleado("Antonio");
+            empleado.setApellido1Empleado("Martinez");
+            empleado.setApellido2Empleado("Sanchez");
+            empleado.setEmpresa(empresa);
+            empleado.setDisponibilidad(disponibilidad1);
+            empleadoRepository.save(empleado);
+
+            empleado2.setNombreEmpleado("Jose");
+            empleado2.setApellido1Empleado("Martinez");
+            empleado2.setApellido2Empleado("Muños");
+            empleado2.setEmpresa(empresa);
+            empleado2.setDisponibilidad(disponibilidad1);
+            empleadoRepository.save(empleado2);
+
+            empleado3.setNombreEmpleado("Ana");
+            empleado3.setApellido1Empleado("Jimenez");
+            empleado3.setApellido2Empleado("Sanchez");
+            empleado3.setEmpresa(empresa);
+            empleado3.setDisponibilidad(disponibilidad1);
+            empleadoRepository.save(empleado3);
+
+
+            // Empleado ///////////////////////////////////////////////////
 
              /// ROL  ///////////////////////////////////////////////
              Rol rolCliente = new Rol();

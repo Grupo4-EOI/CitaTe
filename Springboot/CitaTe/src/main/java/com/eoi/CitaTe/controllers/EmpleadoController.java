@@ -237,7 +237,6 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
 
 
-
         //Primero calculo un objeto de fecha de la fecha que obtengo de las variables
         LocalDate fechaCalendario = LocalDate.of(year,month, dayOfMonth);
         //Creo una lista multidimensional / anidada de Strings para tener los dias de la semana
@@ -281,15 +280,16 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
                         //el empleado trabaja
                         if (convertedDLaboList.contains(j)) {
                             diaDelCalendario.setTrabaja(1);
+
                         }
                         else {
                             diaDelCalendario.setTrabaja(0);
                         }
-                        diaDelCalendario.setDay(<numero del dia>);
+                        diaDelCalendario.setDay(fechaEnUso.getDayOfWeek().ordinal());
                         //Nos queda ver la lista de reservas
                         //Comnponemos los eventos para la pantalla
                         for (Reserva reserva : reservaListDB){
-                            if (reserva.getDiaMes().equals( <numero del dia>){
+                            if (reserva.getDiaMes().equals(fechaEnUso.getDayOfWeek().ordinal())){
                                 reservaListPantalla.add(reserva);
                             }
                         }
@@ -302,9 +302,12 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
                 semanaActual+=1;
             }
             DiaDelCalendario diaDelCalendario = new DiaDelCalendario();
-            diaDelCalendario.setFecha(fechaEnUso);
 
+
+
+            diaDelCalendario.setFecha(fechaEnUso);
             semana.add(diaDelCalendario);
+            model.addAttribute(diaDelCalendario);
 
         }
 
@@ -316,8 +319,6 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         model.addAttribute("reservas",reservaListPantalla);
 
 
-        int diasintrabajo = 1;
-        model.addAttribute("diasintrabajo", diasintrabajo);
 
 
         return "empleados/details";
