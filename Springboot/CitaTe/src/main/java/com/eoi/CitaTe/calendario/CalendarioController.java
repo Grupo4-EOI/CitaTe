@@ -27,7 +27,7 @@ public class CalendarioController {
     public String getCalendario(@RequestParam("year") Optional<Integer> yearOK,
                                 @RequestParam("month") Optional<Integer> monthOK,
                                 @RequestParam("day") Optional<Integer> dayOK,
-                                @RequestParam("diasLaborables") List<Integer> diasLaborables,
+                                @RequestParam(value = "diasLaborables", required = false) List<Integer> diasLaborables,
                                 Model model,
                                 Principal principal)
     {
@@ -103,7 +103,8 @@ public class CalendarioController {
             //Aqui cada uno deberia rellenar la lista de eventos del dia segun considere.
             // En el caso de tener el usuario y quere utilizar el principal ,por ejemplo hariamos.
             //User usuario = UserRepository.findByUsername(principal.getName())
-            //List<Evento> usuario.getEventos();
+
+//            List<Evento> usuario.getEventos();
 
 
             List<Evento> eventos = new ArrayList<>();
@@ -113,7 +114,7 @@ public class CalendarioController {
             eventos.add(evento1);
 
 
-            diaDelCalendario.setEventos(eventos);
+//            diaDelCalendario.setEventos(eventos);
             semana.add(diaDelCalendario);
 
         }
