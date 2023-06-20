@@ -96,9 +96,8 @@
       id empleado y la fecha del dia  parametros que se incluiran como opciones en el get de reservas tal y coomo se hace con page y size al paginar-->
       <td th:each="dia : ${semana}">
         <div class="calendario2" >
-          <a th:class="${ diaDelCalendario.getTrabaja() == 0 ? 'cambiar-rojo' : ''}" th:href="urlcrearrerva" th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></a>
-
-
+<!--          <a th:class="${ dia.trabaja == 1 ? 'cambiar-rojo' : ''}" th:href="urlcrearrerva" th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></a>-->
+          <a th:style="${dia.trabaja == 1} ? 'color:red' : 'color:blue' " th:href="urlcrearrerva" th:if="!${dia.diaNulo}"  th:text="${#strings.substring(dia.fecha.toString(), 8, 10)}"></a>
 
           </br>
 

@@ -296,8 +296,11 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
                         // si j esta dentro de la lista marcamos el campo trabajado a 1 si no se queda a 0
                         mesCompleto.get(semanaActual).add(diaDelCalendario);
+                        model.addAttribute(diaDelCalendario);
                     }
                 }
+
+
                 //Actualizo el numero de la semana una vez he rellenado lo necesario en la primera
                 semanaActual+=1;
             }
@@ -306,6 +309,15 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
 
             diaDelCalendario.setFecha(fechaEnUso);
+            /////
+            if (convertedDLaboList.contains(fechaEnUso.getDayOfWeek().ordinal())) {
+                diaDelCalendario.setTrabaja(1);
+
+            }
+            else {
+                diaDelCalendario.setTrabaja(0);
+            }
+            /////
             semana.add(diaDelCalendario);
             model.addAttribute(diaDelCalendario);
 
