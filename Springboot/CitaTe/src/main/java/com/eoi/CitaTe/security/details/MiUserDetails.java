@@ -80,7 +80,6 @@ public class MiUserDetails implements UserDetails {
 
 
 
-
     /**
      * Indicates whether the user's account has expired. An expired account cannot be
      * authenticated.

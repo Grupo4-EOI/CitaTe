@@ -42,12 +42,7 @@ public class MiSecurityConfig {
                 .requestMatchers("/usuarios/**").permitAll()
                 .requestMatchers("/empresas/**").permitAll()
 
-
-
-
                 .anyRequest().authenticated()
-
-
         );
 
         // Configuramos la página personalizada de inicio de sesión.
@@ -72,8 +67,6 @@ public class MiSecurityConfig {
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 
 
     @Bean

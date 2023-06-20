@@ -3,6 +3,8 @@ package com.eoi.CitaTe.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,5 +22,8 @@ public class Rol {
 
     @OneToOne(mappedBy = "rol", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Usuario usuario;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Permiso> permisos;
 
 }

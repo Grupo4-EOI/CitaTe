@@ -1,11 +1,13 @@
 package com.eoi.CitaTe.security.service;
 
+import com.eoi.CitaTe.entities.Permiso;
 import com.eoi.CitaTe.entities.Rol;
 import com.eoi.CitaTe.entities.Usuario;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
 import com.eoi.CitaTe.security.details.MiUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,7 +31,7 @@ public class MiUserDetailService  implements UserDetailsService {
 
         // llamamos a los detaller de usuario que anteriormente hemos creado
 
-        MiUserDetails userDetails = new MiUserDetails();
+        MiUserDetails userDetails = new MiUserDetails(); //Mas tarde será el principal.
 
         Optional<Usuario> usuarioObtenidoDeLaBD = usuarioRepository.findByEmail(email);
 
@@ -48,18 +50,46 @@ public class MiUserDetailService  implements UserDetailsService {
                 userDetails.setApellidoUsuario(usuarioObtenidoDeLaBD.get().getEmpleado().getApellido1Empleado());
             }
 
-
-
-
-            // faltaria incluir si es empleado o si es  con setGrantedAuthorities(getAuthorities(usuarioObtenidoDeLaBD.get().getRoles()));
-
             return  userDetails;
         }
 
         return null;
     }
 
-    ////////// cosas que no se lo que son
+    ////////// GrantedAuthority con  Roles
+
+
+    private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String privilege : privileges) {
+            authorities.add(new SimpleGrantedAuthority(privilege));
+        }
+        return authorities;
+    }
+
+    private List<String> getPrivileges(Collection<Rol> roles) {
+
+        List<String> privileges = new ArrayList<>();
+        List<Permiso> collection = new ArrayList<>();
+        for (Rol role : roles) {
+            privileges.add(role.getNombreRol());
+            collection.addAll(role.getPermisos());
+        }
+        for (Permiso item : collection) {
+            privileges.add(item.getName());
+        }
+        return privileges;
+    }
+
+
+
+    private Collection<? extends GrantedAuthority> getAuthorities(Collection<Rol> roles) {
+
+        return getGrantedAuthorities(getPrivileges(roles));
+    }
+
+
+
 
 
 
