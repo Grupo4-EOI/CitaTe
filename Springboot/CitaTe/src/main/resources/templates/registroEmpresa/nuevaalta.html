@@ -1,0 +1,768 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Multi Step Registro</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link href="/webjars/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/CitaTe.css}">
+    <link th:href="@{/nuevoestilo.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        function checkAltaCliente() {
+            document.getElementById("myCheckaltacliente").checked = true;
+            document.getElementById("myCheckaltaempleado").checked = false;
+            document.getElementById("myCheckaltaempresa").checked = false;
+            ul = document.getElementById("signup-step")
+            ul.innerHTML = ""
+            var entry = document.createElement('li');
+            entry.id = "usuario"
+            entry.className = "active"
+            entry.textContent = "Datos del usuario"
+            ul.appendChild(entry)
+            var entrysec = document.createElement('li');
+            entrysec.id = "cliente"
+            entrysec.textContent = "Cliente"
+            ul.appendChild(entrysec)
+            document.getElementById("tipoalta").value = "cliente"
+
+        }
+
+
+        function checkAltaEmpleado() {
+            document.getElementById("myCheckaltacliente").checked = false;
+            document.getElementById("myCheckaltaempleado").checked = true;
+            document.getElementById("myCheckaltaempresa").checked = false;
+            ul = document.getElementById("signup-step")
+            ul.innerHTML = ""
+            var entry = document.createElement('li');
+            entry.id = "usuario"
+            entry.className = "active"
+            entry.textContent = "Datos del usuario"
+            ul.appendChild(entry)
+            var entrysec = document.createElement('li');
+            entrysec.id = "empleado"
+            entrysec.textContent = "Empleado"
+            ul.appendChild(entrysec)
+            document.getElementById("tipoalta").value = "empleado"
+        }
+
+
+        function checkAltaEmpresa() {
+            document.getElementById("myCheckaltacliente").checked = false;
+            document.getElementById("myCheckaltaempleado").checked = false;
+            document.getElementById("myCheckaltaempresa").checked = true;
+            ul = document.getElementById("signup-step")
+            ul.innerHTML = ""
+
+            var entry = document.createElement('li');
+            entry.id = "usuario"
+            entry.className = "active"
+            entry.textContent = "Datos del usuario"
+            ul.appendChild(entry)
+
+
+            var entrysec = document.createElement('li');
+            entrysec.id = "empleado"
+            entrysec.textContent = "Empleado"
+            ul.appendChild(entrysec)
+
+            var entrysec1 = document.createElement('li');
+            entrysec1.id = "empresa"
+            entrysec1.textContent = "Empresa"
+            ul.appendChild(entrysec1)
+
+
+            var entrysec2 = document.createElement('li');
+            entrysec2.id = "empresa2"
+            entrysec2.textContent = "Empresa 2"
+            ul.appendChild(entrysec2)
+
+            var entrysec3 = document.createElement('li');
+            entrysec3.id = "empresa3"
+            entrysec3.textContent = "Empresa 3"
+            ul.appendChild(entrysec3)
+
+            var entrysec4 = document.createElement('li');
+            entrysec4.id = "empresa4"
+            entrysec4.textContent = "Empresa 4"
+            ul.appendChild(entrysec4)
+
+            var entrysec5 = document.createElement('li');
+            entrysec5.id = "empresa5"
+            entrysec5.textContent = "Empresa 5"
+            ul.appendChild(entrysec5)
+
+            var entrysec6 = document.createElement('li');
+            entrysec6.id = "empresa6"
+            entrysec6.textContent = "Empresa 6"
+            ul.appendChild(entrysec6)
+
+            var entrysec7 = document.createElement('li');
+            entrysec7.id = "empresa7"
+            entrysec7.textContent = "Empresa 7"
+            ul.appendChild(entrysec7)
+
+            var entrysec8 = document.createElement('li');
+            entrysec8.id = "empresa8"
+            entrysec8.textContent = "Empresa 8"
+            ul.appendChild(entrysec8)
+
+            var entrysec9 = document.createElement('li');
+            entrysec9.id = "empresa9"
+            entrysec9.textContent = "Empresa 9"
+            ul.appendChild(entrysec9)
+
+
+
+
+            document.getElementById("tipoalta").value = "empresa"
+        }
+
+
+        function validate() {
+            var output = true;
+            $(".signup-error").html('');
+
+            if ($("#usuario-field").css('display') != 'none') {
+                if (!($("#email").val())) {
+                    output = false;
+                    $("#email-error").html("Name required!");
+                }
+                if (!($("#user-password").val())) {
+                    output = false;
+                    $("#password-error").html("Password required!");
+                }
+
+                if (!($("#confirm-password").val())) {
+                    output = false;
+                    $("#confirm-password-error").html("Confirm password required!");
+                }
+
+                if ($("#user-password").val() != $("#confirm-password").val()) {
+                    output = false;
+                    $("#confirm-password-error").html("Password not matched!");
+                }
+            }
+
+            if ($("#cliente-field").css('display') != 'none') {
+                if (!($("#telefono").val())) {
+                    output = false;
+                    $("#telefono-error").html("Telefono obligatorio!");
+                }
+
+                if (!($("#nombreCliente").val())) {
+                    output = false;
+                    $("#nombreCliente-error").html("nombreCliente obligatorio!");
+                }
+                if (!($("#apellido1Cliente").val())) {
+                    output = false;
+                    $("#apellido1Cliente-error").html("apellido1Cliente obligatorio!");
+                }
+                if (!($("#apellido2Cliente").val())) {
+                    output = false;
+                    $("#apellido2Cliente-error").html("apellido2Cliente obligatorio!");
+                }
+            }
+            if ($("#empleado-field").css('display') != 'none') {
+                if (!($("#nombreEmpleado").val())) {
+                    output = false;
+                    $("#nombreEmpleado-error").html("nombreEmpleado obligatorio!");
+                }
+                if (!($("#apellido1Empleado").val())) {
+                    output = false;
+                    $("#apellido1Empleado-error").html("apellido1Empleado obligatorio!");
+                }
+                if (!($("#apellido1Empleado").val())) {
+                    output = false;
+                    $("#apellido2Empleado-error").html("apellido1Empleado obligatorio!");
+                }
+            }
+            if ($("#empleado-field").css('display') != 'none') {
+                if (!($("#nombreEmpresa").val())) {
+                    output = false;
+                    $("#nombreEmpresa-error").html("nombreEmpresa obligatorio!");
+                }
+                if (!($("#cif").val())) {
+                    output = false;
+                    $("#cif-error").html("cif obligatorio!");
+                }
+
+            }
+            return output;
+        }
+
+        $(document).ready(function() {
+            $("#next").click(function() {
+                console.log("Siguiente pestaña" );
+                var output = validate();
+                if (output === true) {
+                    var current = $(".active");
+                    var next = $(".active").next("li");
+                    if (next.length > 0) {
+                        $("#" + current.attr("id") + "-field").hide();
+                        console.log("Siguiente pestaña:" + next.attr("id") )
+                        $("#" + next.attr("id") + "-field").show();
+                        $("#back").show();
+                        $("#finish").hide();
+                        $(".active").removeClass("active");
+                        next.addClass("active");
+                        if ($(".active").attr("id") == $("li").last().attr("id")) {
+                            $("#next").hide();
+                            $("#finish").show();
+                        }
+                    }
+                }
+            });
+
+            $("#back").click(function() {
+                var current = $(".active");
+                var prev = $(".active").prev("li");
+                if (prev.length > 0) {
+                    $("#" + current.attr("id") + "-field").hide();
+                    $("#" + prev.attr("id") + "-field").show();
+                    $("#next").show();
+                    $("#finish").hide();
+                    $(".active").removeClass("active");
+                    prev.addClass("active");
+                    if ($(".active").attr("id") == $("li").first().attr("id")) {
+                        $("#back").hide();
+                    }
+                }
+            });
+
+            $("input#finish").click(function(e) {
+                var output = validate();
+                var current = $(".active");
+
+                if (output === true) {
+                    return true;
+                } else {
+                    //prevent refresh
+                    e.preventDefault();
+                    $("#" + current.attr("id") + "-field").show();
+                    $("#back").show();
+                    $("#finish").show();
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+</head>
+<body>
+
+<!--Header-->
+
+<div th:replace="~{fragmentos/headerRegistroEmpresa :: header}"></div>
+
+
+<div class="container" style="min-height: 50%">
+
+    <div>
+        <label for ="myCheckaltacliente">Alta cliente</label>
+        <input type="checkbox" id="myCheckaltacliente" th:checked="true">
+        <label for ="myCheckaltaempleado">Alta empleado</label>
+        <input type="checkbox" id="myCheckaltaempleado" th:checked="false">
+        <label for ="myCheckaltaempleado">Alta empresa</label>
+        <input type="checkbox" id="myCheckaltaempresa" th:checked="false">
+    </div>
+    <div>
+        <button id = "altacliente" onclick="checkAltaCliente()">Alta usuario</button>
+        <button id = "altaEmpleado" onclick="checkAltaEmpleado()">Alta empleado</button>
+        <button id = "altaEmpresa" onclick="checkAltaEmpresa()">Alta empresa</button>
+
+    </div>
+    <ul id="signup-step">
+        <li id="usuario" class="active">Datos del usuario</li>
+        <li id="cliente">Cliente</li>
+    </ul>
+
+
+    <form name='frmRegistration' id='signup-form' th:action="@{/}" th:object="${datos}" method="post" th:method="POST">
+        <input type="hidden" name="tipoalta" id="tipoalta" th:field="*{tipoalta}"  />
+
+        <div id="usuario-field">
+            <label for="email">email</label><span id="email-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="email" id="email" th:field="*{usuario.email}" class="demoInputBox" />
+            </div>
+            <label>Enter Password</label><span id="password-error"
+                                               class="signup-error"></span>
+            <div>
+                <input type="password" name="password" th:field="*{usuario.pass}" id="user-password"
+                       class="demoInputBox" />
+            </div>
+            <label>Re-enter Password</label><span id="confirm-password-error"
+                                                  class="signup-error"></span>
+            <div>
+                <input type="password" name="confirm-password" id="confirm-password"
+                       class="demoInputBox" />
+            </div>
+        </div>
+
+
+        <div id="cliente-field" style="display: none;">
+            <label for = "nombreCliente">Nombre</label><span id="nombreCliente-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="nombreCliente" id ="nombreCliente" th:field="*{cliente.nombreCliente}" class="demoInputBox" />
+            </div>
+            <label for = "apellido1Cliente">apellido1Cliente</label><span id="apellido1Cliente-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="apellido1Cliente" id ="apellido1Cliente" th:field="*{cliente.apellido1Cliente}" class="demoInputBox" />
+            </div>
+            <label for = "apellido2Cliente">apellido2Cliente</label><span id="apellido2Cliente-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="apellido2Cliente" id ="apellido2Cliente" th:field="*{cliente.apellido2Cliente}" class="demoInputBox" />
+            </div>
+            <label for = "telefono">telefono</label><span id="telefono-error" class="telefono-error"></span>
+            <div>
+                <input type="text" name="telefono" id ="telefono" th:field="*{cliente.telefono}" class="demoInputBox" />
+            </div>
+
+            <!--            <input class="btnAction" type="submit" name="finish" id="finishCliente"-->
+            <!--                   value="Finish" style="display: none;">-->
+
+        </div>
+
+        <div id="empleado-field" style="display: none;">
+            <label for = "nombreEmpleado">nombreEmpleado</label><span id="nombreEmpleado-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="nombreEmpleado" id ="nombreEmpleado" th:field="*{empleado.nombreEmpleado}" class="demoInputBox" />
+            </div>
+            <label for = "apellido1Empleado">apellido 1 Empleado</label><span id="apellido1Empleado-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="apellido1Empleado" id ="apellido1Empleado" th:field="*{empleado.apellido1Empleado}" class="demoInputBox" />
+            </div>
+            <label for = "apellido2Empleado">apellido 2 Empleado</label><span id="apellido2Empleado-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="apellido2Empleado" id ="apellido2Empleado" th:field="*{empleado.apellido2Empleado}" class="demoInputBox" />
+            </div>
+            <!-- ¿Como seleccionar elementos de una lista con thymeleaf-->
+            <!--div class="d-flex flex-row align-items-center mb-4">
+                <label for="etiqueta1"  class="form-label mt-2 mb-1">Etiqueta 1</label>
+                <select th:field="*{etiquetas}" class="form-control"  id="etiqueta1">
+                    <option value="" th:disabled="disabled" th:selected="selected">
+                        Selecciona un elemento
+                    </option>
+                    <th:block th:each="etiq1: ${listaEtiquetas}">
+                        <option th:value="${etiq1.id}" th:text="${etiq1.name}"></option>
+                    </th:block>
+                </select>
+            </div-->
+        </div>
+
+        <div id="empresa-field" style="display: none;">
+
+            <label for = "nombreEmpresa">nombreEmpresa</label><span id="nombreEmpresa-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="nombreEmpresanombreEmpleado" id ="nombreEmpresa" th:field="*{empresa.nombreEmpresa}" class="demoInputBox" />
+            </div>
+
+            <label for = "cif">cif</label><span id="cif-error" class="signup-error"></span>
+            <div>
+                <input type="text" name="cif" id ="cif" th:field="*{empresa.cif}" class="demoInputBox" />
+            </div>
+        </div>
+
+
+
+        <div id="empresa2-field" style="display: none;">
+
+            <h2 >QUE TIPO DE NEGOCIO LLEVAS</h2><br>
+            <div>
+                <label for="barberia"> &nbspBarberia</label><br/><br>
+                <input type="checkbox" name="barberia" id ="barberia" value="barberia"required style="margin-left: 20px"  />
+
+            </div>
+            <div >
+                <label for="peluqueria"> &nbspPeluquería</label><br/><br>
+                <input type="checkbox" name="peluqueria" id ="peluqueria" value="peluqueria"required style="margin-left: 20px"   />
+            </div>
+            <div >
+                <label for="belleza"> &nbspSalón de belleza</label><br/><br>
+                <input type="checkbox" name="belleza" id ="belleza" value="belleza"required style="margin-left: 20px"  />
+            </div>
+            <div>
+                <label for="piel"> &nbspCuidado de la piel</label><br/><br>
+                <input type="checkbox" name="piel" id ="piel" value="piel"required style="margin-left: 20px" />
+
+            </div>
+            <div>
+                <label for="otros"> &nbspOtros</label><br/><br>
+                <input type="checkbox" name="otros" id ="otros" value="otros"required style="margin-left: 20px"  />
+
+            </div>
+
+        </div>
+
+        <div id="empresa3-field" style="display: none;">
+
+            <div class="text-center">
+                <label class="col-6" for="calle">Provincia: </label>
+                <input class="col-6" type="text" name="provincia" id="provincia" value="" size="20" required  /><br><br>
+            </div>
+
+            <div class="text-center">
+                <label class="col-6" for="calle">Ciudad: </label>
+                <input class="col-6" type="text" name="ciudad" id="ciudad" value="" size="20" required  /><br><br>
+            </div>
+            <div class="text-center">
+                <label class="col-6" for="calle">CP: </label>
+                <input class="col-6" type="text" name="cp" id="cp" value="" size="20" required /><br><br>
+            </div>
+            <div class="text-center">
+                <label class="col-6" for="calle">Calle: </label>
+                <input class="col-6" type="text" name="calle" id="calle" value="" size="20" required /><br><br>
+            </div>
+            <div class="text-center">
+                <label class="col-6" for="calle">Número: </label>
+                <input class="col-6" type="text" name="numero" id="numero" value="" size="20" required /><br><br>
+            </div>
+        </div>
+
+
+        <div id="empresa4-field" style="display: none;">
+
+            <h2>MUESTRA TU LUGAR DE TRABAJO</h2> <br>
+
+            <div class="text-center">
+                <label for="archivo">Selecciona un archivo:</label><br><br>
+                <input type="file" name="file" id="archivo" />
+            </div><br>
+        </div>
+
+
+        <div id="empresa5-field" style="display: none;">
+
+            <h1>Catálogo de Servicios</h1>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Descripcion</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="catalogoDeServiciodto : ${entities}">
+                    <td th:text="${catalogoDeServiciodto.nombre}"></td>
+                    <td th:text="${catalogoDeServiciodto.precio}"></td>
+                    <td th:text="${catalogoDeServiciodto.descripcion}"></td>
+
+                    <td>
+                        <a th:href="@{/catalogoDeServicios/{id}(id=${catalogoDeServiciodto.id})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/catalogoDeServicios/delete/{id}(id=${catalogoDeServiciodto.id})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+            <h1>Editar Catalogo de Servicios</h1>
+
+            <form  method="POST" th:method="POST">
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre del Servicio</label>
+                    <input type="text" class="form-control" id="nombre" name="Comentario" >
+                </div>
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio</label>
+                    <input type="text" class="form-control" id="precio" name="Puntuacion" >
+                </div>
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="precio2" name="Puntuacion" >
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+
+        </div>
+
+
+
+        <div id="empresa6-field" style="display: none;">
+
+            <h1>Empleados</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Nombre de Empleado</th>
+                    <th>Apellido 1</th>
+                    <th>Apellido 2</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="empleadodto : ${entities}">
+                    <td th:text="${empleadodto.nombreEmpleado}"></td>
+                    <td th:text="${empleadodto.apellido1Empleado}"></td>
+                    <td th:text="${empleadodto.apellido2Empleado}"></td>
+
+                    <td>
+                        <a th:href="@{/empleados/{id}(id=${empleadodto.id})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/empleados/delete/{id}(id=${empleadodto.id})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <h2>Editar Empleado</h2>
+            <form th:object="${entity}"  method="POST" th:method="POST">
+
+                <input type="hidden" name="id" id="id" >
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre1" name="nombre" >
+                </div>
+                <div class="mb-3">
+                    <label for="apellido1" class="form-label">Apellido 1</label>
+                    <input type="text" class="form-control" id="apellido1" name="apellido1" >
+                </div>
+                <div class="mb-3">
+                    <label for="apellido2" class="form-label">Apellido 1</label>
+                    <input type="text" class="form-control" id="apellido2" name="apellido2" >
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+
+        </div>
+
+
+        <div id="empresa7-field" style="display: none;">
+
+            <h1>Disponibilidad</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+
+                    <th>Hora inicio mañana</th>
+                    <th>Hora fin tarde</th>
+                    <th>Hora inicio tarde</th>
+                    <th>Hora fin tarde</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="disponibilidaddto : ${entities}">
+                    <td th:text="${disponibilidaddto.horaInicioManiana}"></td>
+                    <td th:text="${disponibilidaddto.horaFinManiana}"></td>
+                    <td th:text="${disponibilidaddto.horaInicioTarde}"></td>
+                    <td th:text="${disponibilidaddto.horaFinTarde}"></td>
+
+                    <td>
+                        <a th:href="@{/disponibilidades/{id}(id=${disponibilidaddto.id})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/disponibilidades/delete/{id}(id=${disponibilidaddto.id})}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+            <h1>Editar Disponibilidad</h1>
+
+
+            <form  method="POST" th:method="POST">
+
+
+                <h2>HORARIO DE APERTURA</h2> <br>
+                <div>
+                    <label>Lunes</label>
+
+                    <input type="time" name="comienzo" id="comienzom1" >
+                    <input type="time" name="final" id="finalm1" >
+                    <input type="time" name="comienzo" id="comienzo1" >
+                    <input type="time" name="final" id="final1" >
+
+                </div><br>
+
+                <div>
+                    <label>Martes</label>
+
+                    <input type="time" name="comienzo" id="comienzom2" >
+                    <input type="time" name="final" id="finalm2" >
+                    <input type="time" name="comienzo" id="comienzo2" >
+                    <input type="time" name="final" id="final2" >
+
+                </div><br>
+
+                <div>
+                    <label>Miercoles</label>
+
+                    <input type="time" name="comienzo" id="comienzom3" >
+                    <input type="time" name="final" id="finalm3" >
+                    <input type="time" name="comienzo" id="comienzo3" >
+                    <input type="time" name="final" id="final3" >
+
+                </div><br>
+
+                <div>
+                    <label>Jueves</label>
+
+                    <input type="time" name="comienzo" id="comienzom4" >
+                    <input type="time" name="final" id="finalm4" >
+                    <input type="time" name="comienzo" id="comienzo4" >
+                    <input type="time" name="final" id="final4" >
+
+                </div><br>
+
+
+                <div>
+                    <label>Viernes</label>
+
+                    <input type="time" name="comienzo" id="comienzom5" >
+                    <input type="time" name="final" id="finalm5" >
+                    <input type="time" name="comienzo" id="comienzo5" >
+                    <input type="time" name="final" id="final5" >
+
+                </div><br>
+
+                <div>
+                    <label>Sábado</label>
+
+                    <input type="time" name="comienzo" id="comienzom6" >
+                    <input type="time" name="final" id="finalm6" >
+                    <input type="time" name="comienzo" id="comienzo6" >
+                    <input type="time" name="final" id="final6" >
+
+                </div><br>
+
+                <div>
+                    <label>Domingo</label>
+
+                    <input type="time" name="comienzo" id="comienzom7" >
+                    <input type="time" name="final" id="finalm7" >
+                    <input type="time" name="comienzo" id="comienzo7" >
+                    <input type="time" name="final" id="final7" >
+
+                </div><br>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>
+
+            </form>
+
+        </div>
+
+
+        <div id="empresa8-field" style="display: none;">
+
+            <div class="row justify-content-center align-items-center" >
+                <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                    <div class="card mb-4 mb-5 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Plan Básico</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">0 euros<small class="text-body-secondary fw-light">/mo</small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>2 usuarios </li>
+                                <li>2 GB de almacenamiento</li>
+                                <li>Soporte gratuito</li>
+                                <li>Acceso al centro de ayuda</li>
+                            </ul>
+                            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Accede</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                    <div class="card mb-4 mb-5 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Plan Intermedio</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">0 euros<small class="text-body-secondary fw-light">/mo</small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>5 usuarios</li>
+                                <li>5 GB de almacenamiento</li>
+                                <li>Soporte gratuito</li>
+                                <li>Acceso al centro de ayuda</li>
+                            </ul>
+                            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Accede </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                    <div class="card mb-4 mb-5 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Plan Avanzado</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">0 euros<small class="text-body-secondary fw-light">/mo</small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>10 usuarios</li>
+                                <li>10 GB de almacenamiento</li>
+                                <li>Soporte gratuito</li>
+                                <li>Acceso al centro de ayuda</li>
+                            </ul>
+                            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Accede</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="empresa9-field" style="display: none;">
+
+            <div class="d-flex justify-content-center" >
+                <h1>El registro ha sido completado</h1>
+                <h6>suave suavesito vamo´al último pasito</h6>
+            </div> <br>
+
+
+            <div class="nav nav-pills text-center row">
+                <ul >
+                    <li class="nav-item"><a href="/" class="nav-link active" aria-current="page" >Home</a></li>
+                </ul><br>
+                <ul>
+                    <li class="nav-item"><a href="/perfil" class="nav-link active" aria-current="page" >Perfil</a></li>
+                </ul>
+            </div>
+            <div class="d-flex justify-content-center">
+                <img src="/CitaTe-desarollo/HTML/img/LOGO2.png" alt="logo2">
+            </div>
+
+        </div>
+
+
+        <div>
+            <input class="btnAction" type="button" name="back" id="back"
+                   value="Back" style="display: none;"> <input
+                class="btnAction" type="button" name="next" id="next" value="Next">
+
+        </div>
+        <div>
+            <input class="btnAction" type="submit" name="finish" id="finish"
+                   value="Finish" style="display: none;">
+        </div>
+
+    </form>
+</div>
+<!--Fooooterrrrr-->
+
+<div th:replace="~{fragmentos/footer1 :: footer}"></div>
+
+<!--Fooooterrrrr-->
+
+
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

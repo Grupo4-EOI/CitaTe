@@ -34,4 +34,18 @@ public class ClienteMapperService extends AbstractBusinessService<Cliente, Long,
         clienteRepository.save(cliente);
 
     }
+
+    public Cliente CrearCliente(Cliente cliente){
+
+        Cliente clienteGuardado = new Cliente();
+
+        //cliente.setId(clienteDTO.getId());
+        clienteGuardado.setNombreCliente(cliente.getNombreCliente());
+        clienteGuardado.setApellido1Cliente(cliente.getApellido1Cliente());
+        clienteGuardado.setApellido2Cliente(cliente.getApellido2Cliente());
+        clienteGuardado.setTelefono(cliente.getTelefono());
+
+        return clienteRepository.save(clienteGuardado);
+
+    }
 }

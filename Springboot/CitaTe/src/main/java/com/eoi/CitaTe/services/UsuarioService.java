@@ -6,11 +6,11 @@ import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.repositories.EmpleadoRepository;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
+import com.eoi.CitaTe.services.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +21,8 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+
+
     @Autowired
     private PasswordEncoder codificadorContraseñas;
     @Autowired
@@ -28,14 +30,28 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
     @Autowired
     private EmpresaRepository empresaRepository;
 
+    @Autowired
+    private UsuarioMapper usuarioMapper;
 
-    public Usuario getByUsername(String email) {
-                return usuarioRepository.findByEmail(email).orElseThrow(MiEntidadNoEncontradaException::new);
+    public void CrearUsuario(UsuarioDTO usuarioDTO ){
+        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+        usuarioRepository.save(usuario);
     }
 
-    public Usuario getByEmail(String email) {
-        return usuarioRepository.findByEmail(email).orElseThrow(MiEntidadNoEncontradaException::new);
+    /*--------------------------------------------------------*/
+
+    public Usuario CrearUsuario(Usuario usuario){
+
+        Usuario usuarioGuardado = new Usuario();
+
+        //cliente.setId(clienteDTO.getId());
+        usuarioGuardado.setEmail(usuario.getEmail());
+        usuarioGuardado.setPass(usuario.getPass());
+
+        return usuarioRepository.save(usuarioGuardado);
+
     }
+
 
     public void CrearCliente(UsuarioDTO usuarioDTO, ClienteDTO clienteDTO){
         Usuario usuario = new Usuario();
@@ -107,8 +123,8 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
         usuarioRepository.save(usuario);
 
-      //  private Set<Empleado> empleados = new HashSet<>();
-      //  private CatalogoDeServicio catalogoDeServicio;
+        //  private Set<Empleado> empleados = new HashSet<>();
+        //  private CatalogoDeServicio catalogoDeServicio;
 
         //private Disponibilidad disponibilidad;
         //private Set<Servicio> servicios = new HashSet<>();
