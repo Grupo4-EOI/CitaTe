@@ -33,7 +33,7 @@ public class MainController {
 
     @GetMapping("/registroEmpresa1")
     public String regEmp1() {
-        return "registroEmpresa/RegistroEmpresa1.html";
+        return "registroEmpresa/registroempresa1.html";
     }
 
     @GetMapping("/registroEmpresa2")
