@@ -254,13 +254,8 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
 
-        return "registroEmpresa/registroEmpresa5"; // Nombre de la plantilla para mostrar todas las entidades
+        return "registroEmpresa/nuevaalta"; // Nombre de la plantilla para mostrar todas las entidades
     }
-
-
-
-
-
 
 
     //// alta//////////////////////////////////////
