@@ -92,18 +92,19 @@ public class FileController {
 
 //        // Obtenemos todos los archivos almacenados en el servicio de almacenamiento predeterminado.
 //        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
-        List<FileInfo> files = fileSystemStorageService.loadAll();
+
+       List<FileInfo> files = fileSystemStorageService.loadAll();
 //
 //        // Obtenemos todos los archivos almacenados en el servicio de almacenamiento de la base de datos.
 //        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
         List<FileInfo> dbFiles = dbFileStorageService.getAllFileInfos();
-
-
+//
+//
         List<FileInfo> userFiles = fileSystemStorageService.loadAllFromUser(user.getId());
-
-
-        // Obtenemos todos los archivos asociados al usuario y almacenados en la base de datos
-        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
+//
+//
+//        // Obtenemos todos los archivos asociados al usuario y almacenados en la base de datos
+//        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
         List<FileInfo> dbUserFiles = dbFileStorageService.getUserFileInfos(user);
 
         // Agregamos las URLs de los archivos del servicio de almacenamiento predeterminado al modelo.
