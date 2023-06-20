@@ -80,6 +80,8 @@ public class FileController {
      *
      * @throws IOException si ocurre un error al cargar los archivos
      */
+
+
     @GetMapping("/files")
     public String listAllUploadedFiles(Model model,Authentication authentication) throws IOException {
         //Obtenemos el nombre de usuario logueado
@@ -389,9 +391,9 @@ public class FileController {
     //nuevo
 
     @GetMapping("/files/delete2/{fileName}")
-    public String deleteFileFromPersonalFileSystem(@PathVariable String fileName
+    public String deleteFileFromPersonalFileSystem(@PathVariable String fileName,
+                                                   Authentication authentication
                                                    ) {
-
 
 
         //Obtenemos el nombre de usuario logueado
@@ -399,7 +401,6 @@ public class FileController {
         String userEmail = miUserDetails.getEmail();
 
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-
         Usuario user = usuarioService.getByEmail(userEmail);
 
         // Obtenemos el ID del usuario.
