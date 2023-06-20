@@ -196,12 +196,14 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
                           @ModelAttribute EmpresaDTO empresaDTO,
                           @ModelAttribute UsuarioDTO usuarioDTO,
                           @ModelAttribute EmpleadoDTO empleadoDTO,
-                          @ModelAttribute DireccionDTO direccionDTO){
+                          @ModelAttribute DireccionDTO direccionDTO,
+                          @ModelAttribute ContactoDTO contactoDTO){
 
         model.addAttribute("usuarioDTO", usuarioDTO);
         model.addAttribute("empresaDTO", empresaDTO);
         model.addAttribute("empleadoDTO", empleadoDTO);
         model.addAttribute("direccionDTO", direccionDTO);
+        model.addAttribute("contactoDTO", contactoDTO);
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
 
@@ -217,11 +219,12 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
     public String update(@ModelAttribute UsuarioDTO usuarioDTO,
                          @ModelAttribute EmpresaDTO empresaDTO,
                          @ModelAttribute EmpleadoDTO empleadoDTO,
-                         @ModelAttribute DireccionDTO direccionDTO) {
+                         @ModelAttribute DireccionDTO direccionDTO,
+                         @ModelAttribute ContactoDTO contactoDTO) {
 
-        usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO, direccionDTO);
+        usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO, direccionDTO, contactoDTO);
 
-        return "/registroEmpresa/registroEmpresa6";
+        return "/perfil";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////

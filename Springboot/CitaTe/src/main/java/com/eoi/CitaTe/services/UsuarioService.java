@@ -58,13 +58,14 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
 
 
-    public void CrearEmpresa(UsuarioDTO usuarioDTO, EmpresaDTO empresaDTO, EmpleadoDTO empleadoDTO, DireccionDTO direccionDTO){
+    public void CrearEmpresa(UsuarioDTO usuarioDTO, EmpresaDTO empresaDTO, EmpleadoDTO empleadoDTO, DireccionDTO direccionDTO, ContactoDTO contactoDTO){
 
         Cliente cliente = new Cliente();
         Empresa empresa = new Empresa();
         Empleado empleado = new Empleado();
         Usuario usuario = new Usuario();
         Direccion direccion = new Direccion();
+        Contacto contacto = new Contacto();
 
 
         direccion.setProvincia(direccionDTO.getProvincia());
@@ -73,9 +74,14 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         direccion.setCiudad(direccionDTO.getCiudad());
         direccion.setCalle(direccionDTO.getCalle());
 
+        contacto.setTelefono1(contactoDTO.getTelefono1());
+        contacto.setTelefono2(contactoDTO.getTelefono2());
+        contacto.setEmailContacto(contactoDTO.getEmailContacto());
+
 
 
         empresa.setDireccion(direccion);
+        empresa.setContacto(contacto);
 
         empresa.setDescripcionEmpresa(empresaDTO.getDescripcionEmpresa());
         empresa.setNombreEmpresa(empresaDTO.getNombreEmpresa());

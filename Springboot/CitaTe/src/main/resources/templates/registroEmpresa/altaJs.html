@@ -25,7 +25,7 @@
             divActualElement.style.display = "none";
 
             divActual++;
-            if (divActual > 3) {
+            if (divActual > 4) {
                 divActual = 1;
             }
 
@@ -39,7 +39,7 @@
 
             divActual--;
             if (divActual < 1) {
-                divActual = 3;
+                divActual = 4;
             }
 
             var divAnteriorElement = document.getElementById("div" + divActual);
@@ -177,9 +177,20 @@
 
     </div>
 
-    <div id="div5" class="div-oculto">
-        <h2>Div 5</h2>
-        <p>Contenido del quinto div.</p>
+    <div id="div4" class="div-oculto">
+        <div class="text-center">
+
+            <label class="col-6" for="calle">Telefono1: </label>
+            <input class="col-6" type="text" name="Telefono1" id="Telefono1" value="" size="20" th:field="${contactoDTO.telefono1}"/><br><br>
+        </div>
+        <div class="text-center">
+            <label class="col-6" for="calle">Telefono2: </label>
+            <input class="col-6" type="text" name="Telefono2" id="Telefono2" value="" size="20" th:field="${contactoDTO.telefono2}"/><br><br>
+        </div>
+        <div class="text-center">
+            <label class="col-6" for="calle">Email de contacto: </label>
+            <input class="col-6" type="text" name="emailContacto" id="emailContacto" value="" size="20" th:field="${contactoDTO.emailContacto}"/><br><br>
+        </div>
 
     </div>
 

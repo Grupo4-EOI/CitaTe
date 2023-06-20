@@ -29,8 +29,10 @@ public class Empresa {
     private String descripcionEmpresa;
     //Como introducimos el horario desde los html????
     private String horario;
-//    @Embedded
-//    private Contacto contacto;
+
+    @Embedded
+    private Contacto contacto;
+
     @Lob
     private byte[] logoEmpresa;
 
