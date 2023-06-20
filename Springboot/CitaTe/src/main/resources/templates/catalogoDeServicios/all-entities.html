@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Valoraciones</title>
+    <title th:text="${entity}"></title>
 
     <link rel="stylesheet" th:href="@{/CitaTe.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
@@ -26,34 +26,33 @@
 </br></br></br>
 
 <div class="container">
-    <h3>Menus</h3><br>
+    <h3>Catalogo De Servicios</h3><br>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Url</th>
-            <th>Descripcion</th>
-            <th>Activo</th>
- <!-- Nueva columna para las acciones -->
+            <th>Nombre Del Servicio</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+
         </tr>
         </thead>
         <tbody>
-        <tr th:each="menudto : ${entities}">
-            <td th:text="${menudto.url}"></td>
-           <td th:text="${menudto.descripcion}"></td>
-            <!--   por si hay tiempo pintarlo con estrellas
-                                                            http://w3.unpocodetodo.info/css3/estrellas.php   -->
-
+        <tr th:each="catalogoDeServiciodto : ${entities}">
+<!--            <td th:text="${disponibilidad.fecha}"></td>-->
+            <td th:text="${catalogoDeServiciodto.nombre}"></td>
+            <td th:text="${catalogoDeServiciodto.precio}"></td>
+            <td th:text="${catalogoDeServiciodto.descripcion}"></td>
             <td>
-                <a th:href="@{/menus/{id}(id=${menudto.id})}" class="btn btn-dark">Editar</a>
-                <a th:href="@{/menus/delete/{id}(id=${menudto.id})}" class="btn btn-danger">Eliminar</a>
-            </td> <!-- Columna para los botones de edición y eliminación -->
+                <a th:href="@{/catalogoDeServicios/{id}(id=${catalogoDeServiciodto.id})}" class="btn btn-dark">Editar</a>
+                <a th:href="@{/catalogoDeServicios/delete/{id}(id=${catalogoDeServiciodto.id})}" class="btn btn-danger">Eliminar</a>
+            </td>
         </tr>
         </tbody>
     </table>
 
 
     <div class=" btn" style="background-color: #3f4c63">
-        <a th:class="nolink" href="/menus/create" >Añadir nuevo Menu</a>
+        <a th:class="nolink" href="/catalogoDeServicios/create" >Añadir nuevo Catalogo De Servicios</a>
     </div>
 </div>
 

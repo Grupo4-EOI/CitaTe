@@ -52,7 +52,7 @@ public class CatalogoDeServicioController extends MiControladorGenerico<Catalogo
 // o tras mucho trabajo tambien podemos mostrar  como dto
         List<CatalogoDeServicioDTO> entities = catalogodeServiciosMapperService.buscarTodos();
         model.addAttribute("entities", entities);
-        return "perfil/citaTeP1";
+        return url + "all-entities";
     }
 
     @Override

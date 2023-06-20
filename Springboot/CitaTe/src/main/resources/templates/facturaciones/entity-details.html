@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body>
+<body class="fondoallentities" >
 
 <!--Header-->
 
@@ -24,25 +24,31 @@
 </br></br></br>
 
 <div class="container">
-    <h1>Editar Facturación</h1>
+    <h2 class="text-center" >Editar Facturación</h2>
     <form th:object="${entity}" th:action="@{/facturaciones/actualizar}" method="POST" th:method="POST">
 
 
 
         <input type="hidden" name="id" id="id"th:field="*{id}">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Fecha</th>
 
-        <div id="padding">
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+               <td>
+                   <input type="date" name="final" id="final34" th:field="*{fecha}"></td>
+               </td>
+            </tr>
 
-            <h2>FACTURA</h2> <br>
-            <div>
+            </tbody>
+        </table>
 
-                <input type="date" name="final" id="final34" th:field="*{fecha}">
 
-            </div><br>
-
-        </div>
-
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-dark">Guardar</button>
     </form>
 
 </div>
