@@ -224,7 +224,7 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
         usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO, direccionDTO, contactoDTO);
 
-        return "/perfil";
+        return "/home/Home";
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////

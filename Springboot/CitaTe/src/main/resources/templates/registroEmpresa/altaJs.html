@@ -77,9 +77,6 @@
                         <input type="password" name="repetirpassword" id="repetirpassword" th:field="${usuarioDTO.pass}" required/><br><br>
 
 
-                        <!--                        <label for="email">Teléfono:</label><br>-->
-                        <!--                        <input type="text" name="telefono" id="contacto" th:field="${empresaDTO.contacto}" required><br><br>-->
-
                         <div class="mb-3">
                             <input type="hidden" class="form-control" id="activo" name="activo" th:field="${usuarioDTO.activo}">
                         </div>
@@ -116,11 +113,7 @@
 
                                         <div class="modal-body text-center" id="registroempresas" >
                                             <label for="descripcion">Cuentanos un poco sobre tu empresa para que los cliente sapan como es tu negocio</label><br>
-                                            <input type="hidden" name="cif" th:value="${empresaDTO.cif}" />
-
                                             <textarea  id="descripcion" name="textarea" rows="10" cols="50"th:field="${empresaDTO.descripcionEmpresa}" required/></textarea>
-
-
                                         </div>
 
 
