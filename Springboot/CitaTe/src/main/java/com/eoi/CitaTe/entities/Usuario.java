@@ -46,15 +46,9 @@ public class Usuario {
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinTable(
             name="usuarios_ficheros",
-            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
+            joinColumns={@JoinColumn(name="usuario_id", referencedColumnName="id_usuario")},
             inverseJoinColumns={@JoinColumn(name="FILE_ID", referencedColumnName="ID")})
     private List<FileDB> filesDB = new ArrayList<>();
-
-
-
-
-
-
 
 
 }

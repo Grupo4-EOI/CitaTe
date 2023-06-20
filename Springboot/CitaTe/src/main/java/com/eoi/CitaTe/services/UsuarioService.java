@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,14 +21,21 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
     @Autowired
     UsuarioRepository usuarioRepository;
-
-
     @Autowired
     private PasswordEncoder codificadorContraseñas;
     @Autowired
     private EmpleadoRepository empleadoRepository;
     @Autowired
     private EmpresaRepository empresaRepository;
+
+
+    public Usuario getByUsername(String email) {
+                return usuarioRepository.findByEmail(email).orElseThrow(MiEntidadNoEncontradaException::new);
+    }
+
+    public Usuario getByEmail(String email) {
+        return usuarioRepository.findByEmail(email).orElseThrow(MiEntidadNoEncontradaException::new);
+    }
 
     public void CrearCliente(UsuarioDTO usuarioDTO, ClienteDTO clienteDTO){
         Usuario usuario = new Usuario();

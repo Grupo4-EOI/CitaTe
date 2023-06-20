@@ -1,9 +1,11 @@
 package com.eoi.CitaTe.filemanagement.controllers;
 
-
-
+import com.eoi.CitaTe.entities.Usuario;
+import com.eoi.CitaTe.filemanagement.entities.FileDB;
+import com.eoi.CitaTe.filemanagement.models.FileInfo;
 import com.eoi.CitaTe.filemanagement.services.DBFileStorageService;
 import com.eoi.CitaTe.filemanagement.services.FileSystemStorageService;
+import com.eoi.CitaTe.services.UsuarioService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -39,8 +41,8 @@ public class FileController {
     @Autowired
     private FileSystemStorageService fileSystemStorageService;
 
-    @Autowired
-    private MessagingService messagingService;
+//    @Autowired
+//    private MessagingService messagingService;
 
     /**
      * Servicio de almacenamiento de archivos en la base de datos utilizado por el controlador.
@@ -52,7 +54,7 @@ public class FileController {
      * Servicio de usuario utilizado por el controlador.
      */
     @Autowired
-    private UsuarioService userService;
+    private UsuarioService usuarioService;
 
     /**
      * Constructor de la clase que recibe el servicio de almacenamiento de archivos como parámetro.
@@ -82,21 +84,24 @@ public class FileController {
 
 
         //Obtenemos el nombre de usuario del objeto de autenticacion
-        String username = authentication.getName();
+        // String username = authentication.getName();
+        String username = "cliente@citate.com";
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-        Usuario user = userService.getByUsername(username);
+        //Usuario user = usuarioService.getByEmail(username);
+        Usuario user = usuarioService.getByEmail("cliente@citate.com");
 
 
-        // Obtenemos todos los archivos almacenados en el servicio de almacenamiento predeterminado.
-        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
+
+//        // Obtenemos todos los archivos almacenados en el servicio de almacenamiento predeterminado.
+//        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
         List<FileInfo> files = fileSystemStorageService.loadAll();
-
-        // Obtenemos todos los archivos almacenados en el servicio de almacenamiento de la base de datos.
-        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
+//
+//        // Obtenemos todos los archivos almacenados en el servicio de almacenamiento de la base de datos.
+//        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
         List<FileInfo> dbFiles = dbFileStorageService.getAllFileInfos();
 
 
-        List<FileInfo> userFiles = fileSystemStorageService.loadAllFromUser(Long.valueOf(user.getId()));
+        List<FileInfo> userFiles = fileSystemStorageService.loadAllFromUser(user.getId());
 
 
         // Obtenemos todos los archivos asociados al usuario y almacenados en la base de datos
@@ -115,6 +120,7 @@ public class FileController {
         // Devolvemos el nombre de la vista a la que se va a redirigir.
         return "listFicheros";
     }
+
 
 
     /**
@@ -161,8 +167,8 @@ public class FileController {
         fileSystemStorageService.save(file);
 
 
-        messagingService.crearMensajeYNotificacionDeAdminCuandoOcurreAlgoYEnviarElMensaje("Se ha subido un fichero",
-                principal.getName());
+//        messagingService.crearMensajeYNotificacionDeAdminCuandoOcurreAlgoYEnviarElMensaje("Se ha subido un fichero",
+//                principal.getName());
 
         // Agregamos un mensaje de éxito a los atributos de redirección.
         redirectAttributes.addFlashAttribute("message",
@@ -228,7 +234,7 @@ public class FileController {
             //Obtenemos el nombre de usuario del objeto de autenticacion
             String username = authentication.getName();
             // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-            Usuario user = userService.getByUsername(username);
+            Usuario user = usuarioService.getByUsername(username);
             // Almacenamos el archivo del usuario en la base de datos pero sin guardar sus datos
             dbFileStorageService.storeUserFileWithoutData(file,user);
             // Guardamos el fichero en el filesystem
@@ -272,7 +278,7 @@ public class FileController {
             //Obtenemos el nombre de usuario del objeto de autenticacion
             String username = authentication.getName();
             // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-            Usuario user = userService.getByUsername(username);
+            Usuario user = usuarioService.getByUsername(username);
 
             // Almacenamos el archivo del usuario en la base de datos
             dbFileStorageService.storeUserFile(file,user);
@@ -289,7 +295,7 @@ public class FileController {
             redirectAttributes.addFlashAttribute("errorMsg", e.getLocalizedMessage());
 
             // Redirigir a la página de error
-            return "error";
+            return "error/ error";
         }
     }
 
@@ -312,7 +318,7 @@ public class FileController {
         String username = authentication.getName();
 
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-        Usuario user = userService.getByUsername(username);
+        Usuario user = usuarioService.getByUsername(username);
 
         // Obtenemos el ID del usuario.
         Long userId = Long.valueOf(user.getId());
@@ -388,7 +394,9 @@ public class FileController {
         // Obtenemos el nombre de usuario del usuario autenticado.
         String username = authentication.getName();
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-        Usuario user = userService.getByUsername(username);
+        Usuario user = usuarioService.getByUsername(username);
+
+
 
         dbFileStorageService.desasociarUserFile(id, user);
         return "redirect:/files";

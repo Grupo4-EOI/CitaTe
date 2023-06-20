@@ -2,8 +2,11 @@ package com.eoi.CitaTe.filemanagement.services;
 
 
 
+import com.eoi.CitaTe.entities.Usuario;
 import com.eoi.CitaTe.filemanagement.entities.FileDB;
+import com.eoi.CitaTe.filemanagement.models.FileInfo;
 import com.eoi.CitaTe.filemanagement.repositories.FileDBRepository;
+import com.eoi.CitaTe.repositories.UsuarioRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;

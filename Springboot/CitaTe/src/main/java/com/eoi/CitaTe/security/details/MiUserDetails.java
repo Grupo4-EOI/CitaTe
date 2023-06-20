@@ -73,6 +73,12 @@ public class MiUserDetails implements UserDetails {
     }
 
 
+    public String getEmail() {
+
+        return this.username;
+    }
+
+
 
 
     /**
