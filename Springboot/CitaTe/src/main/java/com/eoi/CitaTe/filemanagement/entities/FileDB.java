@@ -1,6 +1,7 @@
 package com.eoi.CitaTe.filemanagement.entities;
 
-import
+
+import com.eoi.CitaTe.entities.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
