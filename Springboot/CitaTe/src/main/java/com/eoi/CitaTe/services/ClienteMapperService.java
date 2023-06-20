@@ -25,7 +25,7 @@ public class ClienteMapperService extends AbstractBusinessService<Cliente, Long,
 
         Cliente cliente = new Cliente();
 
-        cliente.setId(clienteDTO.getId());
+        //cliente.setId(clienteDTO.getId());
         cliente.setNombreCliente(clienteDTO.getNombreCliente());
         cliente.setApellido1Cliente(clienteDTO.getApellido1Cliente());
         cliente.setApellido2Cliente(clienteDTO.getApellido2Cliente());

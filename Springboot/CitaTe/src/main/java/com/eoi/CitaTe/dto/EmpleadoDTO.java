@@ -19,13 +19,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class EmpleadoDTO {
 
-
-    private Long id;
     private String nombreEmpleado;
     private String apellido1Empleado;
     private String apellido2Empleado;
-    //private Empresa empresa;
-    // private Usuario usuario;
-//    private Disponibilidad disponibilidad;
-//    private Set<Servicio> servicios = new HashSet<>();
+    private Long empresa_id;
+    private Long disponibilidad_id;
+    private Set<Servicio> serviciosdto = new HashSet<>();
 }

@@ -6,6 +6,7 @@ import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.repositories.EmpleadoRepository;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
+import com.eoi.CitaTe.services.mapper.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +29,18 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
     private EmpleadoRepository empleadoRepository;
     @Autowired
     private EmpresaRepository empresaRepository;
+
+    @Autowired
+    private UsuarioMapper usuarioMapper;
+
+    public void CrearUsuario(UsuarioDTO usuarioDTO ){
+        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+        usuarioRepository.save(usuario);
+    }
+
+    /*--------------------------------------------------------*/
+
+
 
     public void CrearCliente(UsuarioDTO usuarioDTO, ClienteDTO clienteDTO){
         Usuario usuario = new Usuario();
