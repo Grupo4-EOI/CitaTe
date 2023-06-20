@@ -5,6 +5,7 @@ import com.eoi.CitaTe.filemanagement.entities.FileDB;
 import com.eoi.CitaTe.filemanagement.models.FileInfo;
 import com.eoi.CitaTe.filemanagement.services.DBFileStorageService;
 import com.eoi.CitaTe.filemanagement.services.FileSystemStorageService;
+import com.eoi.CitaTe.security.details.MiUserDetails;
 import com.eoi.CitaTe.services.UsuarioService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,16 +82,13 @@ public class FileController {
      */
     @GetMapping("/files")
     public String listAllUploadedFiles(Model model,Authentication authentication) throws IOException {
+        //Obtenemos el nombre de usuario logueado
+        MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
+        String userEmail = miUserDetails.getEmail();
 
-
-        //Obtenemos el nombre de usuario del objeto de autenticacion
-        // String username = authentication.getName();
-        String username = "cliente@citate.com";
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-        //Usuario user = usuarioService.getByEmail(username);
-        Usuario user = usuarioService.getByEmail("cliente@citate.com");
 
-
+        Usuario user = usuarioService.getByEmail(userEmail);
 
 //        // Obtenemos todos los archivos almacenados en el servicio de almacenamiento predeterminado.
 //        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
@@ -231,10 +229,12 @@ public class FileController {
                                            Authentication authentication) {
         String message = "";
         try {
-            //Obtenemos el nombre de usuario del objeto de autenticacion
-            String username = authentication.getName();
+            //Obtenemos el nombre de usuario logueado
+            MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
+            String userEmail = miUserDetails.getEmail();
+
             // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-            Usuario user = usuarioService.getByUsername(username);
+            Usuario user = usuarioService.getByEmail(userEmail);
             // Almacenamos el archivo del usuario en la base de datos pero sin guardar sus datos
             dbFileStorageService.storeUserFileWithoutData(file,user);
             // Guardamos el fichero en el filesystem
@@ -275,10 +275,13 @@ public class FileController {
 
         String message = "";
         try {
-            //Obtenemos el nombre de usuario del objeto de autenticacion
-            String username = authentication.getName();
+            //Obtenemos el nombre de usuario logueado
+            MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
+            String userEmail = miUserDetails.getEmail();
+
             // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-            Usuario user = usuarioService.getByUsername(username);
+
+            Usuario user = usuarioService.getByEmail(userEmail);
 
             // Almacenamos el archivo del usuario en la base de datos
             dbFileStorageService.storeUserFile(file,user);
@@ -314,11 +317,13 @@ public class FileController {
                                        RedirectAttributes redirectAttributes,
                                        Authentication authentication) {
 
-        // Obtenemos el nombre de usuario del usuario autenticado.
-        String username = authentication.getName();
+        //Obtenemos el nombre de usuario logueado
+        MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
+        String userEmail = miUserDetails.getEmail();
 
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-        Usuario user = usuarioService.getByUsername(username);
+
+        Usuario user = usuarioService.getByEmail(userEmail);
 
         // Obtenemos el ID del usuario.
         Long userId = Long.valueOf(user.getId());
@@ -391,10 +396,13 @@ public class FileController {
      */
     @GetMapping("/databasefiles/desasociarUserFile/{id}")
     public String deleteFileFromFileSystem(@PathVariable String id, Authentication authentication) {
-        // Obtenemos el nombre de usuario del usuario autenticado.
-        String username = authentication.getName();
+        //Obtenemos el nombre de usuario logueado
+        MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
+        String userEmail = miUserDetails.getEmail();
+
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-        Usuario user = usuarioService.getByUsername(username);
+
+        Usuario user = usuarioService.getByEmail(userEmail);
 
 
 
