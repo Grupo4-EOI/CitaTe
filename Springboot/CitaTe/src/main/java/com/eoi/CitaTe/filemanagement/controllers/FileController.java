@@ -386,6 +386,29 @@ public class FileController {
         return "redirect:/files";
     }
 
+    //nuevo
+
+    @GetMapping("/files/delete2/{fileName}")
+    public String deleteFileFromPersonalFileSystem(@PathVariable String fileName
+                                                   ) {
+
+
+
+        //Obtenemos el nombre de usuario logueado
+        MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
+        String userEmail = miUserDetails.getEmail();
+
+        // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
+
+        Usuario user = usuarioService.getByEmail(userEmail);
+
+        // Obtenemos el ID del usuario.
+        Long id =(user.getId());
+
+        fileSystemStorageService.deleteFile(id +"/" + fileName);
+        return "redirect:/files";
+    }
+
     /**
      * Delete file from file system string.
      *

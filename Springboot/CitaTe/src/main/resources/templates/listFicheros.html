@@ -222,7 +222,7 @@
                 <span th:text="${file.fileName}"></span>
                 <span th:text="${file.size}"></span>
                 <div>
-                  <a th:href="@{/databasefiles/delete/${file.fileName}(file=${file.fileName})}" class="btn btn-danger mx-2" onclick="return confirm('¿Estás seguro de que quieres eliminar este archivo de la base de datos?')" role="button">
+                  <a th:href="@{/files/delete2/{file}(file=${file.fileName})}" class="btn btn-danger mx-2" onclick="return confirm('¿Estás seguro de que quieres eliminar este archivo de tu carpeta personal?')" role="button">
                     <i class="bi bi-trash"></i> Eliminar
                   </a>
                   <a th:href="@{${file.url}}" class="btn btn-success" role="button">
