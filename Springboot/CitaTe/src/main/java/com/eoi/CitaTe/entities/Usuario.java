@@ -1,8 +1,11 @@
 package com.eoi.CitaTe.entities;
 
+import com.eoi.CitaTe.filemanagement.entities.FileDB;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -39,6 +42,13 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rol_id", referencedColumnName = "id_rol")
     private Rol rol;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @JoinTable(
+            name="usuarios_ficheros",
+            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
+            inverseJoinColumns={@JoinColumn(name="FILE_ID", referencedColumnName="ID")})
+    private List<FileDB> filesDB = new ArrayList<>();
 
 
 
