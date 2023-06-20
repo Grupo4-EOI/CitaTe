@@ -150,6 +150,8 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
             // Asignar el cliente al usuario
             altaGenericaDto.getUsuario().setCliente(clienteguardado);
+            Usuario usuarioguardado = usuarioService.CrearUsuario(altaGenericaDto);
+
         }
 
         } else if (altaGenericaDto.getTipoalta().equals("empleado")) {
@@ -159,6 +161,8 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
             Empleado empleadoguardado = empleadoMapperService.CrearEmpleado(altaGenericaDto.getEmpleado());
             //guardo usuario
             altaGenericaDto.getUsuario().setEmpleado(empleadoguardado);
+            Usuario usuarioguardado = usuarioService.CrearUsuario(altaGenericaDto);
+
 
 
         } else if (altaGenericaDto.getTipoalta().equals("empresa")){
@@ -168,25 +172,27 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
 
 
             //guardo empresa
-            Empresa empresaguardada = empresaMapperService.CrearEmpresa(altaGenericaDto.getEmpresa());
+            Empresa empresaguardada = empresaMapperService.CrearEmpresa(altaGenericaDto);
             //guardo empleado
             Empleado empleadoguardado = empleadoMapperService.CrearEmpleado(altaGenericaDto.getEmpleado());
             //guardo usuario
+            Usuario usuarioguardado = usuarioService.CrearUsuario(altaGenericaDto);
+
+
             altaGenericaDto.getUsuario().setEmpleado(empleadoguardado);
 
 
             //guardamos el catalogo de servicios
-            CatalogoDeServicio catalogoDeServicio = catalogoDeServiciosMapperService.CrearCatalagoDeServicio(catalogoDeServicioDTO);
+            //CatalogoDeServicio catalogoDeServicio = catalogoDeServiciosMapperService.CrearCatalagoDeServicio(catalogoDeServicioDTO);
 
             //guardamos disponibilidad
-            Disponibilidad disponibilidad = disponibilidadMapperService.CrearDisponibilidad(disponibilidadDTO);
+            //Disponibilidad disponibilidad = disponibilidadMapperService.CrearDisponibilidad(disponibilidadDTO);
 
 
         } else {
             System.out.println("Suave suavesito ya queda poquito");
         }
 
-        Usuario usuarioguardado = usuarioService.CrearUsuario(altaGenericaDto.getUsuario());
 
         return "registroEmpresa/registroEmpresa12";
 

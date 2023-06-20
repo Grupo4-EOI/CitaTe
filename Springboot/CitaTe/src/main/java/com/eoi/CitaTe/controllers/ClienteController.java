@@ -1,6 +1,7 @@
 package com.eoi.CitaTe.controllers;
 
 import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
+import com.eoi.CitaTe.dto.AltaGenericaDto;
 import com.eoi.CitaTe.dto.ClienteDTO;
 import com.eoi.CitaTe.dto.DisponibilidadDTO;
 import com.eoi.CitaTe.entities.Cliente;
@@ -41,22 +42,16 @@ public class ClienteController extends MiControladorGenerico<Cliente> {
     @GetMapping("/all")
     public String getAll(Model model) {
         this.url = entityName + "/";
-        List<ClienteDTO> entities = clienteMapperService.buscarTodos();
+        List<AltaGenericaDto> entities = clienteMapperService.buscarTodos();
         model.addAttribute("entities", entities);
         return url + "all-entities";
     }
 
-    @Override
-    @GetMapping("/create")
-    public String create(Model model) {
-        ClienteDTO entity = new ClienteDTO();
-        model.addAttribute("entity", entity);
-        return url + "entity-details";
-    }
+
 
 
     @PostMapping(value = {"/actualizar"})
-    public String update(@ModelAttribute ClienteDTO entity) {
+    public String update(@ModelAttribute AltaGenericaDto entity) {
         clienteMapperService.CrearCliente(entity);
         return "redirect:/" + url + "all";
 

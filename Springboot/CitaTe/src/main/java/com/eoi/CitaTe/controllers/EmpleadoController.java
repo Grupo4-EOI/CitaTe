@@ -49,7 +49,7 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         // List<Valoracion> entities = service.listAll();
 
 // o tras mucho trabajo tambien podemos mostrar  como dto
-        List<EmpleadoDTO> entities = empleadoMapperService.buscarTodos();
+        List<Al> entities = empleadoMapperService.buscarTodos();
 
 
         model.addAttribute("entities", entities);
@@ -62,6 +62,7 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         model.addAttribute("entity", entity);
         return url + "entity-details";
     }
+
     @PostMapping(value = {"/actualizar"})
     public String update(@ModelAttribute EmpleadoDTO entity) {
         empleadoMapperService.CrearEmpleado(entity);

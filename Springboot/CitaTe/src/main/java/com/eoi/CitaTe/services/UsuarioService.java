@@ -33,10 +33,24 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
     @Autowired
     private UsuarioMapper usuarioMapper;
 
-    public void CrearUsuario(UsuarioDTO usuarioDTO ){
-        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
-        usuarioRepository.save(usuario);
+    //public void CrearUsuario(UsuarioDTO usuarioDTO ){
+    //    Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+    //    usuarioRepository.save(usuario);
+    //}
+
+    public Usuario CrearUsuario(AltaGenericaDto altaGenericaDto){
+
+
+        Usuario usuario = new Usuario();
+
+        usuario.setPass(altaGenericaDto.getUsuario().getPass());
+        usuario.setEmail(altaGenericaDto.getUsuario().getEmail());
+
+
+        return usuarioRepository.save(usuario);
     }
+
+
 
     /*--------------------------------------------------------*/
 
