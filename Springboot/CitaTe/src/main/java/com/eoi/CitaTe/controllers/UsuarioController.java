@@ -100,6 +100,17 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
     @Autowired
     CatalogoDeServicioService catalogoDeServicioService;
 
+    @Autowired
+    CatalogodeServiciosMapperService catalogoDeServiciosMapperService;
+
+    @Autowired
+    DisponibilidadMapperService disponibilidadMapperService;
+
+    @Autowired
+    EmpresaMapperService empresaMapperService;
+
+
+
     ClienteMapperService clienteMapperService;
     EmpleadoMapperService empleadoMapperService;
 
@@ -132,15 +143,14 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
                          @ModelAttribute DisponibilidadDTO disponibilidadDTO,
                          @ModelAttribute ServicioDTO servicioDTO) {
 
-        //Buscamos el tipo de alta
+        // Buscamos el tipo de alta
+        if (altaGenericaDto.getTipoalta().equals("cliente")) {
+            // Guardar el cliente y asignarlo a clienteguardado
+            Cliente clienteguardado = clienteMapperService.CrearCliente(altaGenericaDto);
 
-        if (altaGenericaDto.getTipoalta().equals("cliente")){
-
-            //si el tipo de alta es cliente guardo el cliente y el usuario respectivamente
-            //guardo el cliente
-            Cliente clienteguardado = clienteMapperService.CrearCliente(altaGenericaDto.getCliente());
-            //guardo el usuario
+            // Asignar el cliente al usuario
             altaGenericaDto.getUsuario().setCliente(clienteguardado);
+        }
 
         } else if (altaGenericaDto.getTipoalta().equals("empleado")) {
 
@@ -156,18 +166,21 @@ public class UsuarioController extends MiControladorGenerico<Usuario> {
             //si el tipo de alta es empresa, guardo: empresa, empleado y usuario
             //Tambien disponibilidad, catalogo de servicios etc
 
-            //guardamos el catalogo de servicios
-            CatalogoDeServicio catalogoDeServicio = catalogoDeServicioService.CrearCatalogoDeServicio(catalogoDeServicioDTO);
-
-            //guardamos disponibilidad
-            Disponibilidad disponibilidad = disponibilidadService.CrearDisponibilidad(disponibilidadDTO);
 
             //guardo empresa
-            Empresa empresaguardada = empresaService.CrearEmpresa(altaGenericaDto.getEmpresa());
+            Empresa empresaguardada = empresaMapperService.CrearEmpresa(altaGenericaDto.getEmpresa());
             //guardo empleado
-            Empleado empleadoguardado = empleadoService.CrearEmpleado(altaGenericaDto.getEmpleado());
+            Empleado empleadoguardado = empleadoMapperService.CrearEmpleado(altaGenericaDto.getEmpleado());
             //guardo usuario
             altaGenericaDto.getUsuario().setEmpleado(empleadoguardado);
+
+
+            //guardamos el catalogo de servicios
+            CatalogoDeServicio catalogoDeServicio = catalogoDeServiciosMapperService.CrearCatalagoDeServicio(catalogoDeServicioDTO);
+
+            //guardamos disponibilidad
+            Disponibilidad disponibilidad = disponibilidadMapperService.CrearDisponibilidad(disponibilidadDTO);
+
 
         } else {
             System.out.println("Suave suavesito ya queda poquito");

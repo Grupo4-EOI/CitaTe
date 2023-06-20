@@ -1,5 +1,6 @@
 package com.eoi.CitaTe.services;
 
+import com.eoi.CitaTe.dto.AltaGenericaDto;
 import com.eoi.CitaTe.dto.ClienteDTO;
 import com.eoi.CitaTe.dto.DisponibilidadDTO;
 import com.eoi.CitaTe.entities.Cliente;
@@ -21,17 +22,16 @@ public class ClienteMapperService extends AbstractBusinessService<Cliente, Long,
     @Autowired
     ClienteRepository clienteRepository;
 
-    public void CrearCliente(ClienteDTO clienteDTO){
+    public Cliente CrearCliente(AltaGenericaDto altaGenericaDto) {
 
         Cliente cliente = new Cliente();
+        cliente.setNombreCliente(altaGenericaDto.getCliente().getNombreCliente());
+        cliente.setApellido1Cliente(altaGenericaDto.getCliente().getApellido1Cliente());
+        cliente.setApellido2Cliente(altaGenericaDto.getCliente().getApellido2Cliente());
+        cliente.setTelefono(altaGenericaDto.getCliente().getTelefono());
 
-        //cliente.setId(clienteDTO.getId());
-        cliente.setNombreCliente(clienteDTO.getNombreCliente());
-        cliente.setApellido1Cliente(clienteDTO.getApellido1Cliente());
-        cliente.setApellido2Cliente(clienteDTO.getApellido2Cliente());
-        cliente.setTelefono(clienteDTO.getTelefono());
-
-        clienteRepository.save(cliente);
+        return clienteRepository.save(cliente);
 
     }
+
 }

@@ -1,5 +1,6 @@
 package com.eoi.CitaTe.services.mapper;
 
+import com.eoi.CitaTe.dto.AltaGenericaDto;
 import com.eoi.CitaTe.dto.EmpleadoDTO;
 import com.eoi.CitaTe.entities.Cliente;
 import com.eoi.CitaTe.entities.Empleado;
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmpleadoMapper extends AbstractServiceMapper<Empleado, EmpleadoDTO> {
+public class EmpleadoMapper extends AbstractServiceMapper<Empleado, AltaGenericaDto> {
 
     @Override
     public EmpleadoDTO toDto(Empleado entidad){
@@ -19,7 +20,7 @@ public class EmpleadoMapper extends AbstractServiceMapper<Empleado, EmpleadoDTO>
         return dto;
     }
     //Convertir de dto a entidad
-    public Empleado toEntity(EmpleadoDTO dto){
+    public Empleado toEntity(AltaGenericaDto dto){
         final Empleado entidad = new Empleado();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(dto,entidad);

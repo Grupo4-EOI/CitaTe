@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClienteMapper extends AbstractServiceMapper<Cliente, ClienteDTO>{
 
-    public ClienteDTO toDto(Cliente entidad){
-        final ClienteDTO dto = new ClienteDTO();
+    public AltaGenericaDto toDto(Cliente entidad){
+        final AltaGenericaDto dto = new AltaGenericaDto();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(entidad,dto);
         return dto;
     }
 
-    public Cliente toEntity(ClienteDTO dto){
+    public Cliente toEntity(AltaGenericaDto dto){
         final Cliente entidad = new Cliente();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(dto,entidad);
