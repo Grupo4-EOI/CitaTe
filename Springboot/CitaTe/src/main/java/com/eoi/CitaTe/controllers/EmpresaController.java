@@ -191,90 +191,43 @@ public class EmpresaController extends MiControladorGenerico<Empresa> {
 
 
     //Enviar los datos al registro de empresa
-
     @GetMapping("/createEmpresa")
-    public String create(Model model) {
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        EmpresaDTO empresaDTO = new EmpresaDTO();
-        EmpleadoDTO empleadoDTO = new EmpleadoDTO();
-
-        model.addAttribute("usuarioDTO", usuarioDTO);
-        model.addAttribute("empresaDTO", empresaDTO);
-        model.addAttribute("empleadoDTO", empleadoDTO);
-//        model.addAttribute("url", url);
-        model.addAttribute("entityName", entityName);
-
-        return "registroEmpresa/registroEmpresa2"; // Nombre de la plantilla para mostrar todas las entidades
-    }
-
-
-    @PostMapping("/createEmpresa3")
-    public String create1(Model model,
-                          @ModelAttribute EmpresaDTO empresaDTO,
-                          @ModelAttribute UsuarioDTO usuarioDTO,
-                          @ModelAttribute EmpleadoDTO empleadoDTO){
-
-        model.addAttribute("usuarioDTO", usuarioDTO);
-        model.addAttribute("empresaDTO", empresaDTO);
-        model.addAttribute("empleadoDTO", empleadoDTO);
-//        model.addAttribute("url", url);
-        model.addAttribute("entityName", entityName);
-
-
-        return "registroEmpresa/registroEmpresa3"; // Nombre de la plantilla para mostrar todas las entidades
-    }
-
-    @PostMapping("/createEmpresa4")
-    public String create2(Model model,
-                          @ModelAttribute EmpresaDTO empresaDTO,
-                          @ModelAttribute UsuarioDTO usuarioDTO,
-                          @ModelAttribute EmpleadoDTO empleadoDTO){
-
-        model.addAttribute("usuarioDTO", usuarioDTO);
-        model.addAttribute("empresaDTO", empresaDTO);
-        model.addAttribute("empleadoDTO", empleadoDTO);
-//        model.addAttribute("url", url);
-        model.addAttribute("entityName", entityName);
-
-        return "registroEmpresa/registroEmpresa4"; // Nombre de la plantilla para mostrar todas las entidades
-    }
-
-
-    @PostMapping("/createEmpresa5")
     public String create3(Model model,
                           @ModelAttribute EmpresaDTO empresaDTO,
                           @ModelAttribute UsuarioDTO usuarioDTO,
                           @ModelAttribute EmpleadoDTO empleadoDTO,
-                          @ModelAttribute DireccionDTO direccionDTO){
+                          @ModelAttribute DireccionDTO direccionDTO,
+                          @ModelAttribute ContactoDTO contactoDTO){
 
         model.addAttribute("usuarioDTO", usuarioDTO);
         model.addAttribute("empresaDTO", empresaDTO);
         model.addAttribute("empleadoDTO", empleadoDTO);
         model.addAttribute("direccionDTO", direccionDTO);
+        model.addAttribute("contactoDTO", contactoDTO);
 //        model.addAttribute("url", url);
         model.addAttribute("entityName", entityName);
 
-        return "registroEmpresa/nuevaalta"; // Nombre de la plantilla para mostrar todas las entidades
+        return "registroEmpresa/altaJs"; // Nombre de la plantilla para mostrar todas las entidades
     }
 
-
-    //// alta//////////////////////////////////////
 
     private final UsuarioService usuarioService;
     private final EmpresaService empresaService;
 
+    // Alta Empresa
     @PostMapping(value = {"/altaEmpresa"})
     public String update(@ModelAttribute UsuarioDTO usuarioDTO,
                          @ModelAttribute EmpresaDTO empresaDTO,
                          @ModelAttribute EmpleadoDTO empleadoDTO,
-                         @ModelAttribute DireccionDTO direccionDTO) {
+                         @ModelAttribute DireccionDTO direccionDTO,
+                         @ModelAttribute ContactoDTO contactoDTO) {
 
-        usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO, direccionDTO);
+        usuarioService.CrearEmpresa(usuarioDTO, empresaDTO, empleadoDTO, direccionDTO, contactoDTO);
 
-        return "/registroEmpresa/registroEmpresa6";
+        return "/registroEmpresa/RegistroEmpresa12";
     }
 
-    ////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //// Detalles de la empresa
     @GetMapping("/details/{id}")
