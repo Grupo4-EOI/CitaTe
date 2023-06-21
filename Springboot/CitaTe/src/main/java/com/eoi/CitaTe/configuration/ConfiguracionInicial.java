@@ -75,15 +75,15 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
             empresa.setCif("B999999999");
             empresa.setNombreEmpresa("Ache");
             empresa.setDireccion(new Direccion("principal",5,"Madrid","Getafe",28001));
+            empresa.setContacto(new Contacto("612123123","612123124","help@citate.com"));
             empresa.setDescripcionEmpresa("La mejor peluqueria");
-//          empresa.setContacto(new Contacto("612314123","","ayuda@gmail.com"));
             empresaRepository.save(empresa);
 
             empresa2.setCif("B999999998");
             empresa2.setNombreEmpresa("Imnova");
             empresa2.setDireccion(new Direccion("prudencio",20,"Malaga","Almeria",04010));
             empresa2.setDescripcionEmpresa("La mejor barberia");
-//          empresa2.setContacto(new Contacto("612314123","","ayuda@gmail.com"));
+            empresa2.setContacto(new Contacto("612123123","612123124","help@citate.com"));
             empresaRepository.save(empresa2);
 
             // Bucle para dar de alta varias empresas
@@ -95,6 +95,7 @@ public class ConfiguracionInicial implements ApplicationListener<ContextRefreshe
                 empresa3.setNombreEmpresa("Imnova" + i);
                 empresa3.setDireccion(new Direccion("prudencio",i,"Almeria","Almeria",04010));
                 empresa3.setDescripcionEmpresa("La mejor barberia" + i);
+                empresa3.setContacto(new Contacto("612123123","612123124","help@citate.com"));
                 empresaRepository.save(empresa3);
 
             }
