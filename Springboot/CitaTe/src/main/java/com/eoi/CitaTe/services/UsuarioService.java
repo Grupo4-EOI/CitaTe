@@ -93,7 +93,6 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         empresa.setLogoEmpresa(empresaDTO.getLogoEmpresa());
         empresa.setTipoNegocio(empresaDTO.getTipoNegocio());
 
-//      empresa.setContacto(empresaDTO.getContacto());
 
         empresaRepository.save(empresa);
 
@@ -109,26 +108,13 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         usuario.setEmail(usuarioDTO.getEmail());
         usuario.setPass(codificadorContraseñas.encode(usuarioDTO.getPass()));
         usuario.setActivo(true);
-
         usuario.setEmpleado(empleado);
-        //usuario.setRol(jefe)
-
-        // Configurar mas adelante rol de jefe para este usuario.
-
-
-        usuario.setEmpleado(empleado);
-
+         usuario.setEmpleado(empleado);
+        //Configuramos para que el empleado que se cree inicialmente sea el feje de la empresa
         usuario.setRol(rolService.getById(3L));
-
         usuario.setEmpleado(empleado);
-
         usuarioRepository.save(usuario);
 
-      //  private Set<Empleado> empleados = new HashSet<>();
-      //  private CatalogoDeServicio catalogoDeServicio;
-
-        //private Disponibilidad disponibilidad;
-        //private Set<Servicio> servicios = new HashSet<>();
 
     }
 
