@@ -39,8 +39,8 @@ public class Usuario {
     private Cliente cliente;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "rol_id", referencedColumnName = "id_rol")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idrol")
     private Rol rol;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)

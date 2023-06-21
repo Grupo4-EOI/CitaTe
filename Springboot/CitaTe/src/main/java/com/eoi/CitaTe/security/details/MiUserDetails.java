@@ -1,13 +1,17 @@
 package com.eoi.CitaTe.security.details;
 
 
+import com.eoi.CitaTe.entities.Rol;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.mapping.List;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Getter
@@ -47,6 +51,8 @@ public class MiUserDetails implements UserDetails {
 
         return this.grantedAuthorities;
     }
+
+
 
     /**
      * Returns the password used to authenticate the user.

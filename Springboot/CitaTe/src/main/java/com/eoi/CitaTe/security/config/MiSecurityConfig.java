@@ -56,7 +56,7 @@ public class MiSecurityConfig {
         // Además, permitimos el acceso a todo el mundo.
         http.formLogin((form) -> form.loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/perfil")
+                .defaultSuccessUrl("/")
                 .permitAll());
 
         // Configuramos el sistema de cierre de sesión de la aplicación como el cierre de sesión predeterminado de Spring Security.
