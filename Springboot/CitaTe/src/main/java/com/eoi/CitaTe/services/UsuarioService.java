@@ -64,7 +64,7 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
     public void CrearEmpresa(UsuarioDTO usuarioDTO, EmpresaDTO empresaDTO, EmpleadoDTO empleadoDTO, DireccionDTO direccionDTO, ContactoDTO contactoDTO){
 
-        Cliente cliente = new Cliente();
+
         Empresa empresa = new Empresa();
         Empleado empleado = new Empleado();
         Usuario usuario = new Usuario();

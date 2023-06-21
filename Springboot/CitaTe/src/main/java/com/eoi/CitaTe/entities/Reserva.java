@@ -21,10 +21,15 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_reserva", nullable = false)
     private Long id;
+    @Basic(optional = true)
     private boolean estadoReserva;
     private LocalDate fechaReserva;
     private String hora_inicio;
     private String hora_fin;
+
+    private Integer diaMes; // en th es facil preguntar si el dia que tengo conincide con el dia de la reserva
+    // revisar gestion de turnos , calendario con eventos.
+
 
 
     @OneToOne(cascade = CascadeType.REFRESH)
@@ -32,8 +37,8 @@ public class Reserva {
     private Valoracion valoracion;
 
 
-
-//    private Disponibilidad disponibilidad; no hacer fk
+    @OneToOne
+    private Disponibilidad disponibilidad;   //no hacer fk
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id_cliente")

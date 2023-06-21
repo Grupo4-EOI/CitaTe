@@ -31,7 +31,8 @@ public class Empleado {
     private Usuario usuario;
 
 
-    @OneToOne(mappedBy = "empleado")
+    @ManyToOne
+    @JoinColumn(name = "disponibilidad_id", referencedColumnName = "id_disponibilidad")
     private Disponibilidad disponibilidad;
 
 

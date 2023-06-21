@@ -4,8 +4,7 @@ import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
 
 import com.eoi.CitaTe.dto.DisponibilidadDTO;
 import com.eoi.CitaTe.dto.ReservaDTO;
-import com.eoi.CitaTe.entities.Disponibilidad;
-import com.eoi.CitaTe.entities.Reserva;
+import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 import com.eoi.CitaTe.repositories.ReservaRepository;
 import com.eoi.CitaTe.services.ReservaMapperService;
@@ -47,14 +46,22 @@ public class ReservaController extends MiControladorGenerico<Reserva> {
         return url + "all-entities";
     }
 
-    @Override
-    @GetMapping("/create")
-    public String create(Model model) {
+
+    @GetMapping("/create/{idempleado}")
+    public String createnew(@PathVariable Long idEmpleado,@ModelAttribute(name ="reserva") ReservaDTO reservaDTO,
+                            Model model) {
         ReservaDTO entity = new ReservaDTO();
         model.addAttribute("entity", entity);
         return url + "entity-details";
     }
+    @PostMapping("/create/{idempleado}")
+    public String createnewpost(@PathVariable Long idEmpleado, @ModelAttribute(name ="entity") ReservaDTO reservaDTO) {
+        ReservaDTO entity = new ReservaDTO();
+        // ahora guardo
 
+
+        return url + "entity-details";
+    }
 
     @PostMapping(value = {"/actualizar"})
     public String update(@ModelAttribute ReservaDTO entity) {
@@ -84,6 +91,18 @@ public class ReservaController extends MiControladorGenerico<Reserva> {
         service.delete(id);
         return "redirect:/" + url + "all";
     }
+
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable(value = "id") long id, Model model) {
+        Reserva reserva = service.getById(id);
+
+        model.addAttribute("reserva", reserva);
+        model.addAttribute("disponibilidad", new Disponibilidad());
+
+        return "reservas/details";
+    }
+
+
 
 
 

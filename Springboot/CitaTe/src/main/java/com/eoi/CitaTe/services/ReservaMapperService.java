@@ -1,6 +1,7 @@
 package com.eoi.CitaTe.services;
 
 import com.eoi.CitaTe.dto.ReservaDTO;
+import com.eoi.CitaTe.entities.Cliente;
 import com.eoi.CitaTe.entities.Reserva;
 import com.eoi.CitaTe.repositories.ReservaRepository;
 import com.eoi.CitaTe.services.mapper.ReservaMapper;
@@ -23,13 +24,28 @@ public class ReservaMapperService extends AbstractBusinessService<Reserva, Long,
 
 
         reserva.setId(reservaDTO.getId());
-        reserva.setEstadoReserva(reservaDTO.isEstadoReserva());
+        //reserva.setEstadoReserva(reservaDTO.isEstadoReserva());
         reserva.setFechaReserva(reservaDTO.getFechaReserva());
         reserva.setHora_fin(reservaDTO.getHora_fin());
         reserva.setHora_inicio(reservaDTO.getHora_inicio());
 
 
+
         reservaRepository.save(reserva);
+
+    }
+
+    public Reserva CrearReserva2(ReservaDTO reservaDTO, Cliente cliente){
+
+        Reserva reserva = new Reserva();
+
+        reserva.setEstadoReserva(true);
+        reserva.setFechaReserva(reservaDTO.getFechaReserva());
+        reserva.setHora_fin(reservaDTO.getHora_fin());
+        reserva.setHora_inicio(reservaDTO.getHora_inicio());
+        reserva.setCliente(cliente);
+
+        return reservaRepository.save(reserva);
 
     }
 }

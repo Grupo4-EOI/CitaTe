@@ -15,10 +15,11 @@ import java.time.LocalDate;
 public class ReservaDTO {
 
     private Long id;
-    private boolean estadoReserva;
     private LocalDate fechaReserva;
     private String hora_inicio;
     private String hora_fin;
+
+    private Long servicioId;
 
 
 

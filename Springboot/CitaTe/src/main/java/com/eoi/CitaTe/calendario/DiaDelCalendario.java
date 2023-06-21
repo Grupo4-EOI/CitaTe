@@ -1,5 +1,6 @@
 package com.eoi.CitaTe.calendario;
 
+import com.eoi.CitaTe.entities.Reserva;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,11 +20,9 @@ public class DiaDelCalendario {
 
     private boolean diaNulo = false;
 
-    private List<Evento> eventos;
-
+    private Integer day;
     private LocalDate fecha;
 
-
-
+    private Integer trabaja;
 
 }
