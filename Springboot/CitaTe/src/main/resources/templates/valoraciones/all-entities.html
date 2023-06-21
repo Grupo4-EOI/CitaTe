@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body>
+<body class="fondoallentities">
 
 <!--Header-->
 
@@ -26,7 +26,7 @@
 </br></br></br>
 
 <div class="container">
-    <h1>Valoraciones</h1>
+    <h3>Valoraciones</h3>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -42,7 +42,7 @@
                                                             http://w3.unpocodetodo.info/css3/estrellas.php   -->
 
             <td>
-                <a th:href="@{/valoraciones/{id}(id=${valoraciondto.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/valoraciones/{id}(id=${valoraciondto.id})}" class="btn btn-dark">Editar</a>
                 <a th:href="@{/valoraciones/delete/{id}(id=${valoraciondto.id})}" class="btn btn-danger">Eliminar</a>
             </td> <!-- Columna para los botones de edición y eliminación -->
         </tr>

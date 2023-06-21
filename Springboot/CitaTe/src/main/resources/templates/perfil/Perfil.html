@@ -21,7 +21,7 @@
 
 </head>
 
-<body id="contenedor" class="container">
+<body id="contenedor" >
 
 <header class="d-flex flex-wrap justify-content-md-between justify-content-center align-items-center">
   <div class="col">
@@ -32,7 +32,7 @@
 
 
   <div class="col d-flex justify-content-center">
-    <a class="btn btn-lg btn-dark" href="/">Home</a>
+    <a class="btn btn-lg btn-dark " href="/">Home</a>
   </div>
 
 </header>
@@ -48,7 +48,9 @@
             <svg class="bi pe-none me-2" width="40" height="32">
               <use xlink:href="#bootstrap" />
             </svg>
-            <span class="fs-4">Menú</span>
+
+             <h3><span th:text="${#authentication.principal.nombreUsuario + ' ' + #authentication.principal.apellidoUsuario}"></span></h3>
+
           </a>
           <hr>
           <ul class="nav nav-pills flex-column mb-auto ms-2">
@@ -111,7 +113,6 @@
             </a>
             <ul class="dropdown-menu text-small shadow">
               <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -166,6 +167,9 @@
 
 
       </div>
+
+
+      <!--    //////////////  Pruebas//////////////////////////     -->
 
 
     </main>
