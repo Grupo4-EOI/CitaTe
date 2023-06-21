@@ -62,6 +62,8 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         cliente.setTelefono(clienteDTO.getTelefono());
 
         usuario.setCliente(cliente);
+        usuario.setRol(rolService.getById(1L));
+
 
 
         usuarioRepository.save(usuario);
