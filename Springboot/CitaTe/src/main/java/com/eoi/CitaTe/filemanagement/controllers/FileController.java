@@ -86,11 +86,11 @@ public class FileController {
     public String listAllUploadedFiles(Model model,Authentication authentication) throws IOException {
         //Obtenemos el nombre de usuario logueado
         MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
-        String userEmail = miUserDetails.getEmail();
+
 
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
 
-        Usuario user = usuarioService.getByEmail(userEmail);
+        Usuario user = usuarioService.getById(miUserDetails.getId());
 
 //        // Obtenemos todos los archivos almacenados en el servicio de almacenamiento predeterminado.
 //        // Para cada archivo, generamos una URL que permita descargar el archivo desde el servidor.
@@ -234,10 +234,10 @@ public class FileController {
         try {
             //Obtenemos el nombre de usuario logueado
             MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
-            String userEmail = miUserDetails.getEmail();
+
 
             // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-            Usuario user = usuarioService.getByEmail(userEmail);
+            Usuario user = usuarioService.getById(miUserDetails.getId());
             // Almacenamos el archivo del usuario en la base de datos pero sin guardar sus datos
             dbFileStorageService.storeUserFileWithoutData(file,user);
             // Guardamos el fichero en el filesystem
@@ -280,11 +280,11 @@ public class FileController {
         try {
             //Obtenemos el nombre de usuario logueado
             MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
-            String userEmail = miUserDetails.getEmail();
+;
 
             // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
 
-            Usuario user = usuarioService.getByEmail(userEmail);
+            Usuario user = usuarioService.getById(miUserDetails.getId());
 
             // Almacenamos el archivo del usuario en la base de datos
             dbFileStorageService.storeUserFile(file,user);
@@ -322,11 +322,11 @@ public class FileController {
 
         //Obtenemos el nombre de usuario logueado
         MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
-        String userEmail = miUserDetails.getEmail();
+
 
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
 
-        Usuario user = usuarioService.getByEmail(userEmail);
+        Usuario user = usuarioService.getById(miUserDetails.getId());
 
         // Obtenemos el ID del usuario.
         Long userId = Long.valueOf(user.getId());
@@ -399,10 +399,9 @@ public class FileController {
 
         //Obtenemos el nombre de usuario logueado
         MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
-        String userEmail = miUserDetails.getEmail();
 
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-        Usuario user = usuarioService.getByEmail(userEmail);
+        Usuario user = usuarioService.getById(miUserDetails.getId());
 
         // Obtenemos el ID del usuario.
         Long id =(user.getId());
@@ -423,11 +422,10 @@ public class FileController {
     public String deleteFileFromFileSystem(@PathVariable String id, Authentication authentication) {
         //Obtenemos el nombre de usuario logueado
         MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
-        String userEmail = miUserDetails.getEmail();
+
 
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-
-        Usuario user = usuarioService.getByEmail(userEmail);
+        Usuario user = usuarioService.getById(miUserDetails.getId());
 
 
 

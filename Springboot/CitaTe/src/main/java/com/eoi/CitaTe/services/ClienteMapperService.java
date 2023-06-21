@@ -21,11 +21,11 @@ public class ClienteMapperService extends AbstractBusinessService<Cliente, Long,
     @Autowired
     ClienteRepository clienteRepository;
 
+
     public void CrearCliente(ClienteDTO clienteDTO){
 
         Cliente cliente = new Cliente();
 
-        cliente.setId(clienteDTO.getId());
         cliente.setNombreCliente(clienteDTO.getNombreCliente());
         cliente.setApellido1Cliente(clienteDTO.getApellido1Cliente());
         cliente.setApellido2Cliente(clienteDTO.getApellido2Cliente());
@@ -39,7 +39,6 @@ public class ClienteMapperService extends AbstractBusinessService<Cliente, Long,
 
         Cliente clienteGuardado = new Cliente();
 
-        //cliente.setId(clienteDTO.getId());
         clienteGuardado.setNombreCliente(cliente.getNombreCliente());
         clienteGuardado.setApellido1Cliente(cliente.getApellido1Cliente());
         clienteGuardado.setApellido2Cliente(cliente.getApellido2Cliente());

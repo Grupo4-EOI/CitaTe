@@ -19,8 +19,8 @@ public class MiUserDetails implements UserDetails {
     //Campos propios de UserDetails
     private String username;
     private String password;
-
-
+    private Long id;
+    private String email;
     private boolean isActive=true;
     private boolean isAccountNonExpired=true;
     private boolean isAccountNonLocked=true;

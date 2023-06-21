@@ -35,7 +35,7 @@ public class MiSecurityConfig {
                 .requestMatchers("/","" ).permitAll()
                 .requestMatchers("/webjars/**").permitAll()
                 .requestMatchers("/error/**").permitAll()
-                .requestMatchers("/registroEmpresa*").permitAll()
+                .requestMatchers("/registroEmpresa/**").permitAll()
                 .requestMatchers("/citaTeP1").permitAll()
                 .requestMatchers("/CitaTe.css").permitAll()
                 .requestMatchers("/img/**").permitAll()

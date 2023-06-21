@@ -33,6 +33,15 @@ public class EmpleadoMapperService extends AbstractBusinessService<Empleado, Lon
 
 
         }
+        public Empleado CrearEmpleado(Empleado empleado ){
+                Empleado empleadoGuardar = new Empleado();
 
+                empleadoGuardar.setNombreEmpleado(empleado.getNombreEmpleado());
+                empleadoGuardar.setApellido1Empleado(empleado.getApellido1Empleado());
+                empleadoGuardar.setApellido2Empleado(empleado.getApellido2Empleado());
+                empleadoRepository.save(empleadoGuardar);
+                return empleadoGuardar;
+
+        }
 
 }
