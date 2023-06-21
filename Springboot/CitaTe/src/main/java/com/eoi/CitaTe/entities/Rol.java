@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Collection;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,8 +21,8 @@ public class Rol {
 
     private String nombreRol;
 
-    @OneToOne(mappedBy = "rol", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Usuario usuario;
+    @OneToMany(mappedBy = "rol", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Set<Usuario> usuario;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Permiso> permisos;
