@@ -28,6 +28,9 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
     @Autowired
     private EmpresaRepository empresaRepository;
 
+    @Autowired
+    RolService rolService;
+
 
     public Usuario getByUsername(String email) {
                 return usuarioRepository.findByEmail(email).orElseThrow(MiEntidadNoEncontradaException::new);
