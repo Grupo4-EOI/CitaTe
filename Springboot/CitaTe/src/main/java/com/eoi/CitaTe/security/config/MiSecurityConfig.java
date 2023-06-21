@@ -41,8 +41,7 @@ public class MiSecurityConfig {
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/usuarios/**").permitAll()
                 .requestMatchers("/empresas/**").permitAll()
-
-
+                .requestMatchers("/catalogoDeServicios/**").hasAuthority("rolJefe")
 
 
                 .anyRequest().authenticated()

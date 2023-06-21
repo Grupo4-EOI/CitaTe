@@ -12,10 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class MiUserDetailService  implements UserDetailsService {
 
@@ -37,7 +34,9 @@ public class MiUserDetailService  implements UserDetailsService {
         if (usuarioObtenidoDeLaBD.isPresent()){
             userDetails.setUsername(usuarioObtenidoDeLaBD.get().getEmail());
             userDetails.setPassword(usuarioObtenidoDeLaBD.get().getPass());
-           // userDetails.setGrantedAuthorities(getAuthorities(usuarioObtenidoDeLaBD.get().getRoles()));
+            Set<GrantedAuthority> ga = new HashSet<>();
+            ga.add(new SimpleGrantedAuthority(usuarioObtenidoDeLaBD.get().getRol().getNombreRol()));
+            userDetails.setGrantedAuthorities(ga);
 
             // Para establecer el nombre del usuario dependera de si es cliente o empleado por lo que configuramos if else
 
