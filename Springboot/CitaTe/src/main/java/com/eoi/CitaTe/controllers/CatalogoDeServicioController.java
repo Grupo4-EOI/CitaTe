@@ -4,12 +4,17 @@ import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
 import com.eoi.CitaTe.dto.CatalogoDeServicioDTO;
 import com.eoi.CitaTe.dto.ValoracionDTO;
 import com.eoi.CitaTe.entities.CatalogoDeServicio;
+import com.eoi.CitaTe.entities.Empresa;
+import com.eoi.CitaTe.entities.Usuario;
 import com.eoi.CitaTe.entities.Valoracion;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.eoi.CitaTe.security.details.MiUserDetails;
 import com.eoi.CitaTe.services.CatalogodeServiciosMapperService;
+import com.eoi.CitaTe.services.UsuarioService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +38,10 @@ public class CatalogoDeServicioController extends MiControladorGenerico<Catalogo
     @Autowired
     CatalogodeServiciosMapperService catalogodeServiciosMapperService;
 
+    @Autowired
+    UsuarioService usuarioService;
+
+
 
 
     @PostConstruct
@@ -55,11 +64,23 @@ public class CatalogoDeServicioController extends MiControladorGenerico<Catalogo
         return url + "all-entities";
     }
 
-    @Override
+
     @GetMapping("/create")
-    public String create(Model model) {
+    public String create(Model model, Authentication authentication) {
         CatalogoDeServicioDTO entity = new CatalogoDeServicioDTO();
+
+        //Obtenemos el nombre de usuario logueado
+        MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
+        String userEmail = miUserDetails.getEmail();
+
+        // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
+        Usuario user = usuarioService.getByEmail(userEmail);
+
+        // Obtenemos la empresa
+        Empresa empresa =  user.getEmpleado().getEmpresa();
+
         model.addAttribute("entity", entity);
+        model.addAttribute("empresa", empresa);
         return url + "entity-details";
     }
 
