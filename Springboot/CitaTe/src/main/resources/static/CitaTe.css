@@ -224,7 +224,7 @@ Alex
     color:white;text-decoration: none; font-weight: 500;
 }
 .nolink:hover {
-    color: black;
+    color: #ffffff;
 }
 
 .meterregistro{
@@ -424,6 +424,17 @@ section h2{
     text-decoration: none;
 }
 
+.registroempresahome {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.homebtn {
+    background-color: black;
+    float: right;
+    margin-top: 15px;
+    color: white; /* opcional, para cambiar el color del texto a blanco */
+}
 
 
 
