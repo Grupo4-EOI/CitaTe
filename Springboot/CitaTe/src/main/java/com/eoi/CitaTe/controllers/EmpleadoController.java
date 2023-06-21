@@ -202,24 +202,24 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         {
             year+=1;
             month=1;
-            strdaymin =  	year + "-" +
+            strdaymin = year + "-" +
                     String.format("%02d" , month) + "-01 00:00:00";
-            strdaymax =  	year + "-" +
+            strdaymax = year + "-" +
                     String.format("%02d" , month+1) + "-01 00:00:00";
         }
         if(month==0)
         {
             year-=1;
             month=12;
-            strdaymin =  	year + "-" +
+            strdaymin = year + "-" +
                     String.format("%02d" , month) + "-01 00:00:00";
-            strdaymax =  	(year +1)  + "-" +
+            strdaymax = (year +1)  + "-" +
                     String.format("%02d" , 1) + "-01 00:00:00";
         }
         else{
-            strdaymin =  	year + "-" +
+            strdaymin = year + "-" +
                     String.format("%02d" , month) + "-01 00:00:00";
-            strdaymax =  	year + "-" +
+            strdaymax = year + "-" +
                     String.format("%02d" , month+1) + "-01 00:00:00";
         }
         //Ya tengo puedo consegui las fechas de inicio y de fin
@@ -343,6 +343,14 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         return "empleados/details";
     }
 
+    @PostMapping("/details/{id}")
+    public String details(@PathVariable(value = "id") long id,
+                          @ModelAttribute(name ="reserva") ReservaDTO
+                          reservaDTO) {
+        System.out.println("En el post de  reservas: "+id);
+        System.out.println(reservaDTO.getFechaReserva());
+        return "/";
+    }
 
 
 

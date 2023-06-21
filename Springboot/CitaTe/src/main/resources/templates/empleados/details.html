@@ -20,11 +20,9 @@
 <div th:replace="~{fragmentos/headerRegistroEmpresa :: header}"></div>
 
 <!--Header-->
-</br></br></br>
-
 
 <div class="container">
-
+  <form  role="form" th:action="'/empleados/details/' + ${empleado.id}" th:object="${reserva}" method="post">
   <div class="row">
     <h1>Servicios que ofrece este empleado</h1>
     <table class="table table-striped">
@@ -89,10 +87,10 @@
       <a class="btn btn-primary" th:href="@{calendario?month={month}(month=${month+1})}"> Siguente mes</a>
 
     </div>
-  </div>
     <div class="col-md-6">
-      <form class="mx-1 mx-md-4"  role="form"  th:object="${reserva} " method="post">
+
         <!--Datos para alta de la reserva-->
+        <h1>Alta de la reserva</h1>
         <div class="d-flex flex-row align-items-center mb-4">
           <i class="fas fa-user fa-lg me-3 fa-fw"></i>
           <div class="form-outline flex-fill mb-0">
@@ -116,44 +114,20 @@
         </div>
         <!--Seleccionar el servicio-->
         <div th:if="${servicios!=null and !servicios.empty}"  class="form-group col-md-12">
-          <label for="listaServicios" th:text="Lista de servicios"></label>
-          <select th:field="${reserva.servicioId}" class="form-control"  id="listaServicios">
+          <label for="xx" >Lo que tu quierss</label>
+          <select th:field="${reserva.servicioId}" class="form-control"  id="xx">
             <option value="0">Seleciona uno</option>
             <option  th:each="elemento : ${servicios}" th:value="${elemento.id}" th:text="${elemento.catalogoDeServicio.descripcion}" ></option>
           </select>
         </div>
-      </form>
+
+
     </div>
   </div>
-
-<!--  <h1>Disponibilidad que tiene este empleado</h1>-->
-<!--  <table class="table table-striped">-->
-<!--    <thead>-->
-<!--    <tr>-->
-<!--      <th>Dia</th>-->
-<!--      <th>Inicio</th>-->
-<!--      <th>Fin</th>-->
-<!--      <th>Inicio</th>-->
-<!--      <th>Fin</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-
-<!--    <tbody>-->
-<!--    <tr th:each="disponibilidad : ${empleado.disponibilidades}">-->
-
-<!--      <td th:text="${disponibilidad.diaDeLaSemana}"></td>-->
-
-<!--      <td th:text="${disponibilidad.horaInicioManiana}"></td>-->
-<!--      <td th:text="${disponibilidad.horaFinManiana}"></td>-->
-
-<!--      <td th:text="${disponibilidad.horaInicioTarde}"></td>-->
-<!--      <td th:text="${disponibilidad.horaFinTarde}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-
-
-
+    <div class="d-flex flex-row align-items-center mb-4">
+      <button type="submit" value="guardar" >Registrar reserva</button>
+    </div>
+  </form>
 </div>
 
 </br></br></br></br></br></br></br>

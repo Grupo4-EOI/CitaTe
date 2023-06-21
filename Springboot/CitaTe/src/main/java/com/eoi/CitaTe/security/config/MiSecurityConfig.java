@@ -3,6 +3,7 @@ package com.eoi.CitaTe.security.config;
 import com.eoi.CitaTe.security.service.MiUserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -42,6 +43,7 @@ public class MiSecurityConfig {
                 .requestMatchers("/usuarios/**").permitAll()
                 .requestMatchers("/empresas/**").permitAll()
                 .requestMatchers("/empleados/**").permitAll()
+                .requestMatchers( HttpMethod.POST,"/**").permitAll()
 
 
 
