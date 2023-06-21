@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body class="fondoallentities" >
+<body>
 
 <!--Header-->
 
@@ -26,7 +26,7 @@
 </br></br></br>
 
 <div class="container">
-    <h3>Facturación</h3> <br>
+    <h1>Facturación</h1>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -40,7 +40,7 @@
             <td th:text="${facturaciondto.fecha}"></td>
 
             <td>
-                <a th:href="@{/facturaciones/{id}(id=${facturaciondto.id})}" class="btn btn-dark">Editar</a>
+                <a th:href="@{/facturaciones/{id}(id=${facturaciondto.id})}" class="btn btn-primary">Editar</a>
                 <a th:href="@{/facturaciones/delete/{id}(id=${facturaciondto.id})}" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
@@ -49,7 +49,7 @@
 
 
     <div class=" btn" style="background-color: #3f4c63">
-        <a th:class="nolink" href="/facturaciones/create" >Añadir nueva Facturación</a>
+        <a th:class="nolink" href="/facturaciones/create" >Añadir nueva facturación</a>
     </div>
 </div>
 

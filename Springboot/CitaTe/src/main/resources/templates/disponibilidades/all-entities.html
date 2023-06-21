@@ -13,11 +13,11 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body class="fondoallentities">
+<body>
 
 <!--Header-->
 
-<div th:replace="~{fragmentos/headerRegistroEmpresa :: headerregistroempresa}"></div>
+<div th:replace="~{fragmentos/headerRegistroEmpresa :: header}"></div>
 
 <!--Header-->
 
@@ -25,51 +25,45 @@
 
 </br></br></br>
 
-    <div class="container">
-        <h3 class="disponibilidadall">Disponibilidad</h3><br>
+<div class="container">
+    <h1>Disponibilidad</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+<!--            <th>Dia</th>-->
+
+            <th>Fecha</th>
+            <th>Hora inicio mañana</th>
+            <th>Hora fin mañana</th>
+            <th>Hora inicio tarde</th>
+            <th>Hora fin tarde</th>
+
+            <!-- Nueva columna para las acciones -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="disponibilidaddto : ${entities}">
+<!--            <td th:text="${disponibilidad.fecha}"></td>-->
+
+            <td th:text="${disponibilidaddto.fecha}"></td>
+            <td th:text="${disponibilidaddto.horaInicioManiana}"></td>
+            <td th:text="${disponibilidaddto.horaFinManiana}"></td>
+            <td th:text="${disponibilidaddto.horaInicioTarde}"></td>
+            <td th:text="${disponibilidaddto.horaFinTarde}"></td>
+
+            <td>
+                <a th:href="@{/disponibilidades/{id}(id=${disponibilidaddto.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/disponibilidades/delete/{id}(id=${disponibilidaddto.id})}" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 
-        <div class="">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <!--            <th>Dia</th>-->
-
-                    <th>Fecha</th>
-                    <th>Hora inicio mañana</th>
-                    <th>Hora fin mañana</th>
-                    <th>Hora inicio tarde</th>
-                    <th>Hora fin tarde</th>
-
-                    <!-- Nueva columna para las acciones -->
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="disponibilidaddto : ${entities}">
-                    <!--            <td th:text="${disponibilidad.fecha}"></td>-->
-
-                    <td th:text="${disponibilidaddto.fecha}"></td>
-                    <td th:text="${disponibilidaddto.horaInicioManiana}"></td>
-                    <td th:text="${disponibilidaddto.horaFinManiana}"></td>
-                    <td th:text="${disponibilidaddto.horaInicioTarde}"></td>
-                    <td th:text="${disponibilidaddto.horaFinTarde}"></td>
-
-                    <td>
-                        <a th:href="@{/disponibilidades/{id}(id=${disponibilidaddto.id})}" class="btn btn-dark">Editar</a>
-                        <a th:href="@{/disponibilidades/delete/{id}(id=${disponibilidaddto.id})}" class="btn btn-danger">Eliminar</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-
-
-        <div class=" btn" style="background-color: #3f4c63">
-            <a th:class="nolink" href="/disponibilidades/create" >Añadir nueva Disponibilidad</a>
-        </div>
+    <div class=" btn" style="background-color: #3f4c63">
+        <a th:class="nolink" href="/disponibilidades/create" >Añadir nueva Disponibilidad</a>
     </div>
-
+</div>
 
 </br></br></br></br></br></br></br>
 

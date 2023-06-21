@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body class="fondoallentities" >
+<body>
 
 <!--Header-->
 
@@ -26,14 +26,14 @@
 </br></br></br>
 
 <div class="container">
-    <h3>Empleados</h3><br>
+    <h1>Empleados</h1>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Nombre de Empleado</th>
-            <th>Primer Apellido</th>
-            <th>Segundo Apellido</th>
-          <!--  <th>Inicio mañana</th> -->
+            <th>Apellido 1</th>
+            <th>Apellido 2</th>
+            <th>Inicio mañana</th>
 
             <!-- Nueva columna para las acciones -->
         </tr>
@@ -45,7 +45,7 @@
             <td th:text="${empleadodto.apellido2Empleado}"></td>
 
             <td>
-                <a th:href="@{/empleados/{id}(id=${empleadodto.id})}" class="btn btn-dark">Editar</a>
+                <a th:href="@{/empleados/{id}(id=${empleadodto.id})}" class="btn btn-primary">Editar</a>
                 <a th:href="@{/empleados/delete/{id}(id=${empleadodto.id})}" class="btn btn-danger">Eliminar</a>
             </td> <!-- Columna para los botones de edición y eliminación -->
         </tr>

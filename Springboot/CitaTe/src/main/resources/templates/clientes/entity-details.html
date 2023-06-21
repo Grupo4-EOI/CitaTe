@@ -13,22 +13,23 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body class="fondoallentities" >
+<body>
 
 <!--Header-->
 
 <div th:replace="~{fragmentos/headerRegistroEmpresa :: header}"></div>
+
 <!--Header-->
 
 </br></br></br>
 
 <div class="container">
-    <h2 class="text-center" >Editar Clientes</h2><br>
+    <h1>Editar Clientes</h1>
     <form th:object="${entity}" th:action="@{/clientes/actualizar}" method="POST" th:method="POST">
         <input type="hidden" name="id" id="id" th:field="*{id}">
 
             <div>
-                <table class="table table-striped">
+                <table>
                     <thead>
                     <tr>
                         <th>Nombre Cliente</th>
@@ -48,7 +49,7 @@
                 </table>
             </div><br>
 
-        <button type="submit" class="btn btn-dark">Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 
 </div>

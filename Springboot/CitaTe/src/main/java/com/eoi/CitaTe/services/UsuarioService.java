@@ -5,7 +5,6 @@ import com.eoi.CitaTe.dto.*;
 import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.repositories.EmpleadoRepository;
 import com.eoi.CitaTe.repositories.EmpresaRepository;
-import com.eoi.CitaTe.repositories.RolRepository;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -29,13 +27,9 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
     private EmpleadoRepository empleadoRepository;
     @Autowired
     private EmpresaRepository empresaRepository;
-    @Autowired
-    private RolRepository rolRepository;
 
     @Autowired
-    private RolMapperService rolMapperService;
-    @Autowired
-    private RolService rolService;
+    RolService rolService;
 
 
     public Usuario getByUsername(String email) {
@@ -50,11 +44,9 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         Usuario usuario = new Usuario();
         Cliente cliente = new Cliente();
 
-
         usuario.setEmail(usuarioDTO.getEmail());
         usuario.setPass(codificadorContraseñas.encode(usuarioDTO.getPass()));
         usuario.setActivo(true);
-
 
         cliente.setNombreCliente(clienteDTO.getNombreCliente());
         cliente.setApellido1Cliente(clienteDTO.getApellido1Cliente());
@@ -63,7 +55,6 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
         usuario.setCliente(cliente);
         usuario.setRol(rolService.getById(1L));
-
 
 
         usuarioRepository.save(usuario);
@@ -79,7 +70,6 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         Usuario usuario = new Usuario();
         Direccion direccion = new Direccion();
         Contacto contacto = new Contacto();
-        Rol rolJefe = new Rol();
 
 
         direccion.setProvincia(direccionDTO.getProvincia());
@@ -120,6 +110,11 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         usuario.setPass(codificadorContraseñas.encode(usuarioDTO.getPass()));
         usuario.setActivo(true);
 
+        usuario.setEmpleado(empleado);
+        //usuario.setRol(jefe)
+
+        // Configurar mas adelante rol de jefe para este usuario.
+
 
         usuario.setEmpleado(empleado);
 
@@ -129,6 +124,12 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
         usuarioRepository.save(usuario);
 
+      //  private Set<Empleado> empleados = new HashSet<>();
+      //  private CatalogoDeServicio catalogoDeServicio;
+
+        //private Disponibilidad disponibilidad;
+        //private Set<Servicio> servicios = new HashSet<>();
+
     }
 
     // Hecho el registro de la empresa como "Propietario" añadimos este método para poder añadir empleados.
@@ -136,16 +137,10 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
         Empleado empleado = new Empleado();
         Usuario usuario = new Usuario();
-        Rol rolEmpleado = new Rol();
 
         usuario.setEmail(usuarioDTO.getEmail());
         usuario.setPass(codificadorContraseñas.encode(usuarioDTO.getPass()));
         usuario.setActivo(true);
-
-        usuario.setEmpleado(empleado);
-
-        usuario.setRol(rolService.getById(2L));
-
 
         empleado.setNombreEmpleado(empleadoDTO.getNombreEmpleado());
         empleado.setApellido1Empleado(empleadoDTO.getApellido1Empleado());
@@ -154,7 +149,9 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         //empleado.setEmpresa(empleadoDTO.getEmpresa());  PREGUNTAR en tutorio
 
         usuario.setEmpleado(empleado);
-        //usuario.setRol(empleado)
+
+        usuario.setRol(rolService.getById(2L));
+
 
         usuarioRepository.save(usuario);
 

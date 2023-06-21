@@ -13,7 +13,7 @@
   <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body class="fondodetails">
+<body>
 
 <!--Header-->
 
@@ -25,7 +25,7 @@
 
 <div class="container">
 
-  <h2>Sercios que ofrece esta peluqueria</h2>
+  <h1>Sercios que ofrece esta peluqueria</h1>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -60,7 +60,7 @@
                   <td th:text="${empleado.nombreEmpleado}"></td>
                   <td th:text="${empleado.apellido1Empleado}"></td>
                   <td>
-                      <a th:href="@{/empleados/details/{id}(id=${empleado.id})}" class="btn btn-dark">Ver</a>
+                      <a th:href="@{/empleados/details/{id}(id=${empleado.id})}" class="btn btn-primary">Ver</a>
                   </td>
             </tr>
       </tbody>

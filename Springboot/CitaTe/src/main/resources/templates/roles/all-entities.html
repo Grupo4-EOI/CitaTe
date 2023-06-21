@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body class="fondoallentities">
+<body>
 
 <!--Header-->
 
@@ -26,13 +26,13 @@
 </br></br></br>
 
 <div class="container">
-    <h3>Roles</h3>
+    <h1>Roles</h1>
     <table class="table table-striped">
         <thead>
         <tr>
 <!--            <th>Dia</th>-->
 
-            <th>Nombre del Rol</th>
+            <th>Nombre Rol</th>
 
             <!-- Nueva columna para las acciones -->
         </tr>
@@ -44,7 +44,7 @@
 
 
             <td>
-                <a th:href="@{/roles/{id}(id=${roldto.id})}" class="btn btn-dark">Editar</a>
+                <a th:href="@{/roles/{id}(id=${roldto.id})}" class="btn btn-primary">Editar</a>
                 <a th:href="@{/roles/delete/{id}(id=${roldto.id})}" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>

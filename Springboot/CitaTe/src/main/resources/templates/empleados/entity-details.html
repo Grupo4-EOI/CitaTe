@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body class="fondoallentities" >
+<body>
 
 <!--Header-->
 
@@ -24,7 +24,7 @@
 </br></br></br>
 
 <div class="container">
-    <h2 class="text-center">Editar Empleado</h2><br>
+    <h1>Editar Empleado</h1>
     <form th:object="${entity}" th:action="@{/empleados/actualizar}" method="POST" th:method="POST">
 
         <!--        Metemos el ID de la valoracion como oculto para que cuando realicemos el post no cree un nuevo registro-->
@@ -32,26 +32,23 @@
 
 
         <input type="hidden" name="id" id="id" th:field="*{id}">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Primer Apellido</th>
-                    <th>Segundo Apellido</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombreEmpleado}"></td>
-                    <td><input type="text" class="form-control" id="apellido1" name="apellido1" th:field="*{apellido1Empleado}"></td>
-                    <td> <input type="text" class="form-control" id="apellido2" name="apellido2" th:field="*{apellido2Empleado}"></td>
 
-                </tr>
-            </tbody>
-        </table>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombreEmpleado}">
+        </div>
+        <div class="mb-3">
+            <label for="apellido1" class="form-label">Apellido 1</label>
+            <input type="text" class="form-control" id="apellido1" name="apellido1" th:field="*{apellido1Empleado}">
+        </div>
+        <div class="mb-3">
+            <label for="apellido2" class="form-label">Apellido 1</label>
+            <input type="text" class="form-control" id="apellido2" name="apellido2" th:field="*{apellido2Empleado}">
+        </div>
 
 
-        <button type="submit" class="btn btn-dark">Guardar</button>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 
 </div>

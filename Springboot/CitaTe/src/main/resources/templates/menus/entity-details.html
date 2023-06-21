@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body class="fondoallentities" >
+<body>
 
 <!--Header-->
 
@@ -24,7 +24,7 @@
 </br></br></br>
 
 <div class="container">
-    <h2 class="text-center" >Editar Menus</h2>
+    <h1>Editar Menus</h1>
     <form th:object="${entity}" th:action="@{/menus/actualizar}" method="POST" th:method="POST">
 
 <!--        Metemos el ID de la valoracion como oculto para que cuando realicemos el post no cree un nuevo registro-->
@@ -33,24 +33,19 @@
 
         <input type="hidden" name="id" id="id"th:field="*{id}">
 
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>URL</th>
-                <th>Descripcion</th>
+        <div class="mb-3">
+            <label for="url" class="form-label">url</label>
+            <input type="text" class="form-control" id="url" name="Comentario" th:field="*{url}">
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">descripcion</label>
+            <input type="text" class="form-control" id="descripcion" name="Puntuacion" th:field="*{descripcion}">
+        </div>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><input type="text" class="form-control" id="url" name="Comentario" th:field="*{url}"></td>
-                <td><input type="text" class="form-control" id="descripcion" name="Puntuacion" th:field="*{descripcion}"></td>
-            </tr>
 
-            </tbody>
-        </table>
 
-        <button type="submit" class="btn btn-dark">Guardar</button>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 
 </div>

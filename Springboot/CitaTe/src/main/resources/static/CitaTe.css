@@ -8,86 +8,151 @@ html,body {
 }
 
 body{
+
+
 }
+
+/* Header */
+
+
 
 header{
-  /* margin-bottom: 30px; Esto es para pegar completamente la foto al header de arriba */
-   /*background-color: #1b263b;*/
-    background-image: url("img/fondoheader1.png");
-   /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), url("img/fondoheader1.png");*/
-  }
+   margin-bottom: 30px;
+   background-color: #495057;}
 
-
-headerregistroempresa {
-    background-image: url("img/fondoheader1.png");
+#headerregistroempresa2{
+    padding: 20px;
+    color: white;
 }
+
+/*Desplegable en Registrate para poder elegir Cliente o empresa*/
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+/*Tamaño logo citate*/
+#logocitate{
+    width: 200px;
+}
+
+/* botones de login */
+
+#botonlogin {
+    font-size: 18px;
+    color: #e1e1e1;
+    font-family: Rubik;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+}
+
+#botonlogin:focus,
+#botonlogin:hover {
+    color: #fff;
+}
+
+#botonlogin:focus:after,
+#botonlogin:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+#botonlogin:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+}
+/* botones de Registro */
+
+#botonregister {
+    font-size: 18px;
+    color: #e1e1e1;
+    font-family: Rubik;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+}
+
+#botonregister:focus,
+#botonregister:hover {
+    color: #fff;
+}
+
+#botonregister:focus:after,
+#botonregister:hover:after {
+    width: 100%;
+    left: 0%;
+}
+
+#botonregister:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+}
+
+#headermodal{
+    background-color: rgb(67, 138, 183);
+}
+
+
+
+
+
+/* Header */
 
 
 main{
    min-height:90vh;
 }
 
-/*Footer y sus propiedades*/
 
+/* Footer  -------------------- */
 
-.footer-07 {
-    padding: 5px; }
-
-
-.footer-07 {
-    background: #a3de83;
-    background-image: url("img/fondoheader.png");
-}
-.footer-07 a {
-    color: #a3de83; }
-.footer-07 p {
-    color: rgba(255, 255, 255, 0.3);}
-
-.footer-07 .footer-heading {
-    font-size: 30px;
-    color: #fff;
-    font-weight: 700;
-    margin-bottom: 30px;
-    text-decoration: none;}
-.footer-07 .footer-heading .logo {
-    color: #fff;
-    text-decoration: none;}
-.footer-07 .menu {
-    margin-bottom: 30px; }
-.footer-07 .menu a {
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;}
-
-.footer-07 .ftco-footer-social li a {
-    background: transparent;
- }
-
-/*Footer y sus propiedades*/
-
-/* HEADER */
-
-
-/*Desplegable en Registrate para poder elegir Cliente o empresa*/
-.dropdown:hover .dropdown-menu {
-   display: block;
-}
-/*Tamaño logo citate*/
-#logocitate{
-width: 100px;
+.footer {
+ background-color: #3f4c63;
 }
 
-.modal-header{
-    background-color: #1B263B;
-    color: aliceblue;
+/*?????????????????????????????????????*/
 
-}
-.modal-footer{
-    background-color: #1B263B;
-    color: aliceblue;
-}
+/*?????????????????????????????????????*/
+
+/*.footer li{
+   color: antiquewhite;}
+
+
+/*footer{
+ background-color: #E3E4E0;
+}*/
+/*?????????????????????????????????????*/
+
+/* Footer  -------------------- */
 
 
 
@@ -142,61 +207,29 @@ width: 100px;
 #botonayuda{
  color: #ffffff;
 }
-footer{
- background-color: #E3E4E0;
-}
-/* Reserva servicos cerca de ti*/
+
+
 #reservaservicios{
  background-color: #1B263B;
  border: #1B263B;
 }
-
-
-/* Reserva servicos cerca de ti*/
-/*Imagen de debajo del Header en Home*/
-
-
-
-.my-custom-container {
-    height: 400px; /* Ajusta la altura deseada */
-    width: 100%; /* Ajusta el ancho deseado */
-    background-size: cover; /* Ajusta la forma en que se muestra la imagen de fondo */
+#fotoytexto{
+ background-attachment: fixed;
 }
-
-/*Imagen superpuesta home*/
-.superposed-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-    height: 100vh;
-    max-width: 50%;
-    max-height: 50%;
-}
-
-.superposed-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-
-
-
-
-
-
-
-
-
 
 #accesologin{
    display: flex;
    flex-direction: column;
    justify-content: center;
    text-align: center;
+
 }
+
+
+/************************************
+MEDIA QUERIES
+************************************/
+
 
 /************************************
 Alex
@@ -245,10 +278,6 @@ Alex
 
  .pcentrado{text-align: center;}
 
- #headerregistroempresa2{
-   padding: 20px;
-   color: white;
-}
 
 .calendario{
 border: solid;
@@ -256,7 +285,6 @@ border-width: 1px;
 text-align: center;
 
 }
-
 .calendario2{
 border: solid;
 border-width: 1px;
@@ -277,8 +305,6 @@ Sandra
 
 /*Correspondiente a la parte quienes somos de
 p1*/
-
-
 #presentacion{
    text-align: center;
    font-size: 20px;
@@ -301,9 +327,6 @@ p1*/
 
  }
 
- #headermodal{
-   background-color: rgb(67, 138, 183);
- }
 
  #botoncontinuar{
    background-color: rgb(67, 138, 183);
@@ -387,57 +410,6 @@ Diego
     .carousel-item {
        height: 400px;
      }
-
-/*Color de los valores a rellenar de las tablas*/
-.table thead tr {
-    background-color: #386E9AFF;
-    color: #fff;
-}
-/*Color de los valores a rellenar de las tablas*/
-
-.table thead tr th {
-    font-weight: bold;
-}
-
-.table thead .filtrado {
-    background-color: transparent;
-}
-
-
-
-/*Fotos de fondo en all-entities y entity-details*/
-
-.fondoallentities {
-    background-image: url("img/canva2.png");
-}
-
-.fondodetails{
-    background-image: url("img/fondodetails.png");
-}
-
-/*Fotos de fondo en all-entities y entity-details*/
-
-/*Paginado*/
-
-.listadoempresas {
-    color: inherit; /* Cambia el color según tus necesidades */
-    text-decoration: none;
-}
-
-
-
-
-
-
-
-
-/*Paginado*/
-
-/*.disponibilidadall{
-/*    color: #ffffff;
-/*}
-/*
-*/
 
 
 
