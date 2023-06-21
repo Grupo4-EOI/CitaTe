@@ -76,7 +76,7 @@
     <main>
         <div class="row py-lg-5 border-bottom justify-content-center align-items-center my-custom-container container-fluid" style="background-image: url('img/banner_solo_foto.jpg');" id="fotoytextop">
             <div class="col-lg-6 col-md-8 mx-auto" id="debajodelheader">
-                <img src="img/banner_png.png" alt="Imagen superpuesta" class="superposed-image">
+
             </div>
         </div>
 
@@ -85,7 +85,7 @@
         <!--Botooonnnnnnnnnnnnn Reserva servicioooooooooooooooooooosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
         <div class="d-flex gap-2 justify-content-center py-5">
             <button class="btn btn-dark d-inline-flex align-items-center text boton" type="button" id="reservaservicios">
-                <a th:href="@{/empresas/paginados}" class="nolink">Reserva servicios cerca de ti</a>
+                <a th:text="#{text.home.reservaservicios}" th:href="@{/empresas/paginados}" class="nolink"></a>
                 <svg class="bi ms-1" width="0" height="20">
                     <use xlink:href="#arrow-right-short"></use>
                 </svg>
