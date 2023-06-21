@@ -36,6 +36,7 @@ public class MiUserDetailService  implements UserDetailsService {
         if (usuarioObtenidoDeLaBD.isPresent()){
             userDetails.setUsername(usuarioObtenidoDeLaBD.get().getEmail());
             userDetails.setPassword(usuarioObtenidoDeLaBD.get().getPass());
+            userDetails.setId(usuarioObtenidoDeLaBD.get().getId());
 
             // Para establecer el nombre del usuario dependera de si es cliente o empleado por lo que configuramos if else
 

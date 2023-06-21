@@ -21,6 +21,7 @@ public class MiUserDetails implements UserDetails {
     private String password;
 
 
+
     private boolean isActive=true;
     private boolean isAccountNonExpired=true;
     private boolean isAccountNonLocked=true;
@@ -31,6 +32,7 @@ public class MiUserDetails implements UserDetails {
 
     private String nombreUsuario;
     private String apellidoUsuario;
+    private Long id;
 
 
 

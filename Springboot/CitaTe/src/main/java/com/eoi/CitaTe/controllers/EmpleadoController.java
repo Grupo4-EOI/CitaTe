@@ -6,11 +6,13 @@ import com.eoi.CitaTe.calendario.Evento;
 import com.eoi.CitaTe.dto.*;
 import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
+import com.eoi.CitaTe.security.details.MiUserDetails;
 import com.eoi.CitaTe.services.*;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +53,8 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
     ServicioMapperService servicioMapperService;
     @Autowired
     ReservaMapperService reservaMapperService;
+    @Autowired
+    UsuarioService usuarioService;
 
     @PostConstruct
     private void init() {
@@ -349,7 +353,14 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
     public String details(@ModelAttribute(name ="reserva") ReservaDTO
                           reservaDTO) {
 
-        reservaMapperService.CrearReserva(reservaDTO);
+        //Obtenemos el nombre de usuario logueado
+        MiUserDetails miUserDetails = (MiUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
+        Usuario user = usuarioService.getById(miUserDetails.getId());
+
+
+        reservaMapperService.CrearReserva2(reservaDTO, user.getCliente());
 
         System.out.println("---------------------------------jasjdjasdfnjsdfjsaddsfajjnfasdjasdjasd--");
         System.out.println("-----------------------------------" + reservaDTO.getFechaReserva());
