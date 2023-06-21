@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body>
+<body class="fondoallentities" >
 
 <!--Header-->
 
@@ -26,7 +26,7 @@
 </br></br></br>
 
 <div class="container">
-    <h1>Reservas</h1>
+    <h3>Reservas</h3>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -42,15 +42,16 @@
         <tbody>
         <tr th:each="reservadto : ${entities}">
 
+            <td th:text="${reservadto.estadoReserva}"></td>
+
             <td th:text="${reservadto.fechaReserva}"></td>
+
             <td th:text="${reservadto.hora_inicio}"></td>
             <td th:text="${reservadto.hora_fin}"></td>
 
-<!-- ponderamos una fila con dos columnas de tamanio 6 , a la izquirda listaremos la fehca hora ini-fin de las resarvar creada para ese empleado ese dia-->
-<!--            en la derecha ofreceramos los campos para dar de alta la nueva reserva, en el controlador (post) antes de guardar la reservas comprobaremos que no se
-solapa ninguna de las reservas existentes-->
+
             <td>
-                <a th:href="@{/reservas/{id}(id=${reservadto.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/reservas/{id}(id=${reservadto.id})}" class="btn btn-dark">Editar</a>
                 <a th:href="@{/reservas/delete/{id}(id=${reservadto.id})}" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>

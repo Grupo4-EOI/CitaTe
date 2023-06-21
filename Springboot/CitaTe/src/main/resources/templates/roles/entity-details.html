@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body>
+<body class="fondoallentities">
 
 <!--Header-->
 
@@ -24,7 +24,7 @@
 </br></br></br>
 
 <div class="container">
-    <h1>Editar Rol</h1>
+    <h2 class="text-center">Editar Rol</h2>
     <form th:object="${entity}" th:action="@{/roles/actualizar}" method="POST" th:method="POST">
 
 <!--        Metemos el ID de la valoracion como oculto para que cuando realicemos el post no cree un nuevo registro-->
@@ -33,16 +33,24 @@
 
         <input type="hidden" name="id" id="id"th:field="*{id}">
 
-        <div class="mb-3">
+        <table class="table table-striped">
+            <thead>
+            <tr>
 
-            <label for="nombreRol" class="form-label">Nombre del Rol</label>
-            <input type="text" class="form-control" id="nombreRol" name="nombreRol" th:field="${entity.nombreRol}">
-        </div>
+                <th>Nombre del Rol</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" class="form-control" id="nombreRol" name="nombreRol" th:field="${entity.nombreRol}"></td>
+            </tr>
+
+            </tbody>
+        </table>
 
 
-
-
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-dark">Guardar</button>
     </form>
 
 </div>

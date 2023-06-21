@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<div th:fragment="header">
+
+<div th:fragment="headerregistroempresa">
 
   <header>
-    <div class="cabecera row d-flex justify-content-center">
-      <img class="col-2 col-lg-1" th:src="@{/img/logoazul.png}" alt="citatelogo" id="logocitate">
-
+    <div class=" row d-flex justify-content-center">
+      <img class="col-2 col-lg-1" src="/img/logoazul.png" alt="citatelogo" id="logocitate">
 
     </div>
+
+    <div class="container">
+      <ul class="nav nav-pills text-center">
+        <li class="nav-item"><a href="/" class="nav-link active btn-dark btn-home">Home</a></li>
+      </ul>
+    </div>
+
 
     <div class="cabecera row container-fluid  d-flex  align-items-center cajitas btn">
 
