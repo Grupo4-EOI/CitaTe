@@ -54,6 +54,7 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         cliente.setTelefono(clienteDTO.getTelefono());
 
         usuario.setCliente(cliente);
+        usuario.setRol(rolService.getById(1L));
 
 
         usuarioRepository.save(usuario);
@@ -114,6 +115,13 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
 
         // Configurar mas adelante rol de jefe para este usuario.
 
+
+        usuario.setEmpleado(empleado);
+
+        usuario.setRol(rolService.getById(3L));
+
+        usuario.setEmpleado(empleado);
+
         usuarioRepository.save(usuario);
 
       //  private Set<Empleado> empleados = new HashSet<>();
@@ -141,7 +149,9 @@ public class UsuarioService extends GenericServiceConJPA<Usuario, Long> {
         //empleado.setEmpresa(empleadoDTO.getEmpresa());  PREGUNTAR en tutorio
 
         usuario.setEmpleado(empleado);
-        //usuario.setRol(empleado)
+
+        usuario.setRol(rolService.getById(2L));
+
 
         usuarioRepository.save(usuario);
 
