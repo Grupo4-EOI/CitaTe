@@ -3,16 +3,10 @@ package com.eoi.CitaTe.controllers;
 import com.eoi.CitaTe.abstraccomponents.MiControladorGenerico;
 import com.eoi.CitaTe.calendario.DiaDelCalendario;
 import com.eoi.CitaTe.calendario.Evento;
-import com.eoi.CitaTe.dto.ClienteDTO;
-import com.eoi.CitaTe.dto.EmpleadoDTO;
-import com.eoi.CitaTe.dto.UsuarioDTO;
-import com.eoi.CitaTe.dto.ValoracionDTO;
+import com.eoi.CitaTe.dto.*;
 import com.eoi.CitaTe.entities.*;
 import com.eoi.CitaTe.errorcontrol.exceptions.MiEntidadNoEncontradaException;
-import com.eoi.CitaTe.services.DisponibilidadMapperService;
-import com.eoi.CitaTe.services.DisponibilidadService;
-import com.eoi.CitaTe.services.EmpleadoMapperService;
-import com.eoi.CitaTe.services.EmpleadoService;
+import com.eoi.CitaTe.services.*;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +46,9 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
     @Autowired
     DisponibilidadMapperService disponibilidadMapperService;
+
+    @Autowired
+    ServicioMapperService servicioMapperService;
 
     @PostConstruct
     private void init() {
@@ -170,14 +167,14 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
                           @RequestParam("day") Optional<Integer> dayOK,
                           Model model,
                           Principal principal) {
+        //Objeto reserva dto
+        ReservaDTO reservaDTO = new ReservaDTO();
         //Inicvializamos las resevnas
         reservaListDB.clear();
         reservaListPantalla.clear();
 
         Empleado empleado = service.getById(id);
-        model.addAttribute("empleado", empleado);
-        //queremos una lista de servicios
-        model.addAttribute("servicios", empleado.getServicios());
+
         //generamos una lista con los numeros de dia de la semana que trabaja el empleado
         String[] convertedDLaboArray = empleado.getDisponibilidad().getDiaslaborables().split(";");
         List<Integer> convertedDLaboList = new ArrayList<Integer>();
@@ -325,6 +322,16 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
         model.addAttribute("year", year);
         model.addAttribute("month", month);
+        model.addAttribute("emppleadoid", id);
+        model.addAttribute("reserva",reservaDTO);
+        //datos del empleado
+        model.addAttribute("empleado", empleado);
+        //queremos una lista de servicios
+        model.addAttribute("servicios", empleado.getServicios());
+
+
+
+        //Lista de servicios del empleado
 
         //Paso al html el objeto dias
         model.addAttribute("mesCompleto", mesCompleto);

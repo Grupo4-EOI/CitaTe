@@ -46,14 +46,22 @@ public class ReservaController extends MiControladorGenerico<Reserva> {
         return url + "all-entities";
     }
 
-    @Override
-    @GetMapping("/create")
-    public String create(Model model) {
+
+    @GetMapping("/create/{idempleado}")
+    public String createnew(@PathVariable Long idEmpleado,@ModelAttribute(name ="reserva") ReservaDTO reservaDTO,
+                            Model model) {
         ReservaDTO entity = new ReservaDTO();
         model.addAttribute("entity", entity);
         return url + "entity-details";
     }
+    @PostMapping("/create/{idempleado}")
+    public String createnewpost(@PathVariable Long idEmpleado, @ModelAttribute(name ="entity") ReservaDTO reservaDTO) {
+        ReservaDTO entity = new ReservaDTO();
+        // ahora guardo
 
+
+        return url + "entity-details";
+    }
 
     @PostMapping(value = {"/actualizar"})
     public String update(@ModelAttribute ReservaDTO entity) {

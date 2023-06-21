@@ -21,6 +21,7 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_reserva", nullable = false)
     private Long id;
+    @Basic(optional = true)
     private boolean estadoReserva;
     private LocalDate fechaReserva;
     private String hora_inicio;
