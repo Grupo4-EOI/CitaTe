@@ -49,6 +49,8 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
 
     @Autowired
     ServicioMapperService servicioMapperService;
+    @Autowired
+    ReservaMapperService reservaMapperService;
 
     @PostConstruct
     private void init() {
@@ -346,10 +348,10 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
     @PostMapping("/details/{id}")
     public String details(@ModelAttribute(name ="reserva") ReservaDTO
                           reservaDTO) {
-        //System.out.println("En el post de  reservas: "+id);
+
+        reservaMapperService.CrearReserva(reservaDTO);
 
         System.out.println("---------------------------------jasjdjasdfnjsdfjsaddsfajjnfasdjasdjasd--");
-
         System.out.println("-----------------------------------" + reservaDTO.getFechaReserva());
         System.out.println("-----------------------------------" + reservaDTO.getServicioId());
 
