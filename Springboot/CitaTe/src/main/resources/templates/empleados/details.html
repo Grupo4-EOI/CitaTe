@@ -22,7 +22,7 @@
 <!--Header-->
 
 <div class="container">
-  <form  role="form" th:action="'/empleados/details/' + ${empleado.id}" th:object="${reserva}" method="post">
+
   <div class="row">
     <h1>Servicios que ofrece este empleado</h1>
     <table class="table table-striped">
@@ -88,6 +88,7 @@
 
     </div>
     <div class="col-md-6">
+      <form  role="form" th:action="'/empleados/details/' + ${empleado.id}" th:object="${reserva}" method="post">
 
         <!--Datos para alta de la reserva-->
         <h1>Alta de la reserva</h1>
@@ -117,17 +118,19 @@
           <label for="xx" >Lo que tu quierss</label>
           <select th:field="${reserva.servicioId}" class="form-control"  id="xx">
             <option value="0">Seleciona uno</option>
-            <option  th:each="elemento : ${servicios}" th:value="${elemento.id}" th:text="${elemento.catalogoDeServicio.descripcion}" ></option>
+            <option  th:each="elemento : ${servicios}" th:value="${elemento.id}" th:text="${elemento.catalogoDeServicio.nombre}" ></option>
           </select>
         </div>
+        <div class="d-flex flex-row align-items-center mb-4">
+          <button type="submit" value="guardar" >Registrar reserva</button>
+        </div>
 
+      </form>
 
     </div>
   </div>
-    <div class="d-flex flex-row align-items-center mb-4">
-      <button type="submit" value="guardar" >Registrar reserva</button>
-    </div>
-  </form>
+
+
 </div>
 
 </br></br></br></br></br></br></br>

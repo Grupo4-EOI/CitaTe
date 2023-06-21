@@ -344,12 +344,19 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
     }
 
     @PostMapping("/details/{id}")
-    public String details(@PathVariable(value = "id") long id,
-                          @ModelAttribute(name ="reserva") ReservaDTO
+    public String details(@ModelAttribute(name ="reserva") ReservaDTO
                           reservaDTO) {
-        System.out.println("En el post de  reservas: "+id);
-        System.out.println(reservaDTO.getFechaReserva());
-        return "/";
+        //System.out.println("En el post de  reservas: "+id);
+
+        System.out.println("---------------------------------jasjdjasdfnjsdfjsaddsfajjnfasdjasdjasd--");
+
+        System.out.println("-----------------------------------" + reservaDTO.getFechaReserva());
+        System.out.println("-----------------------------------" + reservaDTO.getServicioId());
+
+
+
+
+        return "/home/Home";
     }
 
 
