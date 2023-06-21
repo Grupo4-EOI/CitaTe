@@ -13,7 +13,7 @@
     <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
 
 </head>
-<body>
+<body class="fondoallentities" >
 
 <!--Header-->
 
@@ -26,7 +26,7 @@
 </br></br></br>
 
 <div class="container">
-    <h1>Reservas</h1>
+    <h3>Reservas</h3>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -51,7 +51,7 @@
 
 
             <td>
-                <a th:href="@{/reservas/{id}(id=${reservadto.id})}" class="btn btn-primary">Editar</a>
+                <a th:href="@{/reservas/{id}(id=${reservadto.id})}" class="btn btn-dark">Editar</a>
                 <a th:href="@{/reservas/delete/{id}(id=${reservadto.id})}" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
