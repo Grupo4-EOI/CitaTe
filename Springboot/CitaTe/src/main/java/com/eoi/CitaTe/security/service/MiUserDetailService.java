@@ -1,5 +1,6 @@
 package com.eoi.CitaTe.security.service;
 
+import com.eoi.CitaTe.entities.Permiso;
 import com.eoi.CitaTe.entities.Rol;
 import com.eoi.CitaTe.entities.Usuario;
 import com.eoi.CitaTe.repositories.UsuarioRepository;
@@ -36,6 +37,7 @@ public class MiUserDetailService  implements UserDetailsService {
         if (usuarioObtenidoDeLaBD.isPresent()){
             userDetails.setUsername(usuarioObtenidoDeLaBD.get().getEmail());
             userDetails.setPassword(usuarioObtenidoDeLaBD.get().getPass());
+            userDetails.setGrantedAuthorities(getAuthorities((Collection<Rol>) usuarioObtenidoDeLaBD.get().getRol()));
 
             // Para establecer el nombre del usuario dependera de si es cliente o empleado por lo que configuramos if else
 
@@ -59,7 +61,37 @@ public class MiUserDetailService  implements UserDetailsService {
         return null;
     }
 
-    ////////// cosas que no se lo que son
+    ////////// GrantedAuthority con  Roles
+
+
+    private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String privilege : privileges) {
+            authorities.add(new SimpleGrantedAuthority(privilege));
+        }
+        return authorities;
+    }
+
+    private List<String> getPrivileges(Collection<Rol> roles) {
+
+        List<String> privileges = new ArrayList<>();
+        List<Permiso> collection = new ArrayList<>();
+        for (Rol role : roles) {
+            privileges.add(role.getNombreRol());
+            collection.addAll(role.getPermisos());
+        }
+        for (Permiso item : collection) {
+            privileges.add(item.getName());
+        }
+        return privileges;
+    }
+
+
+
+    private Collection<? extends GrantedAuthority> getAuthorities(Collection<Rol> roles) {
+
+        return getGrantedAuthorities(getPrivileges(roles));
+    }
 
 
 
