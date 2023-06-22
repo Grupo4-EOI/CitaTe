@@ -175,20 +175,17 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
                           Principal principal) {
         //Objeto reserva dto
         ReservaDTO reservaDTO = new ReservaDTO();
-        //Inicvializamos las resevnas
+        //Inicializamos las reservas
         reservaListDB.clear();
         reservaListPantalla.clear();
-
         Empleado empleado = service.getById(id);
 
-        //generamos una lista con los numeros de dia de la semana que trabaja el empleado
+        //Generamos una lista con los numeros de dia de la semana que trabaja el empleado
         String[] convertedDLaboArray = empleado.getDisponibilidad().getDiaslaborables().split(";");
         List<Integer> convertedDLaboList = new ArrayList<Integer>();
         for (String number : convertedDLaboArray) {
             convertedDLaboList.add(Integer.parseInt(number.trim()));
         }
-
-
 
         ///////// Calendario ////////////////////////////
 
@@ -228,10 +225,9 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
             strdaymax = year + "-" +
                     String.format("%02d" , month+1) + "-01 00:00:00";
         }
-        //Ya tengo puedo consegui las fechas de inicio y de fin
-        //Generamos un
 
 
+        //Ya tengo puedo conseguir las fechas de inicio y de fin
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTimemin = LocalDateTime.parse(strdaymin, formatter);
         LocalDateTime dateTimemax = LocalDateTime.parse(strdaymax, formatter);
@@ -309,18 +305,15 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
             }
             DiaDelCalendario diaDelCalendario = new DiaDelCalendario();
 
-
-
             diaDelCalendario.setFecha(fechaEnUso);
-            /////
+            ///// Establecemos segun el día del calendario si se trabaja o no se trabaja.
             if (convertedDLaboList.contains(fechaEnUso.getDayOfWeek().ordinal())) {
                 diaDelCalendario.setTrabaja(1);
-
             }
             else {
                 diaDelCalendario.setTrabaja(0);
             }
-            /////
+            ///// pasamos el dia a la semana
             semana.add(diaDelCalendario);
             model.addAttribute(diaDelCalendario);
 
@@ -352,22 +345,13 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
     @PostMapping("/details/{id}")
     public String details(@ModelAttribute(name ="reserva") ReservaDTO
                           reservaDTO) {
-
         //Obtenemos el nombre de usuario logueado
         MiUserDetails miUserDetails = (MiUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
         Usuario user = usuarioService.getById(miUserDetails.getId());
 
-
         reservaMapperService.CrearReserva2(reservaDTO, user.getCliente());
-
-        System.out.println("---------------------------------jasjdjasdfnjsdfjsaddsfajjnfasdjasdjasd--");
-        System.out.println("-----------------------------------" + reservaDTO.getFechaReserva());
-        System.out.println("-----------------------------------" + reservaDTO.getServicioId());
-
-
-
 
         return "/home/Home";
     }
