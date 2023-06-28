@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -350,14 +351,15 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
     }
 
     @PostMapping("/details/{id}")
-    public String details(@ModelAttribute(name ="reserva") ReservaDTO
-                          reservaDTO) {
+    public String reservarServicio(@ModelAttribute(name ="reserva") ReservaDTO
+                                           reservaDTO, Authentication authentication) {
 
         //Obtenemos el nombre de usuario logueado
-        MiUserDetails miUserDetails = (MiUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        MiUserDetails miUserDetails = (MiUserDetails) authentication.getPrincipal();
+        String userEmail = miUserDetails.getEmail();
 
         // Buscamos al usuario correspondiente al nombre de usuario obtenido anteriormente.
-        Usuario user = usuarioService.getById(miUserDetails.getId());
+        Usuario user = usuarioService.getByEmail(userEmail);
 
 
         reservaMapperService.CrearReserva2(reservaDTO, user.getCliente());
@@ -367,9 +369,7 @@ public class EmpleadoController extends MiControladorGenerico<Empleado> {
         System.out.println("-----------------------------------" + reservaDTO.getServicioId());
 
 
-
-
-        return "/home/Home";
+        return "registroEmpresa/RegistroEmpresa12";
     }
 
 
